@@ -21,7 +21,7 @@
                 </div>
             </div>
             <div class="poke-input-back">
-                <input class="poke-input" type="text">
+                <input @keyup="checkName()" v-model="userInput" class="poke-input" type="text">
             </div>
             <button @click="startGame()">Start game</button>
 
@@ -32,6 +32,7 @@
 
 
     <script src="./scripts/vue.js"></script>
+    <script src="./scripts/pokeData.js"></script>
     <script src="./scripts/indexMain.js"></script>
 </body>
 </html>
