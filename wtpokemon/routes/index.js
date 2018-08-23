@@ -8,8 +8,6 @@ var request = require('request');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-
-  
   res.sendFile(path.join(__dirname, './../views/index.html'));
 });
 
