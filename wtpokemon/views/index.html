@@ -19,6 +19,7 @@
                     class="poke-img" :style="{ 'backgroundImage' : 'url(\'' + imgBack + '\')' }"></div>
                 </div>
                 <div class="poke-name-back">
+                    <div v-bind:class="pokeNumClassObject" v-text="pokeNum"></div>
                     <div class="poke-name" v-text="pokeNamePartial"></div>
                 </div>
             </div>
