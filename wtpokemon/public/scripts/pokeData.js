@@ -121,7 +121,7 @@ const pokeData = [
     {"name":"seaking","id":119}, 
     {"name":"staryu","id":120}, 
     {"name":"starmie","id":121}, 
-    {"name":"mr-mime","id":122}, 
+    {"name":"mr. mime","id":122}, 
     {"name":"scyther","id":123}, 
     {"name":"jynx","id":124}, 
     {"name":"electabuzz","id":125}, 

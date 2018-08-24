@@ -14,10 +14,12 @@
         <div class="poke-contain"> 
             <div class="poke-dex">
                 <div class="poke-img-back">
-                    <div class="poke-img" :style="{ 'backgroundImage' : 'url(\'' + imgBack + '\')' }"></div>
+                    <div 
+                    v-bind:class="pokeImgClassObject"
+                    class="poke-img" :style="{ 'backgroundImage' : 'url(\'' + imgBack + '\')' }"></div>
                 </div>
                 <div class="poke-name-back">
-                    <div class="poke-name"></div>
+                    <div class="poke-name" v-text="pokeNamePartial"></div>
                 </div>
             </div>
             <div class="poke-input-back">
