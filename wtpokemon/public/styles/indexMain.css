@@ -1,6 +1,23 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.poke-contain {
+    margin: 20px auto;
+    width: fit-content;
+}
+
+.poke-dex {
+    background: radial-gradient(#BBE2EF,#E72820);
+    width: fit-content;
+    padding: 40px;
+    border: 2px solid #3C59A5;
+    border-radius: 3px;
+}
+
 .poke-img {
-    width: 200px;
-    height: 200px;
+    width: 400px;
+    height: 400px;
     background-size: cover;
     opacity: 1;
 }
@@ -11,6 +28,25 @@
 
 .poke-img-reveal {
     filter: drop-shadow(-5px 5px 2px rgba(0,0,0,0.5));
+}
+
+.poke-name-back {
+    padding: 8px 0 2px 0;
+    font-size: 36px;
+    color: rgb(54, 54, 54);
+    text-align: center;
+    border-bottom: 1px solid rgb(192, 192, 192);
+    width: 80%;
+    margin: 0 auto 20px auto;
+}
+
+.poke-name {
+    display: inline-block;
+}
+
+.poke-num-inline {
+    font-size: 32px;
+    display: inline-block;
 }
 
 .poke-num-hidden {

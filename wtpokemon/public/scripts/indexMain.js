@@ -9,7 +9,8 @@ const vApp = new Vue({
             '.poke-img-reveal': false
         },
         pokeNumClassObject: {
-            'poke-num-hidden': true
+            'poke-num-hidden': true,
+            'poke-num-inline': false
         }
     },
     methods: {
@@ -18,6 +19,7 @@ const vApp = new Vue({
             this.pokeImgClassObject['poke-img-hidden'] = true;
             this.pokeImgClassObject['poke-img-reveal'] = false;
             this.pokeNumClassObject['poke-num-hidden'] = true;
+            this.pokeNumClassObject['poke-num-inline'] = false;
             this.randNum = Math.ceil(Math.random() * 150)
         },
         checkName: function() {
@@ -25,6 +27,7 @@ const vApp = new Vue({
                 this.pokeImgClassObject['poke-img-hidden'] = false;
                 this.pokeImgClassObject['poke-img-reveal'] = true;
                 this.pokeNumClassObject['poke-num-hidden'] = false;
+                this.pokeNumClassObject['poke-num-inline'] = true;
             }
         }
     },
@@ -51,12 +54,22 @@ const vApp = new Vue({
             let nameSplit = this.pokeName.split('');
             let totalName = [];
 
-            for(let i = 0; i < inpSplit.length; i++) {
-                if(inpSplit[i].toLowerCase() == nameSplit[i]) {
-                    totalName.push(inpSplit[i]);
+            for(let i = 0; i < nameSplit.length; i++) {
+                if(inpSplit[i]){
+                    if(inpSplit[i].toLowerCase() == nameSplit[i]) {
+                        if(i == 0){
+                            totalName.push(inpSplit[i].toUpperCase());
+                        } else {
+                            totalName.push(inpSplit[i]);
+                        }
+                        
+                    }
+                    else {
+                        totalName.push('?');
+                    }
                 }
-                else {
-                    return totalName.join('');
+                else{
+                    totalName.push('?');
                 }
             }
            

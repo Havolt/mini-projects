@@ -18,15 +18,17 @@
                     v-bind:class="pokeImgClassObject"
                     class="poke-img" :style="{ 'backgroundImage' : 'url(\'' + imgBack + '\')' }"></div>
                 </div>
-                <div class="poke-name-back">
-                    <div v-bind:class="pokeNumClassObject" v-text="pokeNum"></div>
-                    <div class="poke-name" v-text="pokeNamePartial"></div>
-                </div>
+                
+            </div>
+            <div class="poke-name-back">
+                <div v-bind:class="pokeNumClassObject" v-text="pokeNum"></div>
+                <div class="poke-name" v-text="pokeNamePartial"></div>
             </div>
             <div class="poke-input-back">
                 <input @keyup="checkName()" v-model="userInput" class="poke-input" type="text">
+                <button @click="startGame()">Start game</button>
             </div>
-            <button @click="startGame()">Start game</button>
+            
 
         </div>
     </div>
