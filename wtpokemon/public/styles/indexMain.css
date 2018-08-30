@@ -10,9 +10,16 @@ body {
 .poke-dex {
     background: radial-gradient(#BBE2EF,#E72820);
     width: fit-content;
-    padding: 40px;
+    padding: 50px;
     border: 2px solid #3C59A5;
     border-radius: 3px;
+}
+
+@keyframes rotate {
+    0% {transform: rotate(0deg);}
+    25% {transform: rotate(30deg);}
+    75% {transform: rotate(-30deg);}
+    100% {transform: rotate(0deg);}
 }
 
 .poke-img {
@@ -20,6 +27,11 @@ body {
     height: 400px;
     background-size: cover;
     opacity: 1;
+}
+
+.poke-img-rotate {
+    animation-name: rotate;
+    animation-duration: 2s;
 }
 
 .poke-img-hidden {
