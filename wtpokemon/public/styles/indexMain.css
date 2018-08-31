@@ -17,8 +17,8 @@ body {
 
 @keyframes rotate {
     0% {transform: rotate(0deg);}
-    25% {transform: rotate(30deg);}
-    75% {transform: rotate(-30deg);}
+    25% {transform: rotate(25deg);}
+    75% {transform: rotate(-25deg);}
     100% {transform: rotate(0deg);}
 }
 
@@ -31,7 +31,7 @@ body {
 
 .poke-img-rotate {
     animation-name: rotate;
-    animation-duration: 2s;
+    animation-duration: 1.5s;
 }
 
 .poke-img-hidden {
@@ -63,4 +63,42 @@ body {
 
 .poke-num-hidden {
     display: none;
+}
+
+.poke-input-back {
+    display: inline-flex;
+    font-size: 34px;
+}
+
+.poke-input-text {
+    border: 1px solid rgb(39, 107, 196);
+    width: 406px;
+    padding-left: 4px;
+    margin: 0;
+}
+
+.poke-input-button {
+    width: 88px;
+    margin: 0;
+    background: rgb(39, 107, 196);
+    border: 0;
+    color: white;
+    margin-left: 4px;
+}
+
+@keyframes poke-in-hide {
+    5% {opacity: 0;}
+    100% {opacity: 0; width: 160px}
+}
+
+.poke-input-hide {
+    animation-name: poke-in-hide;
+    animation-duration: 0.5s;
+    animation-fill-mode: forwards;
+
+}
+
+.poke-input-button:hover {
+    background: rgb(12, 70, 145);
+    cursor: pointer;
 }

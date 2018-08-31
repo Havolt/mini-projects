@@ -25,7 +25,7 @@
                 <div class="poke-name" v-text="pokeNamePartial"></div>
             </div>
             <div class="poke-input-back">
-                <input @keyup="checkName()" v-model="userInput" class="poke-input-text" type="text">
+                <input v-bind:class="pokeInputClassObject" @keyup="checkName()" v-bind:disabled="inputDisable" v-model="userInput" class="poke-input-text" type="text">
                 <button @click="startGame()" class="poke-input-button">Next</button>
             </div>
         </div>

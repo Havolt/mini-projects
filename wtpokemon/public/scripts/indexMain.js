@@ -5,6 +5,7 @@ const vApp = new Vue({
         randNum : Math.ceil(Math.random() * 150),
         userInput: '',
         userWin: false,
+        inputDisable: false,
         pokeImgClassObject: {
             'poke-img-hidden': true,
             'poke-img-reveal': false,
@@ -13,6 +14,9 @@ const vApp = new Vue({
         pokeNumClassObject: {
             'poke-num-hidden': true,
             'poke-num-inline': false
+        },
+        pokeInputClassObject: {
+            'poke-input-hide': false
         }
     },
     methods: {
@@ -24,6 +28,8 @@ const vApp = new Vue({
             this.pokeNumClassObject['poke-num-hidden'] = true;
             this.pokeNumClassObject['poke-num-inline'] = false;
             this.pokeImgClassObject['poke-img-rotate'] = false;
+            this.pokeInputClassObject['poke-input-hide'] = false;
+            this.inputDisable = false;
             this.randNum = Math.ceil(Math.random() * 150)
         },
         checkName: function() {
@@ -32,8 +38,9 @@ const vApp = new Vue({
                 this.pokeImgClassObject['poke-img-reveal'] = true;
                 this.pokeNumClassObject['poke-num-hidden'] = false;
                 this.pokeNumClassObject['poke-num-inline'] = true;
-                
+                this.pokeInputClassObject['poke-input-hide'] = true;
                 this.userInput = '';
+                this.inputDisable = true;
                 if(!this.userWin) {
                     this.pokeImgClassObject['poke-img-rotate'] = true;
                     this.userWin = true
