@@ -30,7 +30,8 @@ const vApp = new Vue({
             this.pokeImgClassObject['poke-img-rotate'] = false;
             this.pokeInputClassObject['poke-input-hide'] = false;
             this.inputDisable = false;
-            this.randNum = Math.ceil(Math.random() * 150)
+            this.randNum = Math.ceil(Math.random() * 150);
+            setTimeout(function(){document.querySelector('.poke-input-text').focus();}, 50)
         },
         checkName: function() {
             if(this.userInput.toLowerCase() == this.pokeName) {
@@ -41,13 +42,18 @@ const vApp = new Vue({
                 this.pokeInputClassObject['poke-input-hide'] = true;
                 this.userInput = '';
                 this.inputDisable = true;
+                document.querySelector('.poke-input-button').focus();
+                console.log('here')
                 if(!this.userWin) {
                     this.pokeImgClassObject['poke-img-rotate'] = true;
                     this.userWin = true
                 }
             }
-            
-            
+        },
+        highlightButton: function(el) {
+            if(this.userWin) {
+                el.focus();
+            }
         }
     },
     computed: {
@@ -97,6 +103,6 @@ const vApp = new Vue({
             } else {
                 return this.pokeName.charAt(0).toUpperCase() + this.pokeName.slice(1);;
             }
-        } 
+        }
     }
 })
