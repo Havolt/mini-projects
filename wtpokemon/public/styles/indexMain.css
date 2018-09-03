@@ -10,7 +10,7 @@ body {
 .poke-dex {
     background: radial-gradient(#BBE2EF,#E72820);
     width: fit-content;
-    padding: 50px;
+    padding: 70px;
     border: 2px solid #3C59A5;
     border-radius: 3px;
 }
@@ -67,15 +67,18 @@ body {
 
 .poke-input-back {
     display: inline-flex;
-    font-size: 34px;
+    font-size: 37px;
+    
 }
+
 
 .poke-input-text {
     border: 1px solid rgb(39, 107, 196);
-    width: 406px;
+    width: 446px;
     padding-left: 4px;
     margin: 0;
 }
+
 
 .poke-input-button {
     width: 88px;
@@ -88,7 +91,7 @@ body {
 
 @keyframes poke-in-hide {
     5% {opacity: 0;}
-    100% {opacity: 0; width: 160px}
+    100% {opacity: 0; width: 200px}
 }
 
 .poke-input-hide {
