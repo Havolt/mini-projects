@@ -1,6 +1,6 @@
 const wordList = { 
     main: ['offline', 'disconnected', 'down', 'logged off', 'address',
-    'algorithm', 'binary', 'byte', 'cpu', 'cloud', 'client', 'css', 'content delivery netowrk',
+    'algorithm', 'binary', 'byte', 'cpu', 'cloud', 'client', 'css', 'content delivery netowork',
     'data', 'database', 'decompress', 'desktop', 'digital', 'document', 'disk operating system',
     'download', 'electricity', 'email', 'explorer', 'file allocation table', 'fat32', 'file', 
     'filesharing', 'filesystem', 'firewall', 'folder', 'freeware', 'ftp', 'gigabyte',
@@ -10,7 +10,8 @@ const wordList = {
     'page', 'personal computer', 'php', 'piracy', 'plug-in', 'printer', 'privacy', 'program',
     'random_access_memory', 'read-only_memory', 'root', 'recycle bin', 'scan', 'search engine',
     'security', 'server', 'shareware', 'software', 'spam', 'spyware', 'super computer',
-    'sdk', 'terabyte', 'upload', 'user', 'version', 'virus', 'xml', 'javascript'],
+    'sdk', 'terabyte', 'upload', 'user', 'version', 'virus', 'xml', 'javascript', 'optical drive',
+    'webcam', 'graphics card', 'microphone'],
     listTwo : [],
     playerList : [],
     listCopy: function() {
@@ -29,62 +30,67 @@ const wordList = {
 };
 
 const gameFuncs = {
-    currentWord : '',
+    currentWords : [],
     gameInProgress: false,
-    inputPos : 0,
-
+    removeCurrentWord: function(arrPos) {
+        this.currentWords.splice(arrPos)
+    },
     getCurrentWord: function(word) {
-        this.currentWord = word.split('');
+        const newObj = {};
+        newObj.word = word.split('');
+        newObj.yPos = (Math.floor(Math.random()*(canvasData.cHeight - 40)) + 20);
+        newObj.xPos = 0;
+        newObj.speed = Math.floor(Math.random() * 10)
+        newObj.inputPos = 0;
+        this.currentWords.push(newObj);
     },
     setGameInProgress: function(bool) {
         this.gameInProgress = bool;
     },
-    displayWord: function() {
-        const wa = document.querySelector('.wordArea');
-        wa.innerHTML = '';
-        for(let i = 0; i < this.currentWord.length; i++) {
-            const newEl = document.createElement('div');
-            if(this.currentWord[i] == ' ') {
-                newEl.innerHTML = '&#160;'
-            } else {
-                newEl.innerHTML = this.currentWord[i];
-            }
-            newEl.classList.add('letterGeneral')
-            if(i < gameFuncs.inputPos) {
-                newEl.classList.add('letterComplete')
-            } else {
-                newEl.classList.add('letterIncomplete')
-            }
-            wa.appendChild(newEl);
-        }
+    displayCanvas: function() {
+
+        const ctx = canvasData.ctx;
+        ctx.clearRect(0, 0, canvasData.cWidth, canvasData.cHeight);
+        ctx.fillStyle="#232323";
+        ctx.fillRect(0, 0, canvasData.cWidth, canvasData.cHeight);
+
     },
-    checkWord: function(pos, word) {
+    checkWord: function(pos, word, itemNum) {
+        console.log(word)
         if(pos == word.length) {
-            this.changeInputPos(-this.currentWord.length);
-            wordList.playerListRemove();
+            this.removeCurrentWord(itemNum);
             this.setNewWord();
-        } else {
-            this.displayWord();
         }
     },
-    changeInputPos: function(num) {
-        this.inputPos += num
+    changeInputPos: function(num, pos) {
+        gameFuncs.currentWords[pos].inputPos += num;
     },
-    userInput: function(pos, word, key) {
-        if(word[pos] == key) {
-            this.changeInputPos(1);
-            this.checkWord(this.inputPos, this.currentWord);
+    userInput: function(wordArr, key) {
+        for(let i = 0; i < wordArr.length; i++) {
+            if(wordArr[i].word[wordArr[i].inputPos] == key) {
+                console.log(wordArr[i].word[wordArr[i].inputPos]);
+                this.changeInputPos(1, i);
+                this.checkWord(wordArr[i].inputPos, wordArr[i].word, i);
+            }
         }
+        console.log(wordArr[0].word)
     },
     setNewWord: function() {
-        wordList.playerListRemove();
         this.getCurrentWord(wordList.playerList[0]);
-        this.displayWord();
+        this.displayCanvas();
+        wordList.playerListRemove();
     }
 };
 
+const canvasData = {
+    cWidth: 720,
+    cHeight: 480,
+    c : document.querySelector('.gameCanvas'),
+    ctx : document.querySelector('.gameCanvas').getContext('2d')
+};
+
 document.body.addEventListener('keyup', (e)=> {
-    gameFuncs.userInput(gameFuncs.inputPos, gameFuncs.currentWord, e.key)
+    gameFuncs.userInput(gameFuncs.currentWords, e.key)
 });
 
 (function startGame() {
