@@ -32,15 +32,19 @@ const wordList = {
 const gameFuncs = {
     currentWords : [],
     gameInProgress: false,
+    currTime: new Date().getTime(),
+    spawnInterval: 3000,
+    spawnTime: 3000,
+    expl1 : new Audio('sounds/expl1.wav'),
     removeCurrentWord: function(arrPos) {
-        this.currentWords.splice(arrPos)
+        this.currentWords.splice(arrPos, 1)
     },
     getCurrentWord: function(word) {
         const newObj = {};
         newObj.word = word.split('');
         newObj.yPos = (Math.floor(Math.random()*(canvasData.cHeight - 40)) + 20);
-        newObj.xPos = -0;
-        newObj.speed = Math.floor(Math.random() * 10)
+        newObj.xPos = 0;
+        newObj.speed = (Math.floor(Math.random() * 5) + 1);
         newObj.inputPos = 0;
         this.currentWords.push(newObj);
     },
@@ -58,7 +62,7 @@ const gameFuncs = {
                 if(j < wds[i].inputPos) {
                     ctx.fillStyle="grey";
                 } else {
-                    ctx.fillStyle="white";
+                    ctx.fillStyle="green";
                 }
                 ctx.font="22px monospace";
                 ctx.fillText(wds[i].word[j], wds[i].xPos + (j*14), wds[i].yPos );
@@ -66,10 +70,9 @@ const gameFuncs = {
         }
     },
     checkWord: function(pos, word, itemNum) {
-        console.log(word)
         if(pos == word.length) {
             this.removeCurrentWord(itemNum);
-            this.setNewWord();
+            this.expl1.play();
         }
     },
     changeInputPos: function(num, pos) {
@@ -78,27 +81,34 @@ const gameFuncs = {
     userInput: function(wordArr, key) {
         for(let i = 0; i < wordArr.length; i++) {
             if(wordArr[i].word[wordArr[i].inputPos] == key) {
-                console.log(wordArr[i].word[wordArr[i].inputPos]);
                 this.changeInputPos(1, i);
                 this.checkWord(wordArr[i].inputPos, wordArr[i].word, i);
             }
         }
-        console.log(wordArr[0].word)
     },
     setNewWord: function() {
         this.getCurrentWord(wordList.playerList[0]);
         wordList.playerListRemove();
     },
+    moveWords: function(wds) {
+        for(let i = 0; i < wds.length; i++) {
+            wds[i].xPos += wds[i].speed;
+        }
+    },
+    createWord: function(startTime) {
+        if ((new Date().getTime() - startTime) > this.spawnTime) {
+            this.setNewWord();
+            this.spawnTime += this.spawnInterval;
+        }
+    },
     gameEngine: function() {
-
-        console.log('calling')
-
+        this.createWord(this.currTime);
         this.moveWords(this.currentWords);
         this.drawGame(this.currentWords);
 
         setTimeout(() => {
             this.gameEngine();
-        }, (1000 / 3))
+        }, (1000 / 5))
     }
 };
 
