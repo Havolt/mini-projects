@@ -22,21 +22,75 @@ const wordList = {
             this.playerList.push(this.listTwo[newRand]);
             this.listTwo.splice(newRand, 1);
         }
+    },
+    playerListRemove: function() {
+        this.playerList.shift();
     }
 };
 
 const gameFuncs = {
     currentWord : '',
+    gameInProgress: false,
+    inputPos : 0,
 
     getCurrentWord: function(word) {
         this.currentWord = word.split('');
+    },
+    setGameInProgress: function(bool) {
+        this.gameInProgress = bool;
+    },
+    displayWord: function() {
+        const wa = document.querySelector('.wordArea');
+        wa.innerHTML = '';
+        for(let i = 0; i < this.currentWord.length; i++) {
+            const newEl = document.createElement('div');
+            if(this.currentWord[i] == ' ') {
+                newEl.innerHTML = '&#160;'
+            } else {
+                newEl.innerHTML = this.currentWord[i];
+            }
+            newEl.classList.add('letterGeneral')
+            if(i < gameFuncs.inputPos) {
+                newEl.classList.add('letterComplete')
+            } else {
+                newEl.classList.add('letterIncomplete')
+            }
+            wa.appendChild(newEl);
+        }
+    },
+    checkWord: function(pos, word) {
+        if(pos == word.length) {
+            this.changeInputPos(-this.currentWord.length);
+            wordList.playerListRemove();
+            this.setNewWord();
+        } else {
+            this.displayWord();
+        }
+    },
+    changeInputPos: function(num) {
+        this.inputPos += num
+    },
+    userInput: function(pos, word, key) {
+        if(word[pos] == key) {
+            this.changeInputPos(1);
+            this.checkWord(this.inputPos, this.currentWord);
+        }
+    },
+    setNewWord: function() {
+        wordList.playerListRemove();
+        this.getCurrentWord(wordList.playerList[0]);
+        this.displayWord();
     }
 };
+
+document.body.addEventListener('keyup', (e)=> {
+    gameFuncs.userInput(gameFuncs.inputPos, gameFuncs.currentWord, e.key)
+});
 
 (function startGame() {
     wordList.listCopy();
     wordList.playerListCreate();
-    gameFuncs.getCurrentWord(wordList.playerList[0]);
-    console.log(gameFuncs.currentWord);
+    gameFuncs.setNewWord();
+    gameFuncs.setGameInProgress(true);
 })()
 

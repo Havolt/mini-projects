@@ -1,0 +1,18 @@
+.wordArea {
+    background: #232323;
+    height: 40px;
+    width: 400px;
+}
+
+.letterGeneral {
+    display: inline-block;
+    font-size: 30px;
+}
+
+.letterComplete {
+    color: rgb(180, 180, 180);
+}
+
+.letterIncomplete {
+    color: white;
+}
