@@ -1,6 +1,15 @@
+#app {
+    width: fit-content;
+}
+
 .wordArea {
     background: #232323;
     font-family: Arial, Helvetica, sans-serif;
+}
+
+.gameCanvas {
+    width: 740px;
+    height: 480px;
 }
 
 .letterGeneral {

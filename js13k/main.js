@@ -1,6 +1,6 @@
 const wordList = { 
     main: ['offline', 'disconnected', 'down', 'logged off', 'address',
-    'algorithm', 'binary', 'byte', 'cpu', 'cloud', 'client', 'css', 'content delivery netowork',
+    'algorithm', 'binary', 'byte', 'cpu', 'cloud', 'client', 'css', 'content delivery network',
     'data', 'database', 'decompress', 'desktop', 'digital', 'document', 'disk operating system',
     'download', 'electricity', 'email', 'explorer', 'file allocation table', 'fat32', 'file', 
     'filesharing', 'filesystem', 'firewall', 'folder', 'freeware', 'ftp', 'gigabyte',
@@ -39,7 +39,7 @@ const gameFuncs = {
         const newObj = {};
         newObj.word = word.split('');
         newObj.yPos = (Math.floor(Math.random()*(canvasData.cHeight - 40)) + 20);
-        newObj.xPos = 0;
+        newObj.xPos = -0;
         newObj.speed = Math.floor(Math.random() * 10)
         newObj.inputPos = 0;
         this.currentWords.push(newObj);
@@ -47,13 +47,23 @@ const gameFuncs = {
     setGameInProgress: function(bool) {
         this.gameInProgress = bool;
     },
-    displayCanvas: function() {
-
+    drawGame: function(wds) {
         const ctx = canvasData.ctx;
         ctx.clearRect(0, 0, canvasData.cWidth, canvasData.cHeight);
         ctx.fillStyle="#232323";
         ctx.fillRect(0, 0, canvasData.cWidth, canvasData.cHeight);
 
+        for(let i = 0; i < wds.length; i++) {
+            for(let j = 0; j < wds[i].word.length; j++) {
+                if(j < wds[i].inputPos) {
+                    ctx.fillStyle="grey";
+                } else {
+                    ctx.fillStyle="white";
+                }
+                ctx.font="22px monospace";
+                ctx.fillText(wds[i].word[j], wds[i].xPos + (j*14), wds[i].yPos );
+            }            
+        }
     },
     checkWord: function(pos, word, itemNum) {
         console.log(word)
@@ -77,8 +87,18 @@ const gameFuncs = {
     },
     setNewWord: function() {
         this.getCurrentWord(wordList.playerList[0]);
-        this.displayCanvas();
         wordList.playerListRemove();
+    },
+    gameEngine: function() {
+
+        console.log('calling')
+
+        this.moveWords(this.currentWords);
+        this.drawGame(this.currentWords);
+
+        setTimeout(() => {
+            this.gameEngine();
+        }, (1000 / 3))
     }
 };
 
@@ -98,5 +118,6 @@ document.body.addEventListener('keyup', (e)=> {
     wordList.playerListCreate();
     gameFuncs.setNewWord();
     gameFuncs.setGameInProgress(true);
+    gameFuncs.gameEngine();
 })()
 
