@@ -50,7 +50,7 @@ const gameFuncs = {
     },
     sListPos: function() {
         for(let i = 0; i < this.scoreList.length; i++) {
-            this.scoreList[i].yPos -= 5;
+            this.scoreList[i].yPos -= 3;
             if(this.scoreList[i].yPos < -30) {
                 this.scoreList.splice(i, 1);
                 i--;
@@ -58,13 +58,13 @@ const gameFuncs = {
         }
     },
     addDestroyedLetter: function(letter, obj) {
-        const newObj = {};
-        newObj.letter = letter;
-        newObj.xPos = obj.xPos + (obj.inputPos *14);
-        newObj.yPos = obj.yPos;
-        newObj.ySpeedArrPos = 0;
-        newObj.ySpeed = [-8, -2, 0, 1, 2, 4, 6, 8, 10, 14, 20, 28];
-        this.destroyedLetters.push(newObj);
+        const nObj = {};
+        nObj.letter = letter;
+        nObj.xPos = obj.xPos + (obj.inputPos *14);
+        nObj.yPos = obj.yPos;
+        nObj.ySpeedArrPos = 0;
+        nObj.ySpeed = [-8, -2, 0, 1, 2, 4, 6, 8, 10, 14, 20, 28];
+        this.destroyedLetters.push(nObj);
     },
     moveDestroyedLetters: function() {
         for(let i = 0; i < this.destroyedLetters.length; i++) {
@@ -81,14 +81,14 @@ const gameFuncs = {
         }
     },
     getCurrentWord: function(word) {
-        const newObj = {};
-        newObj.word = word.split('');
-        newObj.yPos = (Math.floor(Math.random()*(canvasData.cHeight - 50)) + 15);
-        newObj.xPos = 0;
-        newObj.speed = (Math.floor(Math.random() * 3) + 1);
-        newObj.inputPos = 0;
-        newObj.reachedEnd = false;
-        this.currentWords.push(newObj);
+        const nObj = {};
+        nObj.word = word.split('');
+        nObj.yPos = (Math.floor(Math.random()*(canvasData.cHeight - 50)) + 15);
+        nObj.xPos = 0;
+        nObj.speed = (Math.floor(Math.random() * 1.5) + 0.5);
+        nObj.inputPos = 0;
+        nObj.reachedEnd = false;
+        this.currentWords.push(nObj);
     },
     setGameInProgress: function(bool) {
         this.gameInProgress = bool;
@@ -178,13 +178,16 @@ const gameFuncs = {
     },
     removeWords: function() {
         this.removableWords.sort((a, b) => a - b);
-        this.removableWords.map((el) => {
-            if(!this.currentWords[el].reachedEnd){
-                this.addScore(this.currentWords[el].word);
+
+        for(let i = 0; i < this.removableWords.length; i++) {
+            if(!this.currentWords[this.removableWords[i]].reachedEnd){
+                this.addScore(this.currentWords[i].word);
             }
-            this.currentWords.splice(el, 1);
-            this.removableWords.map((el) => el -= 1);
-        })
+            this.currentWords.splice(this.removableWords[i], 1);
+            for(let j = i+1; j < this.removableWords.length; j++) {
+                this.removableWords[j] -= 1;
+            }
+        }
         this.removableWords = [];
     },
     setNewWord: function() {
@@ -218,7 +221,7 @@ const gameFuncs = {
         if(this.lives.currentLives > 0) {
             setTimeout(() => {
                 this.gameEngine();
-            }, (1000 / 10))
+            }, (1000 / 20))
         } else{
             this.drawGame(this.currentWords);
             console.log('it ends here');
