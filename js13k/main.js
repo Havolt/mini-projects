@@ -35,9 +35,14 @@ const gameFuncs = {
     currTime: new Date().getTime(),
     spawnInterval: 3000,
     spawnTime: 3000,
-    expl1 : new Audio('sounds/expl1.wav'),
-    removeCurrentWord: function(arrPos) {
-        this.currentWords.splice(arrPos, 1)
+    removableWords: [],
+    removeWords: function() {
+        this.removableWords.sort((a, b) => a - b);
+        this.removableWords.map((el) => {
+            this.currentWords.splice(el, 1);
+            this.removableWords.map((el) => el -= 1);
+        })
+        this.removableWords = [];
     },
     getCurrentWord: function(word) {
         const newObj = {};
@@ -66,13 +71,22 @@ const gameFuncs = {
                 }
                 ctx.font="22px monospace";
                 ctx.fillText(wds[i].word[j], wds[i].xPos + (j*14), wds[i].yPos );
+                if(j == (wds[i].word.length-1)) {
+                    this.checkLostLife(wds[i].xPos + (j*14) + 14, i);
+                }
             }            
+        }
+    },
+    checkLostLife: function(hitBox, arrPos) {
+        if(hitBox >= canvasData.cWidth) {
+            this.removableWords.push(arrPos)
+            console.log('game over');
         }
     },
     checkWord: function(pos, word, itemNum) {
         if(pos == word.length) {
-            this.removeCurrentWord(itemNum);
-            this.expl1.play();
+            this.removableWords.push(itemNum);
+           // this.removeCurrentWord(itemNum);
         }
     },
     changeInputPos: function(num, pos) {
@@ -105,6 +119,7 @@ const gameFuncs = {
         this.createWord(this.currTime);
         this.moveWords(this.currentWords);
         this.drawGame(this.currentWords);
+        if(this.removableWords.length > 0) { this.removeWords()};
 
         setTimeout(() => {
             this.gameEngine();
