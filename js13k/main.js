@@ -10,14 +10,17 @@ const wordList = {
     'page', 'personal computer', 'php', 'piracy', 'plug-in', 'printer', 'privacy', 'program',
     'random_access_memory', 'read-only_memory', 'root', 'recycle bin', 'scan', 'search engine',
     'security', 'server', 'shareware', 'software', 'spam', 'spyware', 'super computer',
-    'sdk', 'terabyte', 'upload', 'user', 'version', 'virus', 'xml', 'javascript', 'optical drive',
-    'webcam', 'graphics card', 'microphone'],
+    'sdk', 'terabyte', 'upload', 'user', 'version', 'virus', 'xml', 'optical drive',
+    'webcam', 'graphics card', 'microphone', 'variable', 'constant', 'loop', 'framework',
+    'keydown', 'encryption', 'bug', 'ethernet', 'processor'],
     listTwo : [],
     playerList : [],
     listCopy: function() {
+        listTwo = [];
         this.main.map((item) => this.listTwo.push(item));
     },
     playerListCreate: function() {
+        playerList = [];
         while(this.listTwo.length > 0) {
             let newRand = Math.floor(Math.random() * this.listTwo.length);
             this.playerList.push(this.listTwo[newRand]);
@@ -35,13 +38,24 @@ const gameFuncs = {
     currTime: new Date().getTime(),
     lives: {maxLives: 3, currentLives: 3, livesLost: 0},
     score: 0,
+    scoreList: [],
     destroyedLetters: [],
-    spawnInterval: 3000,
-    spawnTime: 3000,
+    spawnInterval: 2000,
+    spawnTime: 2000,
     removableWords: [],
     
     addScore: function(word) {
         this.score += word.length * 10;
+        this.scoreList.push({yPos : 0, score: word.length * 10});
+    },
+    sListPos: function() {
+        for(let i = 0; i < this.scoreList.length; i++) {
+            this.scoreList[i].yPos -= 5;
+            if(this.scoreList[i].yPos < -30) {
+                this.scoreList.splice(i, 1);
+                i--;
+            }
+        }
     },
     addDestroyedLetter: function(letter, obj) {
         const newObj = {};
@@ -49,7 +63,7 @@ const gameFuncs = {
         newObj.xPos = obj.xPos + (obj.inputPos *14);
         newObj.yPos = obj.yPos;
         newObj.ySpeedArrPos = 0;
-        newObj.ySpeed = [-3, -2, -1, 0, 1, 1, 2, 4, 6, 8];
+        newObj.ySpeed = [-8, -2, 0, 1, 2, 4, 6, 8, 10, 14, 20, 28];
         this.destroyedLetters.push(newObj);
     },
     moveDestroyedLetters: function() {
@@ -59,6 +73,10 @@ const gameFuncs = {
             lt.yPos += lt.ySpeed[lt.ySpeedArrPos];
             if(lt.ySpeedArrPos < lt.ySpeed.length -1){
                 lt.ySpeedArrPos += 1;
+            }
+            if(lt.yPos > canvasData.cHeight) {
+                this.destroyedLetters.splice(i, 1);
+                i--;
             }
         }
     },
@@ -80,6 +98,13 @@ const gameFuncs = {
         ctx.clearRect(0, 0, canvasData.cWidth, canvasData.cHeight);
         ctx.fillStyle="#232323";
         ctx.fillRect(0, 0, canvasData.cWidth, canvasData.cHeight);
+
+        //draw destroyed letters
+        for(let i = 0; i < this.destroyedLetters.length; i++) {
+            ctx.fillStyle="green";
+            ctx.font="22px monospace";
+            ctx.fillText(this.destroyedLetters[i].letter, this.destroyedLetters[i].xPos, this.destroyedLetters[i].yPos )
+        }
 
         for(let i = 0; i < wds.length; i++) {
             for(let j = 0; j < wds[i].word.length; j++) {
@@ -114,14 +139,11 @@ const gameFuncs = {
             }
             ctx.fillRect((canvasData.cWidth - 75) + i * 12, canvasData.cHeight - 19, 8,16)
         }
-
-        //draw destroyed letters
-        for(let i = 0; i < this.destroyedLetters.length; i++) {
+        for(let i = 0; i < this.scoreList.length; i++) {
             ctx.fillStyle="green";
-            ctx.font="22px monospace";
-            ctx.fillText(this.destroyedLetters[i].letter, this.destroyedLetters[i].xPos, this.destroyedLetters[i].yPos )
+            ctx.font="bold 18px monospace";
+            ctx.fillText('+'+this.scoreList[i].score, 20, (canvasData.cHeight - 20) + this.scoreList[i].yPos)
         }
-        
     },
     checkLostLife: function(hitBox, arrPos) {
         if(hitBox >= canvasData.cWidth) {
@@ -168,6 +190,10 @@ const gameFuncs = {
     setNewWord: function() {
         this.getCurrentWord(wordList.playerList[0]);
         wordList.playerListRemove();
+        if(wordList.playerList.length < 2) {
+            wordList.listCopy();
+            wordList.playerListCreate();
+        }
     },
     moveWords: function(wds) {
         for(let i = 0; i < wds.length; i++) {
@@ -187,6 +213,7 @@ const gameFuncs = {
         this.drawGame(this.currentWords);
         if(this.removableWords.length > 0) { this.removeWords()};
         if(this.lives.livesLost > 0){ this.removeLives()};
+        if(this.scoreList.length > 0) {this.sListPos()};
 
         if(this.lives.currentLives > 0) {
             setTimeout(() => {
