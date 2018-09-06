@@ -36,13 +36,14 @@ const gameFuncs = {
     currentWords : [],
     gameOverAnimDetails: {amt: 8, arr: []},
     gameInProgress: false,
+    soundEffect: new Audio('sounds/sfx.ogg'),
     currTime: new Date().getTime(),
     gameTimer: 1,
     lives: {maxLives: 3, currentLives: 3, livesLost: 0},
     score: 0,
     scoreList: [],
     destroyedLetters: [],
-    spawnInterval: 40,
+    spawnInterval: 50,
     removableWords: [],
     
     addScore: function(word) {
@@ -183,6 +184,7 @@ const gameFuncs = {
         for(let i = 0; i < this.removableWords.length; i++) {
             if(!this.currentWords[this.removableWords[i]].reachedEnd){
                 this.addScore(this.currentWords[i].word);
+                this.soundEffect.play();
             }
             this.currentWords.splice(this.removableWords[i], 1);
             for(let j = i+1; j < this.removableWords.length; j++) {
@@ -243,7 +245,6 @@ const gameFuncs = {
                     gameFuncs.gameOverAnimation();
                 }, 60)
             } else {
-                gameFuncs.gameOverInfo();
                 setTimeout(function(){
                     gameFuncs.gameOverInfo();
                 }, 60)
@@ -257,7 +258,7 @@ const gameFuncs = {
         canvasData.ctx.font="bold 42px monospace"
         canvasData.ctx.fillText('Game Over', (canvasData.cWidth / 2) - 100, 150);
         canvasData.ctx.font="bold 32px monospace"
-        canvasData.ctx.fillText('Press \'r\' to retry', (canvasData.cWidth / 2) - 160, 210);
+        canvasData.ctx.fillText('Press \'R\' to retry', (canvasData.cWidth / 2) - 160, 210);
         canvasData.ctx.fillText('You managed to score: ' + gameFuncs.score, (canvasData.cWidth / 2) - 220, 300);
     },
     gameOverAnimation: function(){
@@ -300,7 +301,7 @@ const gameFuncs = {
         if(this.lives.currentLives > 0) {
             setTimeout(() => {
                 this.gameEngine();
-            }, (1000 / 24))
+            }, (1000 / 25))
         } else{
             gameFuncs.setGameInProgress(false);
             this.drawGame(this.currentWords);
@@ -341,6 +342,7 @@ function startGame() {
 }
 
 (function initApp() {
+    gameFuncs.soundEffect.volume = 0.012;
     gameFuncs.gameIntro();
 })()
 
