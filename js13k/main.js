@@ -268,6 +268,26 @@ const gameFuncs = {
         }
         this.gameOverAnimDetUpdate();
     },
+    gameIntro: function() {
+        canvasData.ctx.fillStyle="black";
+        canvasData.ctx.fillRect(0, 0, canvasData.cWidth, canvasData.cHeight);
+        canvasData.ctx.fillStyle="green";
+        canvasData.ctx.font="bold 20px monospace";
+        canvasData.ctx.fillText('Oh no! You\'ve been hacked and brought offline.', 30, 60);
+        canvasData.ctx.fillText('What foul and devilishly handsome hacker did this?', 30, 90);
+        canvasData.ctx.fillText('Well you\'ll never find out as this is the only story screen.', 30, 120);
+        canvasData.ctx.fillText('The only way to try and get back online is to stop the hack.', 30, 170);
+        canvasData.ctx.fillText('To do this you\'ll have to input the words that appear before', 30, 200);
+        canvasData.ctx.fillText('they reach the right hand side of the screen.', 30, 230);
+        canvasData.ctx.fillText('This will for some reason slow the hack down. Don\'t question', 30, 280);
+        canvasData.ctx.fillText('it mighty hero, your typing skills are needed. Good luck!', 30, 310);
+
+        canvasData.ctx.fillRect(0, 370, canvasData.cWidth, 48)
+
+        canvasData.ctx.font="bold 32px monospace";
+        canvasData.ctx.fillStyle="black";
+        canvasData.ctx.fillText('To begin the game press \'Enter\' or \'R\'', 18, 405);
+    },
     gameEngine: function() {
         this.createWord(this.gameTimer);
         this.moveWords(this.currentWords);
@@ -280,7 +300,7 @@ const gameFuncs = {
         if(this.lives.currentLives > 0) {
             setTimeout(() => {
                 this.gameEngine();
-            }, (1000 / 20))
+            }, (1000 / 24))
         } else{
             gameFuncs.setGameInProgress(false);
             this.drawGame(this.currentWords);
@@ -302,7 +322,7 @@ document.body.addEventListener('keyup', (e)=> {
     if(gameFuncs.gameInProgress) {
         gameFuncs.userInput(gameFuncs.currentWords, e.key)
     } else {
-        if(e.key == 'r') {
+        if(e.key == 'r' || e.key == 'Enter') {
             startGame();
         }
     }
@@ -321,6 +341,6 @@ function startGame() {
 }
 
 (function initApp() {
-    startGame();
+    gameFuncs.gameIntro();
 })()
 
