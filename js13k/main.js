@@ -243,8 +243,22 @@ const gameFuncs = {
                     gameFuncs.gameOverAnimation();
                 }, 60)
             } else {
-                console.log('done');
+                gameFuncs.gameOverInfo();
+                setTimeout(function(){
+                    gameFuncs.gameOverInfo();
+                }, 60)
             }
+    },
+    gameOverInfo: function() {
+        canvasData.ctx.fillStyle="black";
+        canvasData.ctx.fillRect((canvasData.cWidth / 10), (canvasData.cHeight / 10), (canvasData.cWidth / 1.25), (canvasData.cHeight / 1.25));
+        //hand assigned text values
+        canvasData.ctx.fillStyle="green";
+        canvasData.ctx.font="bold 42px monospace"
+        canvasData.ctx.fillText('Game Over', (canvasData.cWidth / 2) - 100, 150);
+        canvasData.ctx.font="bold 32px monospace"
+        canvasData.ctx.fillText('Press \'r\' to retry', (canvasData.cWidth / 2) - 160, 210);
+        canvasData.ctx.fillText('You managed to score: ' + gameFuncs.score, (canvasData.cWidth / 2) - 220, 300);
     },
     gameOverAnimation: function(){
         const gd = this.gameOverAnimDetails
@@ -285,14 +299,28 @@ const canvasData = {
 };
 
 document.body.addEventListener('keyup', (e)=> {
-    gameFuncs.userInput(gameFuncs.currentWords, e.key)
+    if(gameFuncs.gameInProgress) {
+        gameFuncs.userInput(gameFuncs.currentWords, e.key)
+    } else {
+        if(e.key == 'r') {
+            startGame();
+        }
+    }
 });
 
-(function startGame() {
+function startGame() {
+    gameFuncs.lives.currentLives = 3;
+    gameFuncs.score = 0;
+    gameFuncs.scoreList = [];
+    gameFuncs.currentWords = [];
     wordList.listCopy();
     wordList.playerListCreate();
     gameFuncs.setNewWord();
     gameFuncs.setGameInProgress(true);
     gameFuncs.gameEngine();
+}
+
+(function initApp() {
+    startGame();
 })()
 
