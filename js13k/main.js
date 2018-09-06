@@ -34,14 +34,15 @@ const wordList = {
 
 const gameFuncs = {
     currentWords : [],
+    gameOverAnimDetails: {amt: 8, arr: []},
     gameInProgress: false,
     currTime: new Date().getTime(),
+    gameTimer: 1,
     lives: {maxLives: 3, currentLives: 3, livesLost: 0},
     score: 0,
     scoreList: [],
     destroyedLetters: [],
-    spawnInterval: 2000,
-    spawnTime: 2000,
+    spawnInterval: 40,
     removableWords: [],
     
     addScore: function(word) {
@@ -204,13 +205,57 @@ const gameFuncs = {
         }
     },
     createWord: function(startTime) {
-        if ((new Date().getTime() - startTime) > this.spawnTime) {
+        if (this.gameTimer % this.spawnInterval == 0) {
             this.setNewWord();
             this.spawnTime += this.spawnInterval;
         }
     },
+    gameOverAnimDetCreate: function() {
+        this.gameOverAnimDetails.arr = [];
+        const amt = 8;
+        for(let i = 0; i < this.gameOverAnimDetails.amt; i++) {
+            const nEl = {};
+            if(i % 2 !== 0) {
+                nEl.dir = -1;
+                nEl.xPos = canvasData.cWidth;
+            } 
+            else {
+                nEl.dir = 1;
+                nEl.xPos = -canvasData.cWidth;
+            }
+            nEl.yPos = i * (canvasData.cHeight / this.gameOverAnimDetails.amt);
+            this.gameOverAnimDetails.arr.push(nEl);
+        }
+        
+    },
+    gameOverAnimDetUpdate: function() {
+        console.log(this.gameOverAnimDetails.arr[0].xPos)
+            for(let i = 0; i < this.gameOverAnimDetails.arr.length; i++) {
+                if(this.gameOverAnimDetails.arr[i].dir == 1) {
+                    this.gameOverAnimDetails.arr[i].xPos += 40;
+                }
+                else {
+                    this.gameOverAnimDetails.arr[i].xPos -= 40;
+                }
+            }
+            if(this.gameOverAnimDetails.arr[0].xPos < 20){
+                setTimeout(function(){
+                    gameFuncs.gameOverAnimation();
+                }, 60)
+            } else {
+                console.log('done');
+            }
+    },
+    gameOverAnimation: function(){
+        const gd = this.gameOverAnimDetails
+        canvasData.ctx.fillStyle="green";
+        for(let i = 0; i < gd.arr.length; i++) {
+            canvasData.ctx.fillRect(gd.arr[i].xPos, gd.arr[i].yPos, canvasData.cWidth, (canvasData.cHeight / gd.amt) )
+        }
+        this.gameOverAnimDetUpdate();
+    },
     gameEngine: function() {
-        this.createWord(this.currTime);
+        this.createWord(this.gameTimer);
         this.moveWords(this.currentWords);
         this.moveDestroyedLetters();
         this.drawGame(this.currentWords);
@@ -223,9 +268,12 @@ const gameFuncs = {
                 this.gameEngine();
             }, (1000 / 20))
         } else{
+            gameFuncs.setGameInProgress(false);
             this.drawGame(this.currentWords);
-            console.log('it ends here');
+            this.gameOverAnimDetCreate()
+            this.gameOverAnimation();
         }
+        this.gameTimer++;
     }
 };
 
