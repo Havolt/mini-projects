@@ -12,7 +12,14 @@ const wordList = {
     'security', 'server', 'shareware', 'software', 'spam', 'spyware', 'super computer',
     'sdk', 'terabyte', 'upload', 'user', 'version', 'virus', 'xml', 'optical drive',
     'webcam', 'graphics card', 'microphone', 'variable', 'constant', 'loop', 'framework',
-    'keydown', 'encryption', 'bug', 'ethernet', 'processor'],
+    'keydown', 'encryption', 'bug', 'ethernet', 'processor', 'machine langauge', 'access violation',
+    'arithmetic operator', 'automated unit testing', 'backend', 'background thread', 'binary search',
+    'boolean', 'block-level operator', 'bracket', 'branch', 'bug tracking', 'bytecode', 'camelcase', 
+    'closure', 'comment', 'concatentation', 'constant', 'dead code', 'declarative programming', 'decompiler',
+    'endless loop', 'escape character', 'event-driven programming', 'inheritance', 'loosely typed language', 
+    'library', 'middleware', 'null', 'overflow error', 'parenthesis', 'procedural language', 'pseudocode', 
+    'random seed', 'recursion', 'reserved word', 'routing algorithm', 'schema', 'source code', 'spaghetti code',
+    'stack pointer', 'subroutine', 'superclass', 'undefined', 'error', 'buffering', 'dropped packets'],
     listTwo : [],
     playerList : [],
     listCopy: function() {
@@ -37,10 +44,13 @@ const gameFuncs = {
     gameOverAnimDetails: {amt: 8, arr: []},
     gameInProgress: false,
     soundEffect: new Audio('sounds/sfx.ogg'),
+    bgMusic: new Audio('sounds/bgSong.midi'),
     currTime: new Date().getTime(),
     gameTimer: 1,
     lives: {maxLives: 3, currentLives: 3, livesLost: 0},
     score: 0,
+    gameEngineSpeed: 25,
+    gameSpeedAddCheck: 0,
     scoreList: [],
     destroyedLetters: [],
     spawnInterval: 50,
@@ -49,6 +59,11 @@ const gameFuncs = {
     addScore: function(word) {
         this.score += word.length * 10;
         this.scoreList.push({yPos : 0, score: word.length * 10});
+        this.gameSpeedAddCheck += word.length * 10;
+        if(this.gameSpeedAddCheck > 4000 && this.gameEngineSpeed < 50) {
+            this.gameEngineSpeed += 1;
+            this.gameSpeedAddCheck = 0;
+        }
     },
     sListPos: function() {
         for(let i = 0; i < this.scoreList.length; i++) {
@@ -87,7 +102,7 @@ const gameFuncs = {
         nObj.word = word.split('');
         nObj.yPos = (Math.floor(Math.random()*(canvasData.cHeight - 50)) + 15);
         nObj.xPos = 0;
-        nObj.speed = (Math.floor(Math.random() * 1.5) + 0.5);
+        nObj.speed = (Math.floor(Math.random() * 1.7) + 0.5) ;
         nObj.inputPos = 0;
         nObj.reachedEnd = false;
         this.currentWords.push(nObj);
@@ -301,7 +316,7 @@ const gameFuncs = {
         if(this.lives.currentLives > 0) {
             setTimeout(() => {
                 this.gameEngine();
-            }, (1000 / 25))
+            }, (1000 / this.gameEngineSpeed))
         } else{
             gameFuncs.setGameInProgress(false);
             this.drawGame(this.currentWords);
@@ -332,6 +347,7 @@ document.body.addEventListener('keyup', (e)=> {
 function startGame() {
     gameFuncs.lives.currentLives = 3;
     gameFuncs.score = 0;
+    gameFuncs.gameEngineSpeed = 25;
     gameFuncs.scoreList = [];
     gameFuncs.currentWords = [];
     wordList.listCopy();
