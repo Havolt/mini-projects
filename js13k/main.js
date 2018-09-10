@@ -44,7 +44,6 @@ const gameFuncs = {
     gameOverAnimDetails: {amt: 8, arr: []},
     gameInProgress: false,
     soundEffect: new Audio('sounds/sfx.ogg'),
-    bgMusic: new Audio('sounds/bgSong.midi'),
     currTime: new Date().getTime(),
     gameTimer: 1,
     lives: {maxLives: 3, currentLives: 3, livesLost: 0},
@@ -102,7 +101,7 @@ const gameFuncs = {
         nObj.word = word.split('');
         nObj.yPos = (Math.floor(Math.random()*(canvasData.cHeight - 50)) + 15);
         nObj.xPos = 0;
-        nObj.speed = (Math.floor(Math.random() * 1.7) + 0.5) ;
+        nObj.speed = (Math.floor(Math.random() * 1.4) + 0.5) ;
         nObj.inputPos = 0;
         nObj.reachedEnd = false;
         this.currentWords.push(nObj);
@@ -193,11 +192,11 @@ const gameFuncs = {
             }
         }
     },
-    removeWords: function() {
+    removeWords: function(removeAll) {
         this.removableWords.sort((a, b) => a - b);
 
-        for(let i = 0; i < this.removableWords.length; i++) {
-            if(!this.currentWords[this.removableWords[i]].reachedEnd){
+        for(let i = this.removableWords.length-1; i >= 0 ; i--) {
+            if(!this.currentWords[this.removableWords[i]].reachedEnd && !removeAll){
                 this.addScore(this.currentWords[i].word);
                 this.soundEffect.play();
             }
@@ -207,6 +206,12 @@ const gameFuncs = {
             }
         }
         this.removableWords = [];
+    },
+    removeAllWords: function() {
+        for(let i = 0; i < this.currentWords.length; i++) {
+            this.removableWords.push(i);
+        }
+        gameFuncs.removeWords(true);
     },
     setNewWord: function() {
         this.getCurrentWord(wordList.playerList[0]);
@@ -227,6 +232,16 @@ const gameFuncs = {
             this.spawnTime += this.spawnInterval;
         }
     },
+    setFlashScreen: function() {
+        this.damageCurrent = true;
+        setTimeout(function() {
+            gameFuncs.damageCurrent = false;
+        }, 100)
+    },
+    greenScreen: function() {
+        canvasData.ctx.fillStyle="green";
+        canvasData.ctx.fillRect(0, 0, canvasData.cWidth, canvasData.cHeight);
+    },
     gameOverAnimDetCreate: function() {
         this.gameOverAnimDetails.arr = [];
         const amt = 8;
@@ -246,7 +261,6 @@ const gameFuncs = {
         
     },
     gameOverAnimDetUpdate: function() {
-        console.log(this.gameOverAnimDetails.arr[0].xPos)
             for(let i = 0; i < this.gameOverAnimDetails.arr.length; i++) {
                 if(this.gameOverAnimDetails.arr[i].dir == 1) {
                     this.gameOverAnimDetails.arr[i].xPos += 40;
@@ -305,14 +319,22 @@ const gameFuncs = {
         canvasData.ctx.fillText('To begin the game press \'Enter\' or \'R\'', 18, 405);
     },
     gameEngine: function() {
-        this.createWord(this.gameTimer);
+        //this.createWord(this.gameTimer);
         this.moveWords(this.currentWords);
         this.moveDestroyedLetters();
         this.drawGame(this.currentWords);
         if(this.removableWords.length > 0) { this.removeWords()};
-        if(this.lives.livesLost > 0){ this.removeLives()};
+        if(this.lives.livesLost > 0){ 
+            this.removeLives()
+            if(this.lives.currentLives > 0) {
+                this.removeAllWords();
+                this.setFlashScreen();
+            }
+        } else {
+            this.createWord(this.gameTimer);
+        }
         if(this.scoreList.length > 0) {this.sListPos()};
-
+        if(this.damageCurrent) {this.greenScreen()};
         if(this.lives.currentLives > 0) {
             setTimeout(() => {
                 this.gameEngine();
