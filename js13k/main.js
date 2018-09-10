@@ -12,10 +12,10 @@ const wordList = {
     'security', 'server', 'shareware', 'software', 'spam', 'spyware', 'super computer',
     'sdk', 'terabyte', 'upload', 'user', 'version', 'virus', 'xml', 'optical drive',
     'webcam', 'graphics card', 'microphone', 'variable', 'constant', 'loop', 'framework',
-    'keydown', 'encryption', 'bug', 'ethernet', 'processor', 'machine langauge', 'access violation',
+    'keydown', 'encryption', 'bug', 'ethernet', 'processor', 'machine language', 'access violation',
     'arithmetic operator', 'automated unit testing', 'backend', 'background thread', 'binary search',
     'boolean', 'block-level operator', 'bracket', 'branch', 'bug tracking', 'bytecode', 'camelcase', 
-    'closure', 'comment', 'concatentation', 'constant', 'dead code', 'declarative programming', 'decompiler',
+    'closure', 'comment', 'concatenation', 'constant', 'dead code', 'declarative programming', 'decompiler',
     'endless loop', 'escape character', 'event-driven programming', 'inheritance', 'loosely typed language', 
     'library', 'middleware', 'null', 'overflow error', 'parenthesis', 'procedural language', 'pseudocode', 
     'random seed', 'recursion', 'reserved word', 'routing algorithm', 'schema', 'source code', 'spaghetti code',
@@ -96,10 +96,31 @@ const gameFuncs = {
             }
         }
     },
+    getUniqueYpos : function() {
+        let newYpos = (Math.floor(Math.random()*(canvasData.cHeight - 50)) + 15);
+        let similarYpos = false;
+        for(let i = 0; i < gameFuncs.currentWords.length; i++) {
+            if(gameFuncs.currentWords[i].xPos < 100){
+                if((newYpos > (gameFuncs.currentWords[i].yPos - 20)) && (newYpos < (gameFuncs.currentWords[i].yPos + 20))) {
+                    similarYpos = true;
+                }
+            }
+        }
+        if(similarYpos) {
+            console.log('going again');
+            return gameFuncs.getUniqueYpos();
+        } else {
+            console.log(newYpos);
+            return newYpos;
+        }
+    },
     getCurrentWord: function(word) {
+
+        
+
         const nObj = {};
         nObj.word = word.split('');
-        nObj.yPos = (Math.floor(Math.random()*(canvasData.cHeight - 50)) + 15);
+        nObj.yPos = gameFuncs.getUniqueYpos();
         nObj.xPos = 0;
         nObj.speed = (Math.floor(Math.random() * 1.4) + 0.5) ;
         nObj.inputPos = 0;
@@ -125,7 +146,7 @@ const gameFuncs = {
         for(let i = 0; i < wds.length; i++) {
             for(let j = 0; j < wds[i].word.length; j++) {
                 if(j < wds[i].inputPos) {
-                    ctx.fillStyle="#3f3f3f";
+                    ctx.fillStyle="rgba(206, 206, 206, 0.15)";
                 } else {
                     ctx.fillStyle="green";
                 }
