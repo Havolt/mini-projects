@@ -19,7 +19,13 @@ const wordList = {
     'endless loop', 'escape character', 'event-driven programming', 'inheritance', 'loosely typed language', 
     'library', 'middleware', 'null', 'overflow error', 'parenthesis', 'procedural language', 'pseudocode', 
     'random seed', 'recursion', 'reserved word', 'routing algorithm', 'schema', 'source code', 'spaghetti code',
-    'stack pointer', 'subroutine', 'superclass', 'undefined', 'error', 'buffering', 'dropped packets'],
+    'stack pointer', 'subroutine', 'superclass', 'undefined', 'error', 'buffering', 'dropped packets',
+    'back door', 'bot', 'phishing', 'compiler', 'cookie', 'doxing', 'firewall', 'keystroke logging',
+    'malware', 'remote access', 'rootkit', 'spyware', 'trojan horse', 'cryto', 'deep web', 'exploit',
+    'jailbreak', 'metadata', 'script kiddies', 'verification', 'warez', 'bluetooth', 'firmware', 'patch',
+    'processor', 'optical drive', 'overclocking', 'solid-state drive', 'floppy disk', 'usb-c', 'antivirus',
+    'codec', 'debugger', 'drag and drop', 'file compression', 'open source', 'public domain', 'screenshot', 
+    'zero day exploit'],
     listTwo : [],
     playerList : [],
     listCopy: function() {
@@ -146,7 +152,9 @@ const gameFuncs = {
         for(let i = 0; i < wds.length; i++) {
             for(let j = 0; j < wds[i].word.length; j++) {
                 if(j < wds[i].inputPos) {
-                    ctx.fillStyle="rgba(206, 206, 206, 0.15)";
+                    ctx.fillStyle="rgba(206, 206, 206, 0.1)";
+                } else if( j == wds[i].inputPos){
+                    ctx.fillStyle="#2ca823";
                 } else {
                     ctx.fillStyle="green";
                 }
