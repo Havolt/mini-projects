@@ -1,3 +1,4 @@
+//list of words that appear on screen
 const wordList = { 
     main: ['offline', 'disconnected', 'down', 'logged off', 'address',
     'algorithm', 'binary', 'byte', 'cpu', 'cloud', 'client', 'css', 'content delivery network',
@@ -21,17 +22,19 @@ const wordList = {
     'random seed', 'recursion', 'reserved word', 'routing algorithm', 'schema', 'source code', 'spaghetti code',
     'stack pointer', 'subroutine', 'superclass', 'undefined', 'error', 'buffering', 'dropped packets',
     'back door', 'bot', 'phishing', 'compiler', 'cookie', 'doxing', 'firewall', 'keystroke logging',
-    'malware', 'remote access', 'rootkit', 'spyware', 'trojan horse', 'cryto', 'deep web', 'exploit',
+    'malware', 'remote access', 'rootkit', 'spyware', 'trojan horse', 'crypto', 'deep web', 'exploit',
     'jailbreak', 'metadata', 'script kiddies', 'verification', 'warez', 'bluetooth', 'firmware', 'patch',
     'processor', 'optical drive', 'overclocking', 'solid-state drive', 'floppy disk', 'usb-c', 'antivirus',
     'codec', 'debugger', 'drag and drop', 'file compression', 'open source', 'public domain', 'screenshot', 
     'zero day exploit'],
     listTwo : [],
     playerList : [],
+    //copies main wordList and creates another one
     listCopy: function() {
         listTwo = [];
         this.main.map((item) => this.listTwo.push(item));
     },
+    //creates list of player words
     playerListCreate: function() {
         playerList = [];
         while(this.listTwo.length > 0) {
@@ -40,12 +43,15 @@ const wordList = {
             this.listTwo.splice(newRand, 1);
         }
     },
+    //removes element from playerList
     playerListRemove: function() {
         this.playerList.shift();
     }
 };
 
+//Object holds all game functionality
 const gameFuncs = {
+    //variables, arrays and objects for game 
     currentWords : [],
     gameOverAnimDetails: {amt: 8, arr: []},
     gameInProgress: false,
@@ -61,12 +67,13 @@ const gameFuncs = {
     spawnInterval: 50,
     removableWords: [],
     
+    //adds score from scoreList array
     addScore: function(word) {
         this.score += word.length * 10;
         this.scoreList.push({yPos : 0, score: word.length * 10});
         this.gameSpeedAddCheck += word.length * 10;
-        if(this.gameSpeedAddCheck > 4000 && this.gameEngineSpeed < 50) {
-            this.gameEngineSpeed += 1;
+        if(this.gameSpeedAddCheck > 1000 && this.gameEngineSpeed <= 45) {
+            this.gameEngineSpeed += 2;
             this.gameSpeedAddCheck = 0;
         }
     },
@@ -79,6 +86,7 @@ const gameFuncs = {
             }
         }
     },
+    //creates destroyed letter and places it in array
     addDestroyedLetter: function(letter, obj) {
         const nObj = {};
         nObj.letter = letter;
@@ -88,6 +96,7 @@ const gameFuncs = {
         nObj.ySpeed = [-8, -2, 0, 1, 2, 4, 6, 8, 10, 14, 20, 28];
         this.destroyedLetters.push(nObj);
     },
+    //moves destroyed letter positions for next frame of animation and destroys them if the go beyond the game boundary
     moveDestroyedLetters: function() {
         for(let i = 0; i < this.destroyedLetters.length; i++) {
             const lt = this.destroyedLetters[i];
@@ -102,6 +111,7 @@ const gameFuncs = {
             }
         }
     },
+    //makes surewords dont spawn in too similar a location
     getUniqueYpos : function() {
         let newYpos = (Math.floor(Math.random()*(canvasData.cHeight - 50)) + 15);
         let similarYpos = false;
@@ -120,10 +130,8 @@ const gameFuncs = {
             return newYpos;
         }
     },
+    //gets word to put into game
     getCurrentWord: function(word) {
-
-        
-
         const nObj = {};
         nObj.word = word.split('');
         nObj.yPos = gameFuncs.getUniqueYpos();
@@ -133,9 +141,11 @@ const gameFuncs = {
         nObj.reachedEnd = false;
         this.currentWords.push(nObj);
     },
+    //sets gameInProgress to true or false
     setGameInProgress: function(bool) {
         this.gameInProgress = bool;
     },
+    //most of the canvas frawing is done here
     drawGame: function(wds) {
         const ctx = canvasData.ctx;
         ctx.clearRect(0, 0, canvasData.cWidth, canvasData.cHeight);
@@ -190,6 +200,7 @@ const gameFuncs = {
             ctx.fillText('+'+this.scoreList[i].score, 20, (canvasData.cHeight - 20) + this.scoreList[i].yPos)
         }
     },
+    //checks word position to see if it causes a lost life
     checkLostLife: function(hitBox, arrPos) {
         if(hitBox >= canvasData.cWidth) {
             this.removableWords.push(arrPos);
@@ -197,6 +208,7 @@ const gameFuncs = {
             this.lives.livesLost++;
         }
     },
+    //remove a life from player
     removeLives() {
         this.lives.currentLives -= this.lives.livesLost;
         this.lives.livesLost = 0;
@@ -206,12 +218,14 @@ const gameFuncs = {
             this.removableWords.push(itemNum);
         }
     },
+    //change input position on word
     changeInputPos: function(num, pos) {
         gameFuncs.currentWords[pos].inputPos += num;
         if(gameFuncs.currentWords[pos].word[gameFuncs.currentWords[pos].inputPos] == ' '){
             gameFuncs.currentWords[pos].inputPos += num;
         }
     },
+    //gets user's input and checks its parameters and compares them to current words
     userInput: function(wordArr, key) {
         for(let i = 0; i < wordArr.length; i++) {
             if(wordArr[i].word[wordArr[i].inputPos] == key) {
@@ -221,6 +235,7 @@ const gameFuncs = {
             }
         }
     },
+    //remove a word that is no longer needed
     removeWords: function(removeAll) {
         this.removableWords.sort((a, b) => a - b);
 
@@ -236,12 +251,14 @@ const gameFuncs = {
         }
         this.removableWords = [];
     },
+    //removed all current words at once
     removeAllWords: function() {
         for(let i = 0; i < this.currentWords.length; i++) {
             this.removableWords.push(i);
         }
         gameFuncs.removeWords(true);
     },
+    //gets a new word from playerList
     setNewWord: function() {
         this.getCurrentWord(wordList.playerList[0]);
         wordList.playerListRemove();
@@ -250,27 +267,32 @@ const gameFuncs = {
             wordList.playerListCreate();
         }
     },
+    //moves word positions forward
     moveWords: function(wds) {
         for(let i = 0; i < wds.length; i++) {
             wds[i].xPos += wds[i].speed;
         }
     },
+    //creates a word if certain amounf of frames have passed
     createWord: function(startTime) {
         if (this.gameTimer % this.spawnInterval == 0) {
             this.setNewWord();
             this.spawnTime += this.spawnInterval;
         }
     },
+    //sets if flash screen animation should be true
     setFlashScreen: function() {
         this.damageCurrent = true;
         setTimeout(function() {
             gameFuncs.damageCurrent = false;
         }, 100)
     },
+    //draws green screen when setFlashScreen is true
     greenScreen: function() {
         canvasData.ctx.fillStyle="green";
         canvasData.ctx.fillRect(0, 0, canvasData.cWidth, canvasData.cHeight);
     },
+    //sets details for game over animation
     gameOverAnimDetCreate: function() {
         this.gameOverAnimDetails.arr = [];
         const amt = 8;
@@ -289,6 +311,7 @@ const gameFuncs = {
         }
         
     },
+    //updates details for game over animation
     gameOverAnimDetUpdate: function() {
             for(let i = 0; i < this.gameOverAnimDetails.arr.length; i++) {
                 if(this.gameOverAnimDetails.arr[i].dir == 1) {
@@ -308,6 +331,7 @@ const gameFuncs = {
                 }, 60)
             }
     },
+    //displays game over info to user
     gameOverInfo: function() {
         canvasData.ctx.fillStyle="black";
         canvasData.ctx.fillRect((canvasData.cWidth / 10), (canvasData.cHeight / 10), (canvasData.cWidth / 1.25), (canvasData.cHeight / 1.25));
@@ -319,6 +343,7 @@ const gameFuncs = {
         canvasData.ctx.fillText('Press \'R\' to retry', (canvasData.cWidth / 2) - 160, 210);
         canvasData.ctx.fillText('You managed to score: ' + gameFuncs.score, (canvasData.cWidth / 2) - 220, 300);
     },
+    //draws game over animation
     gameOverAnimation: function(){
         const gd = this.gameOverAnimDetails
         canvasData.ctx.fillStyle="green";
@@ -327,6 +352,7 @@ const gameFuncs = {
         }
         this.gameOverAnimDetUpdate();
     },
+    //draws game start screen
     gameIntro: function() {
         canvasData.ctx.fillStyle="black";
         canvasData.ctx.fillRect(0, 0, canvasData.cWidth, canvasData.cHeight);
@@ -347,8 +373,8 @@ const gameFuncs = {
         canvasData.ctx.fillStyle="black";
         canvasData.ctx.fillText('To begin the game press \'Enter\' or \'R\'', 18, 405);
     },
+    //game engine which controls entire game
     gameEngine: function() {
-        //this.createWord(this.gameTimer);
         this.moveWords(this.currentWords);
         this.moveDestroyedLetters();
         this.drawGame(this.currentWords);
@@ -377,14 +403,14 @@ const gameFuncs = {
         this.gameTimer++;
     }
 };
-
+//canvas information is held here
 const canvasData = {
     cWidth: 720,
     cHeight: 480,
     c : document.querySelector('.gameCanvas'),
     ctx : document.querySelector('.gameCanvas').getContext('2d')
 };
-
+//adds event listeners to keyups from user
 document.body.addEventListener('keyup', (e)=> {
     if(gameFuncs.gameInProgress) {
         gameFuncs.userInput(gameFuncs.currentWords, e.key)
@@ -394,7 +420,7 @@ document.body.addEventListener('keyup', (e)=> {
         }
     }
 });
-
+//function called to start/restart game
 function startGame() {
     gameFuncs.lives.currentLives = 3;
     gameFuncs.score = 0;
@@ -407,7 +433,7 @@ function startGame() {
     gameFuncs.setGameInProgress(true);
     gameFuncs.gameEngine();
 }
-
+//self called function initializes entire app
 (function initApp() {
     gameFuncs.soundEffect.volume = 0.012;
     gameFuncs.gameIntro();
