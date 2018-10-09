@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Geolocation</title>
+</head>
+<body>
+
+<script>
+
+    if("geolocation" in navigator) {
+
+        navigator.geolocation.getCurrentPosition((res) => {
+            
+            const lon = res.coords.longitude;
+            const lat = res.coords.latitude;
+            const url = `https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${lat}&lon=${lon}`;
+
+            fetch(url)
+            .then(fRes => {
+
+                fRes.json().then(data => {
+                    const county = data.address.county.split('').splice(7).join('');
+                    console.log(county);
+                });
+            })
+            
+        })
+    } else {
+        console.log("not found");
+    }
+
+
+</script>
+    
+</body>
+</html>
