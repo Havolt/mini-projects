@@ -1,23 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Geolocation</title>
-</head>
-<body>
-
-    <div id="app"></div>
-
-<script>
 
     function tellCounty(county) {
         document.querySelector('#app').innerHTML = `You have entered the ${county} room`;
     } 
 
-
-    if("geolocation" in navigator) {
+    function geoLocate() {
         navigator.geolocation.getCurrentPosition((res) => {
             const lon = res.coords.longitude;
             const lat = res.coords.latitude;
@@ -31,12 +17,10 @@
                 });
             })
         })
-    } else {
-        console.log("not found");
     }
 
-
-</script>
-    
-</body>
-</html>
+    if("geolocation" in navigator) {
+        
+    } else {
+        document.body.innerHTML = '<div class="noGPSTitle">Sorry this site needs GPS to function.</div>';
+    }

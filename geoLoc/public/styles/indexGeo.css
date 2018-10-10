@@ -1,0 +1,14 @@
+
+html, body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.ctTitle {
+    font-size: 32px;
+    font-weight: bold;
+}
+
+.noGPSTitle{
+    font-size: 40px;
+    font-weight: bold;
+}
