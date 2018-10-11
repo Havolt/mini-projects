@@ -12,6 +12,7 @@
                     const url = `https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${lat}&lon=${lon}`;
                     fetch(url)
                     .then(fRes => {
+                        
                         fRes.json().then(data => {
                             console.log(data);
                             if(data.address.county) {
@@ -30,12 +31,17 @@
 
     function tellCounty(area) {
         document.querySelector('#app').innerHTML = `You have entered the ${area} room`;
-        fetch('/area')
-        .then(res => {
-            const reader = res.body.getReader();
-        }
         
-    } 
+
+        fetch('/area')
+        .then((res) => {
+            return res.json();
+        })
+        .then((data) => {
+            console.log(data);
+        })
+    }
+
 
     function geoLocate() {
         

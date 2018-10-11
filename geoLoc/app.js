@@ -11,5 +11,5 @@ app.get('/', (req, res) => {
 })
 
 app.get('/area', (req, res) => {
-    res.send('got here');
+    res.send({message: 'got here'});
 })
