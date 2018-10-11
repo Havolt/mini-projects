@@ -9,3 +9,7 @@ app.listen(port);
 app.get('/', (req, res) => {
     res.sendFile(__dirname + '/views/index.html');
 })
+
+app.get('/area', (req, res) => {
+    res.send('got here');
+})
