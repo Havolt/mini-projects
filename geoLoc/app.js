@@ -26,10 +26,14 @@ counties.map(el => {
 
 app.post('/area', (req, res) => {
     console.log(req.body);
+    let countyFound = false;
     counties.map(el => {
         if(`County ${el}` == req.body.county) {
             res.send({room: el.toLowerCase()})
+            countyFound = true;
         }
     })
-    res.send({warning: 'You must be in Ireland to use this service'});
+    if(!countyFound){
+        res.send({warning: 'You must be in Ireland to use this service'});
+    }
 })

@@ -12,3 +12,9 @@ html, body {
     font-size: 40px;
     font-weight: bold;
 }
+
+
+
+.displayHidden {
+    display: none;
+}

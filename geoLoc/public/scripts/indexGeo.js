@@ -2,7 +2,8 @@
     const vm = new Vue({
         el: '#app',
         data: {
-            test: 'zoom'
+            test: 'zoom',
+            chatOn : false
         },
         methods: {
             getNav: function() {
@@ -29,7 +30,7 @@
     })
 
     function tellCounty(area) {
-        document.querySelector('#app').innerHTML = `You have entered the ${area} room`;
+        //document.querySelector('#app').innerHTML = `You have entered the ${area} room`;
         
         fetch('/area', {
             method: "POST",
@@ -55,11 +56,6 @@
             scr1.src = '/scripts/chatArea.js';
             document.body.appendChild(scr1);
         })
-    }
-
-
-    function geoLocate() {
-        
     }
 
     if("geolocation" in navigator) {

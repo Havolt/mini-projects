@@ -11,8 +11,12 @@
 <body>
 
     <div id="app">
-        <div class="ctTitle">County Talk</div>
-        <button @click="getNav">Get County</button>
+        <div v-bind:class="{displayHidden: chatOn}" class="introSec">
+            <div class="ctTitle">County Talk</div>
+            <button @click="getNav">Get County</button>
+        </div>
+
+        <chat-area v-if="chatOn"></chat-area>
     </div>
 
 <script src="/scripts/indexGeo.js"></script>
