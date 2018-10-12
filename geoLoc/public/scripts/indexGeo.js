@@ -32,8 +32,16 @@
     function tellCounty(area) {
         document.querySelector('#app').innerHTML = `You have entered the ${area} room`;
         
-
-        fetch('/area')
+        fetch('/area', {
+            method: "POST",
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                county: area
+            })
+        })
         .then((res) => {
             return res.json();
         })
