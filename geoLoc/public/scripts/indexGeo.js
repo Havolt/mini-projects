@@ -9,7 +9,7 @@
                 navigator.geolocation.getCurrentPosition((res) => {
                     const lon = res.coords.longitude;
                     const lat = res.coords.latitude;
-                    const url = `https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${lat + 10}&lon=${lon}`;
+                    const url = `https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${lat}&lon=${lon}`;
                     fetch(url)
                     .then(fRes => {
                         
@@ -48,7 +48,12 @@
             console.log(data);
             if(data.warning) {
                 document.body.innerHTML = data.warning;
+                return;
             }
+            console.log(`/${data.room}`);
+            const scr1 = document.createElement('script');
+            scr1.src = '/scripts/chatArea.js';
+            document.body.appendChild(scr1);
         })
     }
 
