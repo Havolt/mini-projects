@@ -18,11 +18,17 @@ app.get('/', (req, res) => {
     res.sendFile(__dirname + '/views/index.html');
 })
 
+counties.map(el => {
+    app.get(`/${el.toLowerCase()}`, (req, res) => {
+        res.sendFile(`${__dirname}/views/counties/${el.toLowerCase()}.html`);
+    })
+})
+
 app.post('/area', (req, res) => {
     console.log(req.body);
     counties.map(el => {
         if(`County ${el}` == req.body.county) {
-            res.send({message: el})
+            res.send({room: el.toLowerCase()})
         }
     })
     res.send({warning: 'You must be in Ireland to use this service'});

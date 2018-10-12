@@ -9,18 +9,17 @@
                 navigator.geolocation.getCurrentPosition((res) => {
                     const lon = res.coords.longitude;
                     const lat = res.coords.latitude;
-                    const url = `https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${lat}&lon=${lon}`;
+                    const url = `https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${lat + 10}&lon=${lon}`;
                     fetch(url)
                     .then(fRes => {
                         
                         fRes.json().then(data => {
                             console.log(data);
-                            if(data.address.county) {
+                            if(data.address && data.address.county) {
                                 const county = data.address.county;
                                 tellCounty(county)
-                            } else if (data.address.state) {
-                                const state = data.address.state;
-                                tellCounty(state)
+                            } else {
+                                document.body.innerHTML = 'You must be in Ireland to use this service';
                             }
                         });
                     })
@@ -47,6 +46,9 @@
         })
         .then((data) => {
             console.log(data);
+            if(data.warning) {
+                document.body.innerHTML = data.warning;
+            }
         })
     }
 
