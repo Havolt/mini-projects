@@ -51,10 +51,12 @@
                 document.body.innerHTML = data.warning;
                 return;
             }
-            console.log(`/${data.room}`);
+            console.log(`${data.room}`);
+            let scriptsToLoad = ['/scripts/chatArea.js'];
             const scr1 = document.createElement('script');
             scr1.src = '/scripts/chatArea.js';
             document.body.appendChild(scr1);
+            vm.roomName = data.room.split('')[0].toUpperCase() + data.room.split('').splice(1).join('');
         })
     }
 
