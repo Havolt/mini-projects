@@ -8,15 +8,20 @@ function manipulateListHTML(arr) {
         listMain.classList.add('todoItem');
         const listText = document.createElement('div');
         listText.innerHTML = el.todo;
-        const listDeadline = document.createElement('div');
-        listDeadline.innerHTML = `${el.deadline.getDate()}/${el.deadline.getMonth()+1}/${el.deadline.getFullYear()}`;
-        const listLocation = document.createElement('div');
-        listLocation.innerHTML = el.location;
-
-
+        listText.classList.add('todoItemTodo')
         listMain.appendChild(listText);
-        listMain.appendChild(listDeadline);
-        listMain.appendChild(listLocation);
+        if(el.deadline) {
+            const listDeadline = document.createElement('div');
+            listDeadline.innerHTML = `${el.deadline.getDate()}/${el.deadline.getMonth()+1}/${el.deadline.getFullYear()}`;
+            listDeadline.classList.add('todoItemDeadline')
+            listMain.appendChild(listDeadline);
+        }
+        if(el.location) {
+            const listLocation = document.createElement('div');
+            listLocation.innerHTML = el.location;
+            listLocation.classList.add('todoItemLocation')
+            listMain.appendChild(listLocation);
+        }
         document.querySelector('.listCon').appendChild(listMain);
     })
     console.log(arr);
@@ -55,6 +60,17 @@ function evtListeners() {
             document.querySelector('.inputLocation').value
             );
     });
+    for(let i = 0; i < document.querySelectorAll('.inputGen').length; i++) {
+        document.querySelectorAll('.inputGen')[i].addEventListener('keydown', (e) => {
+            if(e.keyCode == 13) {
+                checkInput(
+                    document.querySelector('.inputEvent').value,
+                    document.querySelector('.inputDeadline').value,
+                    document.querySelector('.inputLocation').value
+                );
+            }
+        });
+    }
 };
 
 (function initApp() {
