@@ -2,6 +2,23 @@
 const todoList = new Array();
 
 function manipulateListHTML(arr) {
+    document.querySelector('.listCon').innerHTML = '';
+    todoList.map((el) => {
+        const listMain = document.createElement('div');
+        listMain.classList.add('todoItem');
+        const listText = document.createElement('div');
+        listText.innerHTML = el.todo;
+        const listDeadline = document.createElement('div');
+        listDeadline.innerHTML = `${el.deadline.getDate()}/${el.deadline.getMonth()+1}/${el.deadline.getFullYear()}`;
+        const listLocation = document.createElement('div');
+        listLocation.innerHTML = el.location;
+
+
+        listMain.appendChild(listText);
+        listMain.appendChild(listDeadline);
+        listMain.appendChild(listLocation);
+        document.querySelector('.listCon').appendChild(listMain);
+    })
     console.log(arr);
 }
 
