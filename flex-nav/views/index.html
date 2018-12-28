@@ -11,14 +11,17 @@
     
     <div id="app">
         <div class="flex-container">
-            <div onmouseout="shrinkDiv(this)" class="flex-item">
-                <div>Photos</div>
+            <div onmouseover="hideDiv(this)" onmouseout="shrinkDiv(this)" class="flex-item">
+                <div  class="div-cover"></div>
+                <div class="flex-title">Photos</div>
             </div>
-            <div onmouseout="shrinkDiv(this)" class="flex-item">
-                <div>News</div> 
+            <div onmouseover="hideDiv(this)" onmouseout="shrinkDiv(this)" class="flex-item">
+                <div onmouseover="hideDiv(this)" class="div-cover"></div>
+                <div class="flex-title">News</div> 
             </div>
-            <div onmouseout="shrinkDiv(this)" class="flex-item">
-                <div>Contact</div> 
+            <div onmouseover="hideDiv(this)" onmouseout="shrinkDiv(this)" class="flex-item">
+                <div onmouseover="hideDiv(this)" class="div-cover"></div>
+                <div class="flex-title">Contact</div> 
             </div>
         </div>
     </div>

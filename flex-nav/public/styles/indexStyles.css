@@ -19,15 +19,17 @@ body, html {
 }
 
 .flex-item {
+    position: relative;
     font-weight: bold;
     height: 100vh;
-    width:100%;
+    width: 100%;
     background-position: center;
     background-size: auto;
     color: white;
     text-shadow: 0 0 2px black;
     font-size: 42px;
-    line-height: 100vh
+    line-height: 100vh;
+    
 }
 
 @keyframes flex-animate {
@@ -46,11 +48,15 @@ body, html {
 
 .flex-item:nth-child(2) {
     background-image: url('/imgs/nav2.jpg'); 
+    border-right: 2px solid white;
+    border-left: 2px solid white;
 }
 
 .flex-item:nth-child(3) {
     background-image: url('/imgs/nav3.jpeg'); 
 }
+
+
 
 @keyframes shrink-animate {
     0%{width: 150%}
@@ -59,4 +65,17 @@ body, html {
 
 .shrink-div {
     animation: shrink-animate 1s;
+}
+
+.div-cover {
+    position: absolute;
+    background: rgba(5, 5, 5, 0.3);
+    height: 100vh;
+    width: 100%;
+    z-index: 50;
+}
+
+.flex-title {
+    position: relative;
+    z-index: 100;
 }
