@@ -4,6 +4,10 @@
     border: 0;
 }
 
+body, html {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
 .flex-container {
     width: 100%;
     display: inline-flex;
@@ -13,4 +17,26 @@
 .flex-item {
     height: 100vh;
     width:100%;
+    background-position: center;
+    background-size: auto;
+    color: white;
+    text-shadow: 0 0 1px black;
+    font-size: 42px;
+    line-height: 100vh
+}
+
+.flex-item:hover {
+    cursor: pointer;
+}
+
+.flex-item:nth-child(1) {
+    background-image: url('/imgs/nav1.jpeg');
+}
+
+.flex-item:nth-child(2) {
+    background-image: url('/imgs/nav2.jpg'); 
+}
+
+.flex-item:nth-child(3) {
+    background-image: url('/imgs/nav3.jpeg'); 
 }
