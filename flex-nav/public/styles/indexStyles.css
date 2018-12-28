@@ -14,13 +14,18 @@ body, html {
     text-align: center;
 }
 
+.flex-container:hover {
+    cursor: pointer;
+}
+
 .flex-item {
+    font-weight: bold;
     height: 100vh;
     width:100%;
     background-position: center;
     background-size: auto;
     color: white;
-    text-shadow: 0 0 1px black;
+    text-shadow: 0 0 2px black;
     font-size: 42px;
     line-height: 100vh
 }
@@ -31,7 +36,6 @@ body, html {
 }
 
 .flex-item:hover {
-    cursor: pointer;
     animation: flex-animate 1s forwards;
 }
 
@@ -49,7 +53,7 @@ body, html {
 }
 
 @keyframes shrink-animate {
-    0%{width: 300%}
+    0%{width: 150%}
     100%{width: 100%};
 }
 
