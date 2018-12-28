@@ -1,6 +1,6 @@
 
 function shrinkDiv(div) {
-    console.log(div);
+    div.classList.add('shrink-div');
 }
 
 

@@ -35,6 +35,7 @@ body, html {
     animation: flex-animate 1s forwards;
 }
 
+
 .flex-item:nth-child(1) {
     background-image: url('/imgs/nav1.jpeg');
 }
@@ -45,4 +46,13 @@ body, html {
 
 .flex-item:nth-child(3) {
     background-image: url('/imgs/nav3.jpeg'); 
+}
+
+@keyframes shrink-animate {
+    0%{width: 300%}
+    100%{width: 100%};
+}
+
+.shrink-div {
+    animation: shrink-animate 1s;
 }
