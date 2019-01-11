@@ -11,14 +11,10 @@
 
     <div id="app">
         <div class="dadList">
-            <div draggable="true" class="dadItem dadItem1"><div class="dadContent">1</div></div>
-            <div draggable="true" class="dadItem dadItem2"><div class="dadContent">2</div></div>
-            <div draggable="true" class="dadItem dadItem3"><div class="dadContent">3</div></div>
-            <div draggable="true" class="dadItem dadItem4"><div class="dadContent">4</div></div>
-            <div draggable="true" class="dadItem dadItem5"><div class="dadContent">5</div></div>
-            <div draggable="true" class="dadItem dadItem6"><div class="dadContent">6</div></div>
-        </div>
+            <div class="dadItem dadItem1"><div onmousedown="itemHeld(this)" onmouseup="itemLetGo()" class="dadContent">1</div></div>
     </div>
+
+    <script src="scripts/main.js"></script>
     
 </body>
 </html>
