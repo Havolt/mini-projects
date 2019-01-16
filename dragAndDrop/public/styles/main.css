@@ -16,11 +16,13 @@ body, html {
     font-size: 35px;
     font-weight: bold;
     color: rgb(88, 87, 87);
+    position: relative;
 }
 
 .dadContent {
     border: 2px solid rgb(168, 168, 168);
     height: inherit;
+    width: 100%;
     line-height: 50px;
     background: white;
     user-select: none;
@@ -30,4 +32,8 @@ body, html {
     background: rgb(210, 245, 255);
     text-shadow: 0 0 2px white;
     cursor: move;
+}
+
+.posAb {
+    position: absolute;
 }

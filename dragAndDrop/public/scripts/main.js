@@ -1,35 +1,45 @@
 
 
 let dragData = {
-    userHolding: undefined,
+    userDiv: undefined,
     userDragBool: false,
     userBeginX: undefined,
-    userBeginY: undefined
-
+    userBeginY: undefined,
+    userInitMouseX: undefined,
+    userInitMouseY: undefined
 }
 
-function itemHeld(val) {
+function itemHeld(val, e) {
     dragData.userDragBool = true;
-    dragData.userHolding = val;
+    dragData.userDiv = val;
+    dragData.userBeginX = val.getBoundingClientRect().left;
+    dragData.userBeginY = val.getBoundingClientRect().top;
+    val.classList.add('posAb')
+    dragData.userInitMouseX = e.clientX;
+    dragData.userInitMouseY = e.clientY;
 }
 
-function moveItem(ob) {
+function moveItem(ob, ev) {
     if(ob.userDragBool) {
-        console.log(ob.userHolding);
+        console.log(ob.userInitMouseX)
     }
 }
 
 function itemLetGo() {
+    dragData.userDiv.classList.remove('posAb')
     dragData.userDragBool = false;
-    dragData.userHolding = undefined;
+    dragData.userDiv = undefined;
+    dragData.userBeginX = undefined;
+    dragData.userBeginY = undefined;
+    
 }
 
 function createEvListeners() {
     document.addEventListener('mouseup', () => {
         itemLetGo();
     })
-    document.addEventListener('mousemove', () => {
-        moveItem(dragData);
+    document.addEventListener('mousemove', (e) => {
+        moveItem(dragData, e);
     })
 };
 
