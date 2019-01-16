@@ -2,12 +2,21 @@
 
 let dragData = {
     userHolding: undefined,
-    userDragBool: false
+    userDragBool: false,
+    userBeginX: undefined,
+    userBeginY: undefined
+
 }
 
 function itemHeld(val) {
     dragData.userDragBool = true;
     dragData.userHolding = val;
+}
+
+function moveItem(ob) {
+    if(ob.userDragBool) {
+        console.log(ob.userHolding);
+    }
 }
 
 function itemLetGo() {
@@ -18,6 +27,9 @@ function itemLetGo() {
 function createEvListeners() {
     document.addEventListener('mouseup', () => {
         itemLetGo();
+    })
+    document.addEventListener('mousemove', () => {
+        moveItem(dragData);
     })
 };
 

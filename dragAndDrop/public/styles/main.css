@@ -27,6 +27,7 @@ body, html {
 }
 
 .dadContent:hover{
-    background: rgb(156, 228, 250);
+    background: rgb(210, 245, 255);
+    text-shadow: 0 0 2px white;
     cursor: move;
 }
