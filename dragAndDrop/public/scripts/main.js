@@ -17,22 +17,18 @@ function itemHeld(val, e) {
         dragData.userBeginX = val.getBoundingClientRect().left;
         dragData.userBeginY = val.getBoundingClientRect().top;
         val.classList.add('posAb')
-        
-        dragData.initMouseX = e.clientX;
-        dragData.initMouseY = e.clientY;
-
-        console.log(dragData.userInitMouseX, dragData.userInitMouseY);
+        dragData.userInitMouseX = e.clientX;
+        dragData.userInitMouseY = e.clientY;
     
 }
 
 function moveItem(ob, ev) {
     
     if(ob.userDragBool) {
-        console.log(ev.client)
-        //ob.userDiv.style.transform = `translateX(${ob.userInitMouseX + ev.clientX})`
-        //ob.userDiv.style.transform = `translateY(${ob.userInitMouseY + ev.clientY})`
-        ob.userDiv.style.top = `${ob.userInitMouseY + ev.clientY}px`;
-        ob.userDiv.style.left = `${ob.userInitMouseX + ev.clientX}px`;
+        console.log(ev.clientX, dragData.userInitMouseX,ob.userDisplaceX)
+        ob.userDisplaceX = ev.clientX - dragData.userInitMouseX;
+        ob.userDisplaceY = ev.clientY - dragData.userInitMouseY;
+        ob.userDiv.style.transform = `translate(${ob.userDisplaceX}px, ${ob.userDisplaceY}px)`;
         
         
     }
@@ -40,12 +36,18 @@ function moveItem(ob, ev) {
 
 function itemLetGo() {
     if(dragData.userDragBool) {
+        dragData.userDisplaceX = 0,
+        dragData.userDisplaceY = 0,
+        dragData.userInitMouseX = 0,
+        dragData.userInitMouseY = 0
         dragData.userDiv.classList.remove('posAb')
+        dragData.userDiv.style.transform = `translate(0px, 0px)`;
         dragData.userDragBool = false;
         dragData.userDiv = undefined;
         dragData.userBeginX = undefined;
         dragData.userBeginY = undefined;
-    }
+        
+    }  
     
 }
 
