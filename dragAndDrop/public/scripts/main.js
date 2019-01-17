@@ -41,7 +41,6 @@ function itemHeld(val, e) {
         val.classList.add('posAb')
         dragData.userInitMouseX = e.clientX;
         dragData.userInitMouseY = e.clientY;
-    
 }
 
 function moveItem(ob, ev) {
@@ -66,9 +65,23 @@ function checkItemPos(div, cx) {
         amtMoved = posInArr * -1;
     }
 
+    if(amtMoved != 0) {
+        displaceListItems(parseInt(posInArr), amtMoved);
+    }
+}
 
-    console.log(amtMoved);
-
+function displaceListItems(start, amt) {
+    let numDir;
+    if(amt < 0) {
+        numDir = -1;
+    }else { numDir = 1}
+    
+    document.querySelectorAll('.dadItem').forEach((el, ind) => {
+        if(numDir == 1 && ((ind > start) && (ind <= (amt + start)))) {
+            console.log(ind, amt, start)
+            document.querySelector(`.dadItem${ind}`).style.transform = 'translateY(-50px)';
+        }
+    })
 }
 
 function itemLetGo() {
