@@ -1,7 +1,7 @@
 
 
 let dragData = {
-    divAllHeight: 70,
+    divAllHeight: 80,
     userDiv: undefined,
     userDragBool: false,
     userBeginX: undefined,
@@ -60,9 +60,12 @@ function moveItem(ob, ev) {
 function checkItemPos(div, cx) {
     let posInArr = div.parentElement.classList[1].split('')[div.parentElement.classList[1].split('').length-1]; 
     let amtMoved = Math.round(cx / dragData.divAllHeight);
-    if((amtMoved + parseInt(posInArr)) > (listData.length - 1)) {
+    if(amtMoved > 0 && ((amtMoved + parseInt(posInArr)) > (listData.length - 1))) {
         amtMoved = listData.length - 1 - posInArr;
+    } else if (amtMoved < listData.length && ((amtMoved + parseInt(posInArr)) < (0))) {
+        amtMoved = posInArr * -1;
     }
+
 
     console.log(amtMoved);
 
