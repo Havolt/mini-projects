@@ -44,15 +44,22 @@ function itemHeld(val, e) {
 }
 
 function moveItem(ob, ev) {
-    
     if(ob.userDragBool) {
-        console.log(ev.clientX, dragData.userInitMouseX,ob.userDisplaceX)
+        console.log();
         ob.userDisplaceX = ev.clientX - dragData.userInitMouseX;
         ob.userDisplaceY = ev.clientY - dragData.userInitMouseY;
         ob.userDiv.style.transform = `translate(${ob.userDisplaceX}px, ${ob.userDisplaceY}px)`;
-        
-        
+        // Check if mouse is inside horizontal margin of dadList
+        if((ev.clientX >= document.querySelector('.dadList').getBoundingClientRect().left) &&
+          (ev.clientX <= document.querySelector('.dadList').getBoundingClientRect().right)) {
+            console.log('im inside')
+            checkItemPos();
+        }
     }
+}
+
+function checkItemPos() {
+    
 }
 
 function itemLetGo() {
