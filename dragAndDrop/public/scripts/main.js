@@ -11,6 +11,27 @@ let dragData = {
     userInitMouseY: 0
 }
 
+let listData = ['Squall', 'Zell', 'Quistis', 'Selphie', 'Irvine', 'Rinoa']
+
+function createList() {
+    listData.forEach( (el, ind) => {
+        const newItem = document.createElement('div');
+        newItem.classList.add('dadItem', `dadItem${ind}`);
+        document.querySelector('.dadList').appendChild(newItem);
+
+        const newItemData = document.createElement('div');
+        newItemData.classList.add('dadContent');
+        newItemData.innerHTML = el;
+        newItem.appendChild(newItemData);
+
+        newItemData.addEventListener('mousedown', () => itemHeld(newItemData, event))
+
+        newItemData.addEventListener('mouseup', () => {
+            itemLetGo();
+        })
+    });
+}
+
 function itemHeld(val, e) {
         dragData.userDragBool = true;
         dragData.userDiv = val;
@@ -61,5 +82,6 @@ function createEvListeners() {
 };
 
 (function initApp() {
+    createList();
     createEvListeners();
 })();
