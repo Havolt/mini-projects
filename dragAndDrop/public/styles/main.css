@@ -6,6 +6,9 @@ body, html {
 .dadList {
     width: 50%;
     margin: 0 auto;
+    background: rgb(164, 235, 164);
+    padding: 5px 0;
+    border: rgb(111, 138, 146) 1px solid;
 }
 
 .dadItem {
@@ -29,11 +32,12 @@ body, html {
 }
 
 .dadContent:hover{
-    background: rgb(210, 245, 255);
-    text-shadow: 0 0 2px white;
     cursor: move;
 }
 
 .posAb {
     position: absolute;
+    background: rgb(210, 245, 255);
+    text-shadow: 0 0 2px white;
+    z-index: 100;
 }
