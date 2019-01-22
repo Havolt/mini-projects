@@ -23,6 +23,16 @@ const listData = {
             newArr[el.pos] = el;
         })
 
+        newArr.map((el)=> {
+            const newEl = document.createElement('div');
+            newEl.classList.add('dad-li');
+            const newElInn = document.createElement('div');
+            newElInn.classList.add('dad-li-inner');
+            newElInn.innerText = el.name;
+            newEl.appendChild(newElInn);
+            document.querySelector('.list-contain').appendChild(newEl);
+        })
+
         console.log(newArr);
 
     }

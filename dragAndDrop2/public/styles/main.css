@@ -1,0 +1,31 @@
+
+* {
+    padding: 0;
+    margin: 0;
+    border: 0;
+}
+
+html, body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.list-contain {
+    margin: 10px auto;
+    width: 33%;
+    text-align: center;
+    font-size: 2em;
+    color: white;
+    background: lightgrey;
+    padding: 10px 20px;
+    border: 1px solid rgb(182, 182, 182);
+}
+
+.dad-li {
+    background: rgb(98, 202, 209);
+    border: 1px solid rgb(45, 164, 219);
+    margin: 10px 0;
+    height: 50px;
+    line-height: 50px;
+    font-weight: bold;
+    user-select: none;
+}
