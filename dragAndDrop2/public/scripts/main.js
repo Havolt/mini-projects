@@ -1,5 +1,6 @@
 
 const listData = {
+    containDivData : document.querySelector('.list-contain').getBoundingClientRect(),
     itemHeld: false,
     selectedItem: '',
     selectedElement: '',
@@ -61,8 +62,8 @@ const listData = {
                 listData.list.map((el) => {
                     if(el.pos == i) {
                         el.selected.bool = true;
-                        el.selected.initX = e.clientX;
-                        el.selected.initY = e.clientY;
+                        el.selected.initX = e.clientX - listData.containDivData.left;
+                        el.selected.initY = e.clientY - listData.containDivData.top;
                         listData.selectedItem = el;
                         console.log(listData.selectedItem);
                     }
@@ -92,13 +93,19 @@ const listData = {
     moveLi: function(e) {
         if(this.itemHeld) {
             //console.log(listData.selectedItem);
-            listData.selectedItem.selected.dragX = e.clientX - listData.selectedItem.selected.initX;
-            listData.selectedItem.selected.dragY = e.clientY - listData.selectedItem.selected.initY;
+            listData.selectedItem.selected.dragX = (e.clientX - listData.containDivData.left) - listData.selectedItem.selected.initX;
+            listData.selectedItem.selected.dragY = (e.clientY - listData.containDivData.top) - listData.selectedItem.selected.initY;
             this.dragLi(listData.selectedItem.selected.dragX, listData.selectedItem.selected.dragY);
+            this.checkPositions(listData.selectedItem.selected.dragX, listData.selectedItem.selected.dragY);
         }
     },
     dragLi: function(x, y) {
         listData.selectedElement.style.transform=`translate(${x}px,${y}px)`;
+    },
+    checkPositions: function(x, y) {
+        if(y > 60) {
+            console.log(listData.containDivData);
+        }
     }
 };
 
