@@ -1,5 +1,6 @@
 
 const listData = {
+    itemHeld: false,
     initWords: ['Squall', 'Quistis', 'Seifer', 'Zell', 'Rinoa', 'Irvine'],
     list: [],
     //Puts elements in list
@@ -11,6 +12,7 @@ const listData = {
             newOb.moved = false;
             newOb.movedDir = 0;
             listData.list.push(newOb);
+            
         })
     },
     //Creates HTML on index page of list
@@ -31,17 +33,29 @@ const listData = {
             newElInn.innerText = el.name;
             newEl.appendChild(newElInn);
             document.querySelector('.list-contain').appendChild(newEl);
+            newEl.addEventListener('mousedown', this.grabList);
+            newEl.addEventListener('mouseup', this.letGoList);
         })
         console.log(newArr);
     },
     addItem: function(e, item, fromKeydown) {
-
         if(!fromKeydown || e.keyCode == 13) {
             const newArr = [];
             newArr.push(item.value);
             this.putWordInList(newArr);
             this.createHMTL(this.list);
             item.value = '';
+        }
+    },
+    grabList: function() {
+        listData.itemHeld = true;
+    },
+    letGoList: function() {
+        listData.itemHeld = false;
+    },
+    moveLi: function() {
+        if(this.itemHeld) {
+            console.log('holding');
         }
     }
 };

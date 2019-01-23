@@ -10,7 +10,7 @@
 <body>
     
     <div id="app">
-        <div class="list-contain"></div>
+        <div onmouseleave="listData.letGoList()" onmousemove="listData.moveLi()" class="list-contain"></div>
         <div class="list-input-contain">
             <div class="list-input">
                 <input onkeydown="listData.addItem(event, this, true)" class="list-text" type="text">

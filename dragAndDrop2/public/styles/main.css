@@ -10,7 +10,8 @@ html, body {
 }
 
 .list-contain {
-    margin: 10px auto;
+    box-sizing: border-box;
+    margin: 10px auto 84px auto;
     width: 33%;
     text-align: center;
     font-size: 2em;
@@ -30,6 +31,10 @@ html, body {
     user-select: none;
 }
 
+.dad-li-inner:hover {
+    cursor: grab;
+}
+
 .list-input-contain {
     border-top: 1px solid rgb(187, 187, 187);
     position: fixed;
@@ -38,6 +43,8 @@ html, body {
     background: rgb(197, 196, 196);
     padding: 12px 0;
 }
+
+
 
 .list-input {
     left: 0;
