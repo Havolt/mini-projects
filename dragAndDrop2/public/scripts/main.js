@@ -54,6 +54,8 @@ const listData = {
         listData.itemHeld = true;
         const siContainer = this.parentElement;
         listData.selectedElement = this;
+        listData.selectedElement.classList.add('dad-li-inner-grab');
+        this.style.zIndex = 100000;
         for(let i = 0; i < siContainer.children.length; i++){
             if(this == siContainer.children[i]){
                 listData.list.map((el) => {
@@ -71,6 +73,11 @@ const listData = {
     },
     letGoList: function() {
         if(listData.itemHeld) {
+            console.log('got here')
+            listData.selectedElement.style.zIndex = 'auto';
+            listData.dragLi(0, 0)
+            listData.selectedElement.classList.remove('dad-li-inner-grab');
+            listData.selectedElement.style.setProperty("transform", 'none');
             listData.itemHeld = false;
             listData.selectedItem.selected.bool = false;
             listData.selectedItem.selected.dragX = 0;
@@ -92,7 +99,6 @@ const listData = {
     },
     dragLi: function(x, y) {
         listData.selectedElement.style.transform=`translate(${x}px,${y}px)`;
-        console.log('got here')
     }
 };
 
