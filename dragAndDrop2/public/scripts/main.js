@@ -2,6 +2,7 @@
 const listData = {
     itemHeld: false,
     selectedItem: '',
+    selectedElement: '',
     initWords: ['Squall', 'Quistis', 'Seifer', 'Zell', 'Rinoa', 'Irvine'],
     list: [],
     //Puts elements in list
@@ -12,7 +13,7 @@ const listData = {
             newOb.pos = listData.list.length;
             newOb.moved = false;
             newOb.movedDir = 0;
-            newOb.selected = false;
+            newOb.selected = {bool: false, dragX : 0, dragY: 0, initX: 0, initY: 0};
             listData.list.push(newOb);
             
         })
@@ -49,14 +50,17 @@ const listData = {
             item.value = '';
         }
     },
-    grabList: function() {
+    grabList: function(e) {
         listData.itemHeld = true;
         const siContainer = this.parentElement;
+        listData.selectedElement = this;
         for(let i = 0; i < siContainer.children.length; i++){
             if(this == siContainer.children[i]){
                 listData.list.map((el) => {
                     if(el.pos == i) {
-                        el.selected = true;
+                        el.selected.bool = true;
+                        el.selected.initX = e.clientX;
+                        el.selected.initY = e.clientY;
                         listData.selectedItem = el;
                         console.log(listData.selectedItem);
                     }
@@ -66,15 +70,29 @@ const listData = {
         }   
     },
     letGoList: function() {
-        listData.itemHeld = false;
-        listData.selectedItem.selected = false;
-        console.log(listData.selectedItem);
-        listData.selectedItem = '';
+        if(listData.itemHeld) {
+            listData.itemHeld = false;
+            listData.selectedItem.selected.bool = false;
+            listData.selectedItem.selected.dragX = 0;
+            listData.selectedItem.selected.dragY = 0;
+            listData.selectedItem.selected.initX = 0;
+            listData.selectedItem.selected.initY = 0;
+            listData.selectedElement = '';
+            console.log(listData.selectedItem);
+            listData.selectedItem = '';
+        }
     },
-    moveLi: function() {
+    moveLi: function(e) {
         if(this.itemHeld) {
             //console.log(listData.selectedItem);
+            listData.selectedItem.selected.dragX = e.clientX - listData.selectedItem.selected.initX;
+            listData.selectedItem.selected.dragY = e.clientY - listData.selectedItem.selected.initY;
+            this.dragLi(listData.selectedItem.selected.dragX, listData.selectedItem.selected.dragY);
         }
+    },
+    dragLi: function(x, y) {
+        listData.selectedElement.style.transform=`translate(${x}px,${y}px)`;
+        console.log('got here')
     }
 };
 
