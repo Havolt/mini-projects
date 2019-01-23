@@ -1,6 +1,7 @@
 
 const listData = {
     itemHeld: false,
+    selectedItem: '',
     initWords: ['Squall', 'Quistis', 'Seifer', 'Zell', 'Rinoa', 'Irvine'],
     list: [],
     //Puts elements in list
@@ -11,6 +12,7 @@ const listData = {
             newOb.pos = listData.list.length;
             newOb.moved = false;
             newOb.movedDir = 0;
+            newOb.selected = false;
             listData.list.push(newOb);
             
         })
@@ -49,13 +51,29 @@ const listData = {
     },
     grabList: function() {
         listData.itemHeld = true;
+        const siContainer = this.parentElement;
+        for(let i = 0; i < siContainer.children.length; i++){
+            if(this == siContainer.children[i]){
+                listData.list.map((el) => {
+                    if(el.pos == i) {
+                        el.selected = true;
+                        listData.selectedItem = el;
+                        console.log(listData.selectedItem);
+                    }
+                })
+                break;
+            }
+        }   
     },
     letGoList: function() {
         listData.itemHeld = false;
+        listData.selectedItem.selected = false;
+        console.log(listData.selectedItem);
+        listData.selectedItem = '';
     },
     moveLi: function() {
         if(this.itemHeld) {
-            console.log('holding');
+            //console.log(listData.selectedItem);
         }
     }
 };
