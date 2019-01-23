@@ -88,6 +88,9 @@ const listData = {
             listData.selectedElement = '';
             console.log(listData.selectedItem);
             listData.selectedItem = '';
+            listData.list.map((el) => {
+                el.movedDir = 0;
+            })
         }
     },
     moveLi: function(e) {
@@ -103,10 +106,10 @@ const listData = {
         listData.selectedElement.style.transform=`translate(${x}px,${y}px)`;
     },
     checkPositions: function(x, y) {
-        if(y > 70) {
+        if(y > 10) {
             listData.list.map((el) => {
                 if(el.pos > (listData.selectedItem.pos)) {
-                    if(el.pos < listData.selectedItem.pos + (y / 70)) {
+                    if(el.pos < listData.selectedItem.pos + (y / 60)) {
                         console.log(el)
                         el.movedDir = -1;
                     } else {
@@ -117,10 +120,10 @@ const listData = {
                 }
             })
         }
-        else if(y < -70) {
+        else if(y < -10) {
             listData.list.map((el) => {
                 if(el.pos < (listData.selectedItem.pos)) {
-                    if(el.pos > listData.selectedItem.pos + (-y / -70)) {
+                    if(el.pos > listData.selectedItem.pos + (-y / -60)) {
                       
                         el.movedDir = 1;
                     } else {
@@ -136,8 +139,16 @@ const listData = {
     moveOtherListItems: function(arr) {
         arr.map((el, ind)=> {
             console.log(el.movedDir);
-            if(el.movedDir == 0) {
-                console.log(ind)
+            if(el.movedDir == 0 && !el.selected.bool) {
+                document.querySelectorAll('.dad-li')[el.pos].style.setProperty('transform', 'none');
+            }
+            else if(el.movedDir == -1) {
+                console.log('ummm')
+                document.querySelectorAll('.dad-li')[el.pos].style.transform = `translateY(-60px)`;
+            }
+            else if(el.movedDir == 1) {
+                console.log('plzzz')
+                document.querySelectorAll('.dad-li')[el.pos].style.transform = `translateY(60px)`;
             }
         })
     }
