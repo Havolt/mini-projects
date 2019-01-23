@@ -103,9 +103,43 @@ const listData = {
         listData.selectedElement.style.transform=`translate(${x}px,${y}px)`;
     },
     checkPositions: function(x, y) {
-        if(y > 60) {
-            console.log(listData.containDivData);
+        if(y > 70) {
+            listData.list.map((el) => {
+                if(el.pos > (listData.selectedItem.pos)) {
+                    if(el.pos < listData.selectedItem.pos + (y / 70)) {
+                        console.log(el)
+                        el.movedDir = -1;
+                    } else {
+                        el.movedDir = 0;
+                    }
+                } else {
+                    el.movedDir = 0;
+                }
+            })
         }
+        else if(y < -70) {
+            listData.list.map((el) => {
+                if(el.pos < (listData.selectedItem.pos)) {
+                    if(el.pos > listData.selectedItem.pos + (-y / -70)) {
+                      
+                        el.movedDir = 1;
+                    } else {
+                        el.movedDir = 0;
+                    }
+                } else {
+                    el.movedDir = 0;
+                }
+            })
+        }
+        this.moveOtherListItems(listData.list);
+    },
+    moveOtherListItems: function(arr) {
+        arr.map((el, ind)=> {
+            console.log(el.movedDir);
+            if(el.movedDir == 0) {
+                console.log(ind)
+            }
+        })
     }
 };
 
