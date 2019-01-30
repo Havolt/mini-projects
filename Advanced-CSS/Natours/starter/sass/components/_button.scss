@@ -39,6 +39,15 @@
         }
     }
 
+    &--green {
+        background: $color-primary;
+        color: $color-white;
+
+        &::after {
+            background: $color-primary;
+        }
+    }
+
     &--animated {
         animation: moveInUp ease-in .75s;
     }
