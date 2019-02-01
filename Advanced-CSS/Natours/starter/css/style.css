@@ -1,3 +1,16 @@
+/*
+
+0px - 600px: Phone
+600px - 900px: Tablet portrait
+900px - 1200px: Tablet Landscape
+1200px - 1800px: Original Styles Apply ***
+1800px - *px: Big desktop
+
+- phone
+- tab-port
+- tab-land
+- big-desktop
+*/
 @keyframes moveInLeft {
   0% {
     opacity: 0;
@@ -36,6 +49,15 @@
 
 html {
   font-size: 62.5%; }
+  @media (max-width: 75em) {
+    html {
+      font-size: 56.25%; } }
+  @media (max-width: 56.25em) {
+    html {
+      font-size: 50%; } }
+  @media (min-width: 112.5em) {
+    html {
+      font-size: 75%; } }
 
 body {
   box-sizing: border-box; }
