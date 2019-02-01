@@ -1,0 +1,55 @@
+.popup {
+    height: 100vh;
+    width: 100%;
+    background: rgba($color-black, .8);
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 10000;
+
+    &__content {
+        @include absCenter;
+        width: 75%;
+        background: $color-white;
+        border-radius: 3px;
+        box-shadow: 0 1rem 5rem rgba($color-black, .4);
+        display: table;
+        overflow: hidden;
+    }
+
+    &__left {
+        width: 33.3333334%;
+        display: table-cell
+    }
+
+    &__right {
+        width: 66.66666666%;
+        display: table-cell;
+        vertical-align: middle;
+        padding: 3rem 5rem;
+    }
+
+    &__img {
+        display: block;
+        width: 100%;
+        height: auto;
+    }
+
+    &__text {
+        font-size: 1.4rem;
+        margin-bottom: 4rem;
+
+        -moz-column-count: 2;
+        -moz-column-gap: 1.8em;
+        -moz-column-rule: 1px solid $color-grey-light-2;
+
+        column-count: 2;
+        column-gap: 1.8em;
+        column-rule: 1px solid $color-grey-light-2;
+
+        -moz-hyphens: auto;
+        -ms-hyphens: auto;
+        -webkit-hyphens: auto;
+        hyphens: auto;
+    }
+}
