@@ -9,6 +9,12 @@
     transition: all .3s;
     
 
+    @supports(-webkit-backdrop-filter: blur(10px)) or (backdrop-filter: blur(10px)) {
+        -webkit-backdrop-filter: blur(10px);
+        backdrop-filter: blur(10px);
+        background: rgba($color-black, .4);
+    }
+
     opacity: 0;
     visibility: hidden;
 
