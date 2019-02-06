@@ -6,9 +6,14 @@
 }
 
 .header {
+    font-size: 1.4rem;
     height: 7rem;
     background: var(--color-white-1);
     border-bottom: var(--color-grey-light-2);
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .content {
