@@ -6,6 +6,9 @@
 
 .heading-1 {
     @extend %heading;
+    font-size: 4rem;
+    color: $color-grey-light-1;
+    line-height: 1;
 }
 
 .heading-2 {
