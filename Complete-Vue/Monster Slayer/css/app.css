@@ -10,14 +10,25 @@
 .healthbar {
     width: 80%;
     height: 40px;
-    background-color: #eee;
+    background-color: rgb(167, 167, 167);
     margin: auto;
     transition: width 500ms;
-    
+    position: relative;
 }
 
 .healthbar-inner {
     height: 100%;
+}
+
+.health-num {
+    font-family: Arial, Helvetica, sans-serif;
+    position: absolute;
+    display: inline-block;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    color: white;
+    font-size: 1.8rem;
 }
 
 .controls, .log {
