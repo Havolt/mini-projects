@@ -11,16 +11,16 @@
     <section class="row">
         <div class="small-6 columns">
             <h1 class="text-center">YOU</h1>
-            <div class="healthbar">
-                <div class="healthbar text-center" style="background-color: green; margin: 0; color: white;">
+            <div class="healthbar healthbar-border">
+                <div :style="{width: playerHealth}" class="healthbar text-center healthbar-inner" style="background-color: green; margin: 0; color: white;">
 
                 </div>
             </div>
         </div>
         <div class="small-6 columns">
             <h1 class="text-center">MONSTER</h1>
-            <div class="healthbar">
-                <div class="healthbar text-center" style="background-color: green; margin: 0; color: white;">
+            <div class="healthbar healthbar-border">
+                <div :style="{width: monsterHealth}" class="healthbar text-center healthbar-inner" style="background-color: green; margin: 0; color: white;">
 
                 </div>
             </div>
@@ -28,14 +28,14 @@
     </section>
     <section class="row controls">
         <div class="small-12 columns">
-            <button id="start-game">START NEW GAME</button>
+            <button @click="startGame" id="start-game">START NEW GAME</button>
         </div>
     </section>
-    <section class="row controls">
+    <section v-if="gameState" class="row controls">
         <div class="small-12 columns">
             <button @click="attack(0)" id="attack">ATTACK</button>
             <button @click="spAttack(0)" id="special-attack">SPECIAL ATTACK</button>
-            <button @click="heal" id="heal">HEAL</button>
+            <button @click="heal()" id="heal">HEAL</button>
             <button @click="endGame" id="give-up">GIVE UP</button>
         </div>
     </section>
