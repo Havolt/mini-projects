@@ -49,10 +49,10 @@ const vm = new Vue({
             if(this.monster.health > 1) {
                 this.attack(1)
                 if(this.player.health < 1) {
-                    alert('Player Loses!')
+                    this.endGame('Player Loses!')
                 }
             } else {
-                alert('Player Wins!');
+                this.endGame('Player Wins!')
             }
             
         },
@@ -78,10 +78,13 @@ const vm = new Vue({
             console.log('starting game')
             this.player.health = 100;
             this.monster.health = 100;
+            this.moveList = [];
             this.gameState = true;
         },
-        endGame() {
+        endGame(msg) {
+            console.log(typeof(msg));
             this.gameState = false;
+            if(typeof(msg) == 'string') { alert(msg)}
         }
     },
     computed: {
