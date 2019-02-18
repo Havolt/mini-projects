@@ -41,9 +41,9 @@
     </section>
     <section class="row log">
         <div class="small-12 columns">
-            <ul >
-                <li>
-
+            <ul v-for="move in moveList">
+                <li :class="move.class">
+                    {{move.move}}
                 </li>
             </ul>
         </div>
