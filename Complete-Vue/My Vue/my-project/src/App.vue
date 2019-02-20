@@ -1,12 +1,14 @@
 <template>
   <div id="app">
       <my-header></my-header>
+      <my-main></my-main>
   </div>
 </template>
 
 <script>
 
 import MyHeader from './components/MyHeader.vue'
+import Main from './components/main/Main.vue'
 
 export default {
   name: 'app',
@@ -16,7 +18,8 @@ export default {
     }
   },
   components: {
-    myHeader: MyHeader
+    myHeader: MyHeader,
+    myMain: Main
   }
 }
 </script>
