@@ -3,7 +3,9 @@
 
     <main-header></main-header>
 
-    <router-view />
+    <div class="main-cont">
+      <router-view />
+    </div>
 
     <main-footer></main-footer>
 
@@ -35,11 +37,13 @@ export default {
   margin: 0;
   padding: 0;
   border: 0;
+  box-sizing: border-box;
 }
 
 html {
   font-size: 62.5%;
 }
+
 
 #app {
   font-family: "Avenir", Helvetica, Arial, sans-serif;
@@ -47,6 +51,10 @@ html {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+}
+
+.main-cont {
+  min-height: calc(100vh - 10em);
 }
 
 </style>
