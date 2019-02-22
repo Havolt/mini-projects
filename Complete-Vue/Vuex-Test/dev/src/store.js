@@ -8,6 +8,18 @@ export default new Vuex.Store({
     msg: "Here we go!",
     myNum: 532
   },
-  mutations: {},
-  actions: {}
+  mutations: {
+    CHANGE_MYNUM(state, data) {
+      state.myNum += data;
+    }
+  },
+  actions: {
+    changeNumDouble(context, data) {
+      return new Promise((resolve, reject) => {
+        setTimeout(() => {
+          context.commit('CHANGE_MYNUM', data);
+        }, 800);
+      });
+    }
+  }
 });
