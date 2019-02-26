@@ -66,5 +66,44 @@ const mainGL =  () => {
         console.error('Error linking program!', gl.getProgramInfoLog(program));
         return;
     }
+    gl.validateProgram(program);
+    if(!gl.getProgramParameter(program, gl.VALIDATE_STATUS)) {
+        console.error('ERROR validating program!', gl.getProgramInfoLog(program));
+        return;
+    }
+
+
+    //
+    //create buffer
+    //
+    const triangleVertices = 
+    [ // X, Y
+        0.0, 0.5,
+        -0.5, -0.5,
+        0.5, 0.5
+    ]
+
+    const triangleVertexBufferObj = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, triangleVertexBufferObj);
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(triangleVertices), gl.STATIC_DRAW);
+
+    const positionAttribLocation = gl.getAttribLocation(program, 'vertPosition');
+    gl.vertexAttribPointer(
+        positionAttribLocation, //Attribute Location
+        2, //Number of Elements per attribute
+        gl.FLOAT, //TYPE of elements
+        gl.FALSE,
+        1 * Float32Array.BYTES_PER_ELEMENT, //Size of individual vertex
+        0 //offset from the beginning of a single vertex to this attribute
+        );
+    
+    gl.enableVertexAttribArray(positionAttribLocation);
+
+    //
+    //Main Render Loop
+    //
+    gl.useProgram(program);
+    gl.drawArrays(gl.TRIANGLES, 0, 3);
+
 };
 
