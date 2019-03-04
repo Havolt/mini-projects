@@ -6,14 +6,16 @@ html {
     border: 0;
     padding: 0;
     margin: 0;
+    box-sizing: border-box;
 }
 
 body {
     font-size: 62.5%;
+    
 }
 
 .main__head {
-    min-height: 50px;
+    height: 50px;
     font-size: 2em;
     border-bottom: 1px solid grey;
     display: flex;
@@ -29,13 +31,18 @@ body {
     position: relative;
 }
 
-.main__head > ul > li {
+.main__head > ul > a {
+    color: white;
+    text-decoration: none;
+}
+
+.main__head > ul > a > li {
     margin-right: 1em;
     cursor: pointer;
     position: relative;
 }
 
-.main__head > ul > li:hover::after, .main__head > ul > li:hover::before { 
+.main__head > ul > a > li:hover::after, .main__head > ul > a > li:hover::before { 
     content: attr(title);
     position: absolute;
     z-index: 2;
@@ -44,11 +51,11 @@ body {
     opacity: 0;
 }
 
-.main__head > ul > li:hover::after {
+.main__head > ul > a > li:hover::after {
     animation: .3s rollDown;
 }
 
-.main__head > ul > li:hover::before {
+.main__head > ul > a > li:hover::before {
     animation: .3s rollUp;
 }
 
@@ -78,4 +85,21 @@ body {
     100% {
         opacity: 0;
     }
+}
+
+.main__footer {
+    border-top: 1px solid grey;
+    height: 40px;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    background: rgb(218, 218, 218);
+}
+
+.main__body {
+    min-height: calc(100vh - 90px);
+}
+
+.main__footer > div {
+    align-self: center;
 }

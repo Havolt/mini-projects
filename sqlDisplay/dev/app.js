@@ -15,3 +15,11 @@ app.get('/', (req, res) => {
     res.sendFile(`${__dirname}/views/index.html`);
 })
 
+app.get('/sign-up', (req, res) => {
+    res.sendFile(`${__dirname}/views/sign-up.html`);
+})
+
+app.get('/log-in', (req, res) => {
+    res.sendFile(`${__dirname}/views/log-in.html`);
+})
+
