@@ -1,0 +1,11 @@
+body {
+    font-size: 62.5%;
+}
+
+.main__head {
+    font-size: 2em;
+}
+
+.main__head > ul  {
+    list-style: none;
+}
