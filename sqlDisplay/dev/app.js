@@ -1,3 +1,5 @@
+const nodeMySql = require(__dirname + '/public/scripts/serverScripts/nodeMySql.js');
+
 const express = require('express');
 
 const port = 3000;
@@ -12,3 +14,5 @@ app.listen(port, () => {
 app.get('/', (req, res) => {
     res.sendFile(`${__dirname}/views/index.html`);
 })
+
+nodeMySql.logger();
