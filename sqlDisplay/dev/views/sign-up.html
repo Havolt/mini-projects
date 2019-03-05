@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Sign Up</title>
     <link rel="stylesheet" href="styles/mainSty.css">
+    <link rel="stylesheet" href="styles/signInSty.css">
 </head>
 <body>
 
@@ -18,15 +19,36 @@
                     <a href="/log-in"><li title="Sign In">Sign In</li></a> 
                 </ul>
             </header>
-            <section class="main__body"></section>
+
+            <section class="main__body">
+                <div>
+                    <form class="cre-user">
+                        <div class="cre-user__collection-1">
+                            <label for="cre-user__username">Username:</label>
+                            <input class="cre-user__inp-text" id="cre-user__username" name="username" type="text">
+                        </div>
+                        <div class="cre-user__collection-1">
+                            <label for="cre-user__email">E-mail:</label>
+                            <input class="cre-user__inp-text" id="cre-user__email" name="username" type="email">
+                        </div>
+                        <div class="cre-user__collection-1">
+                            <label for="cre-user__email-2">Confirm E-mail</label>
+                            <input class="cre-user__inp-text" id="cre-user__email-2" name="username" type="email">
+                        </div>
+                        <input type="submit">
+                    </form>
+                </div>
+            </section>
+
             <footer class="main__footer">
-                
+                <div>Copyright Mark Anthony &copy;2019</div>
             </footer>
         </div>
         
     </div>
 
     <script src="scripts/mainScr.js"></script>
+    <script src="scripts/signInScr.js"></script>
     
 </body>
 </html>

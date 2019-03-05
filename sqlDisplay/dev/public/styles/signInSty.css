@@ -1,0 +1,20 @@
+.cre-user {
+    width: 80%;   
+    margin: 2em auto; 
+    font-size: 1.6em;
+    border: 2px solid #49997A;
+    border-radius: 2px;
+    padding: 2em .5em;
+
+}
+
+.cre-user__collection-1 {
+    display: block;
+    margin-bottom: 1em;
+}
+
+.cre-user__inp-text {
+    font-size: 1em;
+    border: 1px solid rgb(107, 106, 106);
+    text-indent: .2em;
+}
