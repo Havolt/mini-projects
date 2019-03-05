@@ -1,7 +1,7 @@
 .cre-user {
     width: 60%;   
     margin: 2em auto; 
-    font-size: 1.6em;
+    font-size: 1.8em;
     border: 2px solid rgb(156, 192, 178);
     border-radius: 2px;
     padding: 1em .5em;
@@ -26,7 +26,7 @@
 }
 
 .cre-user__inp-text {
-    font-size: 1.1em;
+    font-size: 1.2em;
     border: 1px solid rgb(163, 163, 163);
     text-indent: .2em;
 }
