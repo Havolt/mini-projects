@@ -15,6 +15,7 @@ body {
 }
 
 .main__head {
+    
     height: 50px;
     font-size: 2em;
     border-bottom: 1px solid grey;
@@ -88,6 +89,7 @@ body {
 }
 
 .main__body {
+    padding-top: 2em;
     min-height: calc(100vh - 90px);
 }
 
