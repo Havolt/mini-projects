@@ -8,10 +8,10 @@ const app = express();
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-
-
-
 app.use(express.static(`${__dirname}/public`));
+
+
+/////////////////// GET SECTION
 
 app.listen(port, () => {
     console.log(`Listening on port ${port}`);
@@ -29,6 +29,9 @@ app.get('/log-in', (req, res) => {
     res.sendFile(`${__dirname}/views/log-in.html`);
 })
 
+
+//////////////////// POST SECTION
+
 app.post('/create-profile', (req, res) => {
-    console.log(req.body)
+    nodeMySql.searchUser(req.body);
 })
