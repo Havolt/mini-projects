@@ -12,6 +12,7 @@ function checkUserInput() {
     
     if(userData.email === userData.email2) {
         emailSame = true;
+        
     }
     if(userData.password === userData.password2) {
         passSame = true;
@@ -20,34 +21,38 @@ function checkUserInput() {
     if(passSame && emailSame) {
         sendUserInput(userData);
     }else {
-        if(passSame) {
+        if(!passSame && !emailSame) {
             valuesDifferent({
-                el: document.querySelector('#cre-user__password'), 
-                warn: 'Passwords do not match!'
-            });
-        }
-        else if(emailSame) {
-            valuesDifferent({
-                el: document.querySelector('#cre-user__email'),
-                warn: 'Emails do not match!'
-            });
-        }
-        else {
-            valuesDifferent({
-                el: document.querySelector('#cre-user__password'), 
-                warn: 'Passwords do not match!'
+                el: document.querySelector('.cre-user__collection-1-pass'), 
+                warnClass: 'cre-user__password-not-same'
             },
             {
-                el: document.querySelector('#cre-user__email'),
-                warn: 'Emails do not match!'
+                el: document.querySelector('.cre-user__collection-1-email'),
+                warnClass: 'cre-user__email-not-same'
             });
         }
+        else if(!passSame) {
+            valuesDifferent({
+                el: document.querySelector('.cre-user__collection-1-pass'), 
+                warnClass: 'cre-user__password-not-same'
+            });
+        }
+        else if(!emailSame) {
+            valuesDifferent({
+                el: document.querySelector('.cre-user__collection-1-email'),
+                warnClass: 'cre-user__email-not-same'
+            });
+        }
+        
     }
     
 }
 
 function valuesDifferent(ob1, ob2) {
-    console.log(arguments);
+    for(let i = 0; i < arguments.length; i++) {
+        arguments[i].el.classList.add('cre-user__not-same');
+        arguments[i].el.classList.add(arguments[i].warnClass);
+    }
 }
 
 
@@ -55,10 +60,20 @@ function sendUserInput(data) {
     console.log(data)
 }
 
+
+
 function evtListners() {
     document.querySelector('.cre-user__submit').addEventListener('click', (e) => {
         e.preventDefault();
         checkUserInput();
+    })
+    document.querySelector('#cre-user__password').addEventListener('input', (e) => {
+        e.srcElement.parentElement.classList.remove('cre-user__not-same');
+        e.srcElement.parentElement.classList.remove('cre-user__password-not-same');
+    })
+    document.querySelector('#cre-user__email').addEventListener('input', (e) => {
+        e.srcElement.parentElement.classList.remove('cre-user__not-same');
+        e.srcElement.parentElement.classList.remove('cre-user__email-not-same');
     })
 }
 
