@@ -58,6 +58,16 @@ function valuesDifferent(ob1, ob2) {
 
 function sendUserInput(data) {
     console.log(data)
+    fetch('/create-profile', {
+        method: 'POST',
+        body: JSON.stringify(data),
+        headers:{
+            'Content-Type': 'application/json'
+        }
+    })
+    .then(res => res.json())
+    .then(res => console.log('success'))
+    .catch(err => console.log(err));
 }
 
 
