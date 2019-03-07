@@ -88,7 +88,7 @@ function alertUserTaken(warn) {
 function accountSuccess() {
     document.body.innerHTML = 'Account Successfully Created! Redirecting...';
     setTimeout(()=>{
-        window.open('/', __self);
+        window.open('/', '_self');
     },600)
 }
 

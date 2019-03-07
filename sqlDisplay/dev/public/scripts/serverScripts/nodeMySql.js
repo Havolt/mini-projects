@@ -20,14 +20,20 @@ module.exports.searchUser = (data, callback) => {
     con.query(`SELECT * FROM user_data WHERE username ='${data.username}'`, function (err, result, fields) {
         if (err) throw err;
         // console.log(result);
-        callback('name');
+        console.log(result[0])
+        if(result[0]) { callback('name') }
+        else {
+            con.query(`SELECT * FROM user_data WHERE email ='${data.email}'`, function (err, result, fields) {
+                if (err) throw err;
+                // console.log(result);
+                if(result[0]) { callback('email') }
+                else callback('success');
+            });
+        }
     });
 
     
 
-    con.query(`SELECT * FROM user_data WHERE email ='${data.email}'`, function (err, result, fields) {
-        if (err) throw err;
-        // console.log(result);
-    });
+    
 
 };
