@@ -51,11 +51,12 @@ app.post('/create-profile', (req, res) => {
 
     function myCall(data) {
         console.log(data);
+        res.send(JSON.stringify(data));
     }
 
-    const rep = nodeMySql.searchUser(req.body, myCall);
+    nodeMySql.searchUser(req.body, myCall);
 
-    setTimeout(() => console.log(rep, ' -- this rep'), 500);
+
 
 
     

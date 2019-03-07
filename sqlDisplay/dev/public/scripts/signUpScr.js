@@ -56,6 +56,8 @@ function valuesDifferent(ob1, ob2) {
 }
 
 
+
+
 function sendUserInput(data) {
     console.log(data)
     fetch('/create-profile', {
@@ -66,8 +68,28 @@ function sendUserInput(data) {
         }
     })
     .then(res => res.json())
-    .then(res => console.log('success'))
+    .then((res) => {
+        //If response is name tell user name taken
+        if(res == 'name') {
+            alertUserTaken('That username is taken');
+        } else if(res == 'email') {
+            alertUserTaken('Email already in use');
+        } else {
+            accountSuccess()
+        }
+    })
     .catch(err => console.log(err));
+}
+
+function alertUserTaken(warn) {
+    alert(warn);
+}
+
+function accountSuccess() {
+    document.body.innerHTML = 'Account Successfully Created! Redirecting...';
+    setTimeout(()=>{
+        window.open('/', __self);
+    },600)
 }
 
 
