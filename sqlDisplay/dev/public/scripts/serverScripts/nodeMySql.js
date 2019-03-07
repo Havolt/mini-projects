@@ -14,12 +14,20 @@ const con = mysql.createConnection({
   //con.end();
 
 
-module.exports.searchUser = (data) => {
-    console.log(data.username);
+module.exports.searchUser = (data, callback) => {
+
 
     con.query(`SELECT * FROM user_data WHERE username ='${data.username}'`, function (err, result, fields) {
         if (err) throw err;
-        console.log(result);
+        // console.log(result);
+        callback('name');
+    });
+
+    
+
+    con.query(`SELECT * FROM user_data WHERE email ='${data.email}'`, function (err, result, fields) {
+        if (err) throw err;
+        // console.log(result);
     });
 
 };

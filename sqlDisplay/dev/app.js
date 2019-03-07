@@ -33,5 +33,31 @@ app.get('/log-in', (req, res) => {
 //////////////////// POST SECTION
 
 app.post('/create-profile', (req, res) => {
-    nodeMySql.searchUser(req.body);
+
+    // let prom1 = new Promise((resolve, reject) => {
+    //     const sqlReply = nodeMySql.searchUser(req.body);
+    //     console.log(sqlReply);
+    //     if(sqlReply) {
+    //         resolve();
+    //     }
+    //     else {
+    //         reject(console.log('didnt work'));
+    //     }
+    // })
+
+    // prom1.then(()=> {
+    //     console.log('nothing ever works')
+    // })
+
+    function myCall(data) {
+        console.log(data);
+    }
+
+    const rep = nodeMySql.searchUser(req.body, myCall);
+
+    setTimeout(() => console.log(rep, ' -- this rep'), 500);
+
+
+    
+    
 })
