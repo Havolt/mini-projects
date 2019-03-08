@@ -3,10 +3,33 @@
     display: flex;
     height: calc(100vh - 100px);
     padding-top: 0;
+    background: #fdfdfd;
+}
+
+.main__body__login-form > h2 {
+    font-size: 3.5em;
+    text-align: center;
+    color: rgb(0, 0, 0);
+    grid-row-start: 2;
+    grid-row-end: 3;
+    grid-column-start: 1;
+    grid-column-end: 3;
+    
 }
 
 .main__body__login-form {
     flex: 0 0 50%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: .5fr repeat(5, 1fr);
+}
+
+.main__body__login-form__fill {
+    grid-row-start: 1;
+    grid-row-end: 2;
+    grid-column-start: 1;
+    grid-column-end: 3;
+
 }
 
 .main__body__login-img {
@@ -14,4 +37,40 @@
    flex: 0 0 50%;
    height: 100%;
    background-size: cover;
+}
+
+.main__body__login-form__label {
+    font-size: 2.4em;
+    font-weight: bold;
+    grid-column-start: 1;
+    grid-column-end: 2;
+    text-align: right;
+    transform: translateX(-20%);
+}
+
+.main__body__login-form__inp-con {
+    grid-column-start: 2;
+    grid-column-end: 3;
+}
+
+.main__body__login-form__txt-inp {
+   border: 1px rgb(126, 125, 125) solid;
+   text-indent: 4px;
+   font-size: 2.4em;
+}
+
+.main__body__login-form__submit {
+    grid-area: submit;
+    grid-column-start: 1;
+    grid-column-end: 3;
+    grid-row-start: 5;
+    grid-row-end: 6;
+    font-size: 4.2em;
+    cursor: pointer;
+    background: rgb(24, 147, 196);
+    color: white;
+}
+
+.main__body__login-form__submit:hover { 
+    background: rgb(17, 96, 128);
 }
