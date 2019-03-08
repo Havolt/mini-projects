@@ -27,7 +27,15 @@ module.exports.searchUser = (data, callback) => {
                 if (err) throw err;
                 // console.log(result);
                 if(result[0]) { callback('email') }
-                else callback('success');
+                else {
+                    con.query(`INSERT INTO user_data (username, email, password) Values ('${data.username}','${data.email}','${data.password}')`, (err, result) => {
+                        if(err) throw err;
+                        else {
+                            console.log('yippee');
+                        }
+                    });
+                    callback('success');
+                }
             });
         }
     });
