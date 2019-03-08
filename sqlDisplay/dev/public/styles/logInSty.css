@@ -1,0 +1,17 @@
+
+.main__body {
+    display: flex;
+    height: calc(100vh - 100px);
+    padding-top: 0;
+}
+
+.main__body__login-form {
+    flex: 0 0 50%;
+}
+
+.main__body__login-img {
+   background-image: url('../imgs/login1.jpg');
+   flex: 0 0 50%;
+   height: 100%;
+   background-size: cover;
+}

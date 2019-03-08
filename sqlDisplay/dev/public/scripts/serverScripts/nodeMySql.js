@@ -31,7 +31,7 @@ module.exports.searchUser = (data, callback) => {
                     con.query(`INSERT INTO user_data (username, email, password) Values ('${data.username}','${data.email}','${data.password}')`, (err, result) => {
                         if(err) throw err;
                         else {
-                            console.log('yippee');
+                            console.log('account created');
                         }
                     });
                     callback('success');
