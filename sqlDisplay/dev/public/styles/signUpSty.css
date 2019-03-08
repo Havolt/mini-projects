@@ -1,6 +1,13 @@
 
+.main__body {
+    background-image: url('../imgs/signup1.jpg');
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+
 .cre-user {
-    background: rgb(248, 248, 248);
+    background: rgb(252, 252, 252);
     width: 60%;   
     margin: 0em auto; 
     font-size: 1.8em;
@@ -8,9 +15,11 @@
     border-radius: 2px;
     padding: 2.4em 1em;
     box-sizing: content-box;
-    box-shadow: 0px 4px 2px rgb(228, 228, 228);
     max-width: 600px;
-    position: relative;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -54%);
 }
 
 .cre-user > h2 {
