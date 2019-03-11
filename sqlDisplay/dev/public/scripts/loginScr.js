@@ -43,7 +43,12 @@ function checkUserTrue(nameOrEmail, password) {
 
 //Send user check to server
 function sendUserCheck(name, password, isEmail) {
-
+    fetch('/user-log-in')
+    .then(res => res.json())
+    .then(data => {
+        console.log(data);
+    })
+    .catch(err => console.log(err))
 }
 
 //initializing page

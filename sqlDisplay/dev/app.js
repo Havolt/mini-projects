@@ -29,6 +29,10 @@ app.get('/log-in', (req, res) => {
     res.sendFile(`${__dirname}/views/log-in.html`);
 })
 
+app.get('/user-log-in', (req, res) => {
+    res.send(JSON.stringify('this is backend data'));
+})
+
 
 //////////////////// POST SECTION
 
