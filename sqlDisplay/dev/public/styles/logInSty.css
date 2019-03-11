@@ -29,7 +29,6 @@
     grid-row-end: 2;
     grid-column-start: 1;
     grid-column-end: 3;
-
 }
 
 .main__body__login-img {
@@ -89,3 +88,10 @@
 .main__body__login-form__submit:hover { 
     background: rgb(17, 96, 128);
 }
+
+.main__body__login-form__error {
+    border: 1px solid red;
+    position: relative;
+}
+
+.main__body__login-form__error::before { }
