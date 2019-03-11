@@ -1,4 +1,4 @@
-
+//add event listeners on load of page
 function initEventListeners() {
     document.querySelector('.main__body__login-form').addEventListener('submit', (e) => {
         e.preventDefault();
@@ -7,14 +7,20 @@ function initEventListeners() {
             document.querySelector('#main__body__login-form__password').value
         );
     })
+    document.querySelectorAll('.main__body__login-form__txt-inp').forEach(el => {
+        el.addEventListener('input', (e) => {
+            el.parentElement.classList.remove('main__body__login-form__error');
+        })
+    });
 }
 
+//Display classes that warn user of shot inputs
 function addLoginErrorEntryWrong(el, phrase) {
-    console.log(el);
     el.classList.add('main__body__login-form__error');
     el.classList.add(`main__body__login-form__error-${phrase}`)
 }
 
+//Check if email/username and password are long enough
 function checkUserTrue(nameOrEmail, password) {
     console.log(nameOrEmail, password);
     if(nameOrEmail.length < 3) {
@@ -30,10 +36,17 @@ function checkUserTrue(nameOrEmail, password) {
         );
     }
     else {
-
+        const isEmail = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(nameOrEmail);
+        sendUserCheck(nameOrEmail, password, isEmail);
     }
 }
 
+//Send user check to server
+function sendUserCheck(name, password, isEmail) {
+
+}
+
+//initializing page
 (function initSignIn(){
     initEventListeners();
 })()

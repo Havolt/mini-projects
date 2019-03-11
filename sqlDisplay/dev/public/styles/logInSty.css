@@ -102,7 +102,7 @@
     cursor: pointer;
     background: rgb(24, 147, 196);
     color: white;
-    width: 80%;
+    width: 75%;
     justify-self: center;
     height: 70%;
     min-height: fit-content;
@@ -121,10 +121,12 @@
 
 .main__body__login-form__error-password::after {
     content: 'Password too short';
+    display: none;
 }
 
 .main__body__login-form__error-username::after {
     content: 'Username/Email too short';
+    display: none;
 }
 
 
