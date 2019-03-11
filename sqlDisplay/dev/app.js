@@ -29,29 +29,21 @@ app.get('/log-in', (req, res) => {
     res.sendFile(`${__dirname}/views/log-in.html`);
 })
 
-app.get('/user-log-in', (req, res) => {
+//User Get logged in
+app.post('/user-log-in', (req, res) => {
+
+    nodeMySql.createLogin(req.body);
+
+    //console.log(req.body);
     res.send(JSON.stringify('this is backend data'));
+
+
 })
 
 
 //////////////////// POST SECTION
 
 app.post('/create-profile', (req, res) => {
-
-    // let prom1 = new Promise((resolve, reject) => {
-    //     const sqlReply = nodeMySql.searchUser(req.body);
-    //     console.log(sqlReply);
-    //     if(sqlReply) {
-    //         resolve();
-    //     }
-    //     else {
-    //         reject(console.log('didnt work'));
-    //     }
-    // })
-
-    // prom1.then(()=> {
-    //     console.log('nothing ever works')
-    // })
 
     function myCall(data) {
         console.log(data);
@@ -60,9 +52,4 @@ app.post('/create-profile', (req, res) => {
 
     nodeMySql.searchUser(req.body, myCall);
 
-
-
-
-    
-    
 })

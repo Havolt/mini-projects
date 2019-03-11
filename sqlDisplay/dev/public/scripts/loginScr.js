@@ -43,7 +43,16 @@ function checkUserTrue(nameOrEmail, password) {
 
 //Send user check to server
 function sendUserCheck(name, password, isEmail) {
-    fetch('/user-log-in')
+
+    fetch('/user-log-in',
+        {
+            method: 'POST',
+            body: JSON.stringify({name, password, isEmail}),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }
+    )
     .then(res => res.json())
     .then(data => {
         console.log(data);

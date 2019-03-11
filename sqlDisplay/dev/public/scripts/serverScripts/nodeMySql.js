@@ -16,7 +16,6 @@ const con = mysql.createConnection({
 
 module.exports.searchUser = (data, callback) => {
 
-
     con.query(`SELECT * FROM user_data WHERE username ='${data.username}'`, function (err, result, fields) {
         if (err) throw err;
         // console.log(result);
@@ -40,8 +39,9 @@ module.exports.searchUser = (data, callback) => {
         }
     });
 
-    
-
-    
-
 };
+
+module.exports.createLogin = (data) => {
+
+    console.log(data, 'got here into sql');
+}
