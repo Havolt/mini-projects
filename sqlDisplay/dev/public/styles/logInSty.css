@@ -56,18 +56,41 @@
     grid-column-end: 2;
     text-align: right;
     transform: translateX(-20%);
+    padding-top: .2em;
 }
 
 .main__body__login-form__inp-con {
     grid-column-start: 2;
     grid-column-end: 3;
+    position: relative;
 }
 
 .main__body__login-form__txt-inp {
-   border: 1px rgb(126, 125, 125) solid;
+   border: 1px rgb(161, 161, 161) solid;
    text-indent: 4px;
    font-size: 2.4em;
+   padding: .2em 0;
+   position: relative;
+   border-radius: 1px;
 }
+
+.main__body__login-form__txt-inp:focus {
+    outline: none;
+    animation: input-pulse 2s infinite;
+}
+
+@keyframes input-pulse {
+    0% {
+        box-shadow: 0 0 0 rgba(0, 173, 241, 0.6);
+    }
+    50% {
+        box-shadow: 0 0 8px rgba(0, 173, 241, 0.6);
+    }
+    100% {
+        box-shadow: 0 0 0 rgba(0, 173, 241, 0.6);
+    }
+}
+
 
 .main__body__login-form__submit {
     grid-area: submit;
@@ -89,9 +112,30 @@
     background: rgb(17, 96, 128);
 }
 
-.main__body__login-form__error {
-    border: 1px solid red;
+
+
+.main__body__login-form__error > input {
+    border: 1px solid rgb(185, 8, 8);
     position: relative;
 }
 
-.main__body__login-form__error::before { }
+.main__body__login-form__error-password::after {
+    content: 'Password too short';
+}
+
+.main__body__login-form__error-username::after {
+    content: 'Username/Email too short';
+}
+
+
+.main__body__login-form__error::after {
+    display: block;
+    position: absolute;
+    left: 0;
+    padding-left: .5em;
+    top: 3em;
+    font-size: 1.4em;
+    color: red;
+}
+
+

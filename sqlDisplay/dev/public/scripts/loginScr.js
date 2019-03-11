@@ -10,21 +10,23 @@ function initEventListeners() {
 }
 
 function addLoginErrorEntryWrong(el, phrase) {
+    console.log(el);
     el.classList.add('main__body__login-form__error');
+    el.classList.add(`main__body__login-form__error-${phrase}`)
 }
 
 function checkUserTrue(nameOrEmail, password) {
     console.log(nameOrEmail, password);
     if(nameOrEmail.length < 3) {
         addLoginErrorEntryWrong(
-            document.querySelector('#main__body__login-form__username'),
-            'Username or email'
+            document.querySelectorAll('.main__body__login-form__inp-con')[0],
+            'username'
         );
     }
     if(password.length < 3) {
         addLoginErrorEntryWrong(
-            document.querySelector('#main__body__login-form__email'),
-            'Password'
+            document.querySelectorAll('.main__body__login-form__inp-con')[1],
+            'password'
         );
     }
     else {
