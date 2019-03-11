@@ -37,6 +37,17 @@
    flex: 0 0 50%;
    height: 100%;
    background-size: cover;
+   position: relative;
+}
+
+.main__body__login-img::after {
+    content: '';
+    width: inherit;
+    height: inherit;
+    position: absolute;
+    left: 0;
+    right: 0;
+    background: rgba(252, 233, 181, 0.3);
 }
 
 .main__body__login-form__label {
@@ -69,6 +80,10 @@
     cursor: pointer;
     background: rgb(24, 147, 196);
     color: white;
+    width: 80%;
+    justify-self: center;
+    height: 70%;
+    min-height: fit-content;
 }
 
 .main__body__login-form__submit:hover { 

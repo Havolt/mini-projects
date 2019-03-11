@@ -35,6 +35,7 @@ body {
 .main__head > ul > a {
     color: white;
     text-decoration: none;
+    user-select: none;
 }
 
 .main__head > ul > a > li {
