@@ -41,7 +41,7 @@ module.exports.searchUser = (data, callback) => {
 
 };
 
-module.exports.createLogin = (data) => {
+module.exports.createLogin = (data, callback) => {
 
     console.log(data, 'got here into sql');
 
@@ -70,18 +70,21 @@ module.exports.createLogin = (data) => {
         if (err) throw err;
         if(result[0]) { 
             console.log(result[0], 'boss');
-            con.query(`UPDATE user_data SET sessionId = '${newSessionId}' WHERE email = '${data.name}' OR username = '${data.name}' AND password = '${data.password}'`, () => {
+            con.query(`UPDATE user_data SET sessionId = '${newSessionId}' WHERE email = '${data.name}' OR username = '${data.name}' AND password = '${data.password}'`, (err, result, fields) => {
                 if(err) throw err;
+                if(err) {callback('', 'There was a problem with the server')}
                 else {
                     console.log('SessionId Created');
                     setTimeout(()=> {
                         deleteSessionId(newSessionId);
-                    }, 5000)
+                    }, 3600000);
+                    callback(newSessionId);
                 }
             })
         }
         else {
             console.log('not sure boss');
+            callback('', "No match found for login details");
         }
     })
 

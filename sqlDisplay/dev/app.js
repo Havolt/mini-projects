@@ -32,10 +32,18 @@ app.get('/log-in', (req, res) => {
 //User Get logged in
 app.post('/user-log-in', (req, res) => {
 
-    nodeMySql.createLogin(req.body);
+    nodeMySql.createLogin(req.body, sendCookie);
+
+    function sendCookie(sessionId, err) {
+        //Send boolean for good call and return err or sessionId
+        res.send({
+            sessionId,
+            err
+        })
+    }
 
     //console.log(req.body);
-    res.send(JSON.stringify('this is backend data'));
+    //res.send(JSON.stringify('this is backend data'));
 
 
 })
