@@ -45,6 +45,22 @@ module.exports.createLogin = (data) => {
 
     console.log(data, 'got here into sql');
 
+    function createSessionId() {
+        let newId = '';
+        for(let i = 0; i <= 15; i++) {
+            let newCode = Math.floor((Math.random() * 42)+48);
+            if(newCode >= 58 && newCode <=65) {
+                newCode += Math.floor((Math.random()*26)+33)
+            }
+            newId += String.fromCharCode(newCode);
+        }
+        return newId;
+    }
+
+    const newSessionId = createSessionId();
+
+    console.log(newSessionId);
+
     if(data.isEmail){
         console.log("It's an email");
 
