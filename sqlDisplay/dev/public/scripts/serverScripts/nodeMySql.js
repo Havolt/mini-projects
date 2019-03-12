@@ -47,31 +47,45 @@ module.exports.createLogin = (data) => {
 
     function createSessionId() {
         let newId = '';
-        for(let i = 0; i <= 15; i++) {
+        for(let i = 0; i <= 31; i++) {
             let newCode = Math.floor((Math.random() * 42)+48);
-            if(newCode >= 58 && newCode <=65) {
-                newCode += Math.floor((Math.random()*26)+33)
+            if(newCode >= 58 && newCode <=64) {
+                newCode += Math.floor((Math.random()*27)+33)
             }
             newId += String.fromCharCode(newCode);
         }
         return newId;
     }
 
+    function deleteSessionId(id) {
+        console.log(id, 'should display after 10 seconds');
+        con.query(`UPDATE user_data SET sessionId = NULL WHERE sessionId = '${id}' `);
+    }
+
     const newSessionId = createSessionId();
 
     console.log(newSessionId);
 
-    if(data.isEmail){
-        console.log("It's an email");
+    con.query(`SELECT * FROM user_data WHERE email = '${data.name}' OR username = '${data.name}' AND password = '${data.password}'`, (err, result, fields) => {
+        if (err) throw err;
+        if(result[0]) { 
+            console.log(result[0], 'boss');
+            con.query(`UPDATE user_data SET sessionId = '${newSessionId}' WHERE email = '${data.name}' OR username = '${data.name}' AND password = '${data.password}'`, () => {
+                if(err) throw err;
+                else {
+                    console.log('SessionId Created');
+                    setTimeout(()=> {
+                        deleteSessionId(newSessionId);
+                    }, 5000)
+                }
+            })
+        }
+        else {
+            console.log('not sure boss');
+        }
+    })
 
-        con.query(`SELECT * FROM user_data WHERE email = '${data.name}' AND password = '${data.password}'`, (err, result, fields) => {
-            if (err) throw err;
-            if(result[0]) { console.log(result[0])}
-            else {
-                console.log('not sure boss');
-            }
-        })
-    }
+    
 
     //con.query(`SELECT * FROM user_data WHERE ` 
 }
