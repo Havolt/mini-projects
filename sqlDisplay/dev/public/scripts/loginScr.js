@@ -55,9 +55,18 @@ function sendUserCheck(name, password, isEmail) {
     )
     .then(res => res.json())
     .then(data => {
-        console.log(data);
+        if(data.err) {
+            alert(data.err)
+        } else {
+            createLoginCookie(data.sessionId);
+        }
     })
     .catch(err => console.log(err))
+}
+
+function createLoginCookie(sess) {
+    document.cookie=`sessionId = ${sess}`;
+    console.log(document.cookie);
 }
 
 //initializing page
