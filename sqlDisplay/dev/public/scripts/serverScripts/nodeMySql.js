@@ -44,4 +44,18 @@ module.exports.searchUser = (data, callback) => {
 module.exports.createLogin = (data) => {
 
     console.log(data, 'got here into sql');
+
+    if(data.isEmail){
+        console.log("It's an email");
+
+        con.query(`SELECT * FROM user_data WHERE email = '${data.name}' AND password = '${data.password}'`, (err, result, fields) => {
+            if (err) throw err;
+            if(result[0]) { console.log(result[0])}
+            else {
+                console.log('not sure boss');
+            }
+        })
+    }
+
+    //con.query(`SELECT * FROM user_data WHERE ` 
 }
