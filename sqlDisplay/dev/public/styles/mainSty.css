@@ -15,36 +15,44 @@ body {
 }
 
 .main__head {
-    
+    display: flex;
     height: 50px;
     font-size: 2em;
     border-bottom: 1px solid grey;
-    display: flex;
-    justify-content: flex-end;
     background: rgb(73, 153, 122);
 }
 
-.main__head > ul  {
-    list-style: none;
+.main__head__user {
+    width: 50%;
+    align-self: center;
+    position: relative;
+    color: white;
+}
+
+.main__head__list  {
     display: flex;
+    width:50%;
+    list-style: none;
     color: white;
     align-self: center;
     position: relative;
+    justify-content: flex-end;
 }
 
-.main__head > ul > a {
+.main__head__list > a {
     color: white;
     text-decoration: none;
     user-select: none;
 }
 
-.main__head > ul > a > li {
+.main__head__list> a > li {
     margin-right: 1em;
     cursor: pointer;
     position: relative;
 }
 
-.main__head > ul > a > li:hover::after, .main__head > ul > a > li:hover::before { 
+.main__head__list> a > li:hover::after,
+ .main__head__list> a > li:hover::before { 
     content: attr(title);
     position: absolute;
     z-index: 2;
@@ -53,11 +61,11 @@ body {
     opacity: 0;
 }
 
-.main__head > ul > a > li:hover::after {
+.main__head__list> a > li:hover::after {
     animation: .3s rollDown;
 }
 
-.main__head > ul > a > li:hover::before {
+.main__head__list> a > li:hover::before {
     animation: .3s rollUp;
 }
 
