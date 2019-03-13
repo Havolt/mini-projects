@@ -22,7 +22,7 @@ function addLoginErrorEntryWrong(el, phrase) {
 
 //Check if email/username and password are long enough
 function checkUserTrue(nameOrEmail, password) {
-    console.log(nameOrEmail, password);
+    //console.log(nameOrEmail, password);
     if(nameOrEmail.length < 3) {
         addLoginErrorEntryWrong(
             document.querySelectorAll('.main__body__login-form__inp-con')[0],
@@ -64,8 +64,10 @@ function sendUserCheck(name, password, isEmail) {
     .catch(err => console.log(err))
 }
 
+//Creates login cookie for user and supplies username to cookie
 function createLoginCookie(sess) {
-    document.cookie=`sessionId = ${sess}`;
+    document.cookie=`sessionId = ${sess.sid}`;
+    document.cookie=`name = ${sess.name}`;
     console.log(document.cookie);
 }
 

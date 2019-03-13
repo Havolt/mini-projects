@@ -70,6 +70,7 @@ module.exports.createLogin = (data, callback) => {
         if (err) throw err;
         if(result[0]) { 
             console.log(result[0], 'boss');
+            const username = result[0].username;
             con.query(`UPDATE user_data SET sessionId = '${newSessionId}' WHERE email = '${data.name}' OR username = '${data.name}' AND password = '${data.password}'`, (err, result, fields) => {
                 if(err) throw err;
                 if(err) {callback('', 'There was a problem with the server')}
@@ -78,7 +79,7 @@ module.exports.createLogin = (data, callback) => {
                     setTimeout(()=> {
                         deleteSessionId(newSessionId);
                     }, 3600000);
-                    callback(newSessionId);
+                    callback({sid: newSessionId, name: username});
                 }
             })
         }

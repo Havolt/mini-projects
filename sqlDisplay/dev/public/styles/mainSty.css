@@ -100,7 +100,9 @@ body {
     display: flex;
     align-content: center;
     justify-content: center;
-    background: rgb(218, 218, 218);
+    background: rgb(74, 147, 150);
+    font-size: 1.4em;
+    color: white;
 }
 
 

@@ -76,6 +76,7 @@
 
 .main__body__login-form__txt-inp:focus {
     outline: none;
+    border: 1px solid rgba(0, 173, 241, 0.6);
     animation: input-pulse 2s infinite;
 }
 
