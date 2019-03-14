@@ -29,6 +29,10 @@ app.get('/log-in', (req, res) => {
     res.sendFile(`${__dirname}/views/log-in.html`);
 })
 
+app.get('/submit', (req,res) => {
+    res.sendFile(`${__dirname}/views/story-submit.html`);
+})
+
 //User Get logged in
 app.post('/user-log-in', (req, res) => {
 

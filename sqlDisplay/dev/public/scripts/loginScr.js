@@ -68,7 +68,7 @@ function sendUserCheck(name, password, isEmail) {
 function createLoginCookie(sess) {
 
     let newExpirey  = new Date();
-    newExpirey.setTime(newExpirey.getTime() + (60 * 1000));
+    newExpirey.setTime(newExpirey.getTime() + (60 * 60 * 1000));
     
     document.cookie=`sessionId=${sess.sid};expires=${newExpirey.toUTCString()};path=/;`;
     document.cookie=`name=${sess.name};expires=${newExpirey.toUTCString()};path=/;`;
