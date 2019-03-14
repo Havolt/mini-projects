@@ -66,18 +66,14 @@ function sendUserCheck(name, password, isEmail) {
 
 //Creates login cookie for user and supplies username to cookie
 function createLoginCookie(sess) {
-    // Date.prototype.addMinutes = function(m) {    
-    //     this.setTime(this.getTime() + (0*m*60*1000)); 
-    //     return this;   
-    // }
-    const newExpirey  = new Date().setTime(new Date().getTime() + (1 * 60 * 1000));
-    document.cookie=`sessionId=${sess.sid};`;
-    document.cookie=`name=${sess.name};`;
-    document.cookie=`expires=${newExpirey};`;
-    document.cookie=`path=/;`;
+
+    let newExpirey  = new Date();
+    newExpirey.setTime(newExpirey.getTime() + (60 * 1000));
     
-    //console.log(document.cookie);
-    //console.log(newExpirey);
+    document.cookie=`sessionId=${sess.sid};expires=${newExpirey.toUTCString()};path=/;`;
+    document.cookie=`name=${sess.name};expires=${newExpirey.toUTCString()};path=/;`;
+    //document.cookie=`path=/;`;
+
 }
 
 //initializing page

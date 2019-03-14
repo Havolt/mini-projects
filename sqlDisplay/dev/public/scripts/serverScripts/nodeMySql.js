@@ -50,7 +50,7 @@ module.exports.createLogin = (data, callback) => {
         for(let i = 0; i <= 31; i++) {
             let newCode = Math.floor((Math.random() * 42)+48);
             if(newCode >= 58 && newCode <=64) {
-                newCode += Math.floor((Math.random()*27)+33)
+                newCode += Math.floor((Math.random()*22)+39)
             }
             newId += String.fromCharCode(newCode);
         }
