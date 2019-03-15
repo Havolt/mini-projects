@@ -1,0 +1,26 @@
+
+.main__body {
+    background: #e2e2e2;
+}
+
+.main__body__submit {
+    border-radius: 2px;
+    background: #f7f7f7;
+    width: 80%;
+}
+
+input[type=text],
+textarea {
+    border: 1px solid rgb(189, 189, 189);
+    border-radius: 2px;
+    width: 95%;
+    font-size: 1.6em;
+}
+
+.main__body__submit__title__inp {
+    
+}
+
+.main__body__submit__text__inp {
+    height: 300px;   
+}
