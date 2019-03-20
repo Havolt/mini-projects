@@ -12,6 +12,14 @@
     text-align: center;
 }
 
+.main__body__submit__intro {
+    width: 95%;
+    margin: 0 auto;
+    text-indent: .2em;
+    font-size: 1.6em;
+    text-align: left;
+}
+
 input[type=text],
 textarea {
     border: 1px solid rgb(189, 189, 189);
@@ -21,9 +29,7 @@ textarea {
     padding: .3em .1em;
 }
 
-.main__body__submit__sub__genre {
-    font-size: 1.6em;
-}
+
 
 .main__body__submit__title__inp  {
     font-size: 2.5em;
@@ -32,4 +38,44 @@ textarea {
 .main__body__submit__text__inp {
     height: 300px;   
     font-size: 1.8em;
+    min-height: 50vh;
+}
+
+.main__body__submit__sub{
+    display: flex;
+    align-items: center;
+}
+
+.main__body__submit__sub__genre {
+    font-size: 2em;
+    padding-left: 5em;
+}
+
+.main__body__submit__genre__inp {
+    font-size: .9em;
+    margin-left: .6em;
+    border: 1px solid rgb(235, 235, 235);
+}
+
+.main__body__submit__sub > div {
+    flex: 1;
+    display:flex;
+}
+
+.main__body__submit__sub__post {
+    justify-content: flex-end;
+    padding-right: 5em;
+}
+
+.main__body__submit__sub__post__button {
+    font-size: 3em;
+    padding: .1em .8em;
+    border-radius: 2px;
+    background: rgb(44, 146, 194);
+    color: white;
+}
+
+.main__body__submit__sub__post__button:hover {
+    cursor: pointer;
+    background: rgb(27, 107, 145);
 }
