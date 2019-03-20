@@ -25,14 +25,50 @@ textarea {
     border: 1px solid rgb(189, 189, 189);
     border-radius: 2px;
     width: 95%;
-    margin: .5em auto;
+    margin: 1em auto .5em auto;
     padding: .3em .1em;
+    outline: none;
 }
 
-
+.main__body__submit__title,  
+.main__body__submit__text  {
+    position: relative;
+}
 
 .main__body__submit__title__inp  {
     font-size: 2.5em;
+}
+
+.main__body__submit__title--err > input,
+.main__body__submit__text--err> textarea  {
+    border: 1px solid rgb(255, 140, 140);
+    animation: errPulse infinite 3s;
+}
+
+@keyframes errPulse {
+    0%{
+        box-shadow: 0 0 0 rgb(255, 140, 140);
+    }
+    50%{
+        box-shadow: 0 0 8px rgb(255, 140, 140);
+    }
+    100%{
+        box-shadow: 0 0 0 rgb(255, 140, 140);
+    }
+}
+
+.main__body__submit__title--err::after,
+.main__body__submit__text--err::after {
+    color: rgb(216, 63, 63);
+    content: 'Title not long enough.';
+    position: absolute;
+    left: 2em; top: .4em;
+    font-size: 1.5em;
+}
+
+.main__body__submit__text--err::after {
+    content: 'Text not long enough.';
+    top: -.4em;
 }
 
 .main__body__submit__text__inp {
@@ -40,6 +76,9 @@ textarea {
     font-size: 1.8em;
     min-height: 50vh;
 }
+
+
+
 
 .main__body__submit__sub{
     display: flex;

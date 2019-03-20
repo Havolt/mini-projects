@@ -44,11 +44,28 @@ function checkStory(title, body, genre) {
     if(failCheck.title || failCheck.body) {
         storyShortWarn(failCheck.title, failCheck.body);
     }
+    else {
+        createStory(title, body, genre);
+    }
 }
 
 function storyShortWarn(titleShort, bodyShort) {
-    console.log(titleShort, 'title too short');
-    console.log(bodyShort, 'body too short');
+    
+    if(titleShort) {
+        document.querySelector('.main__body__submit__title').classList.add(
+            'main__body__submit__title--err'
+        )
+    }
+    if(bodyShort) {
+        document.querySelector('.main__body__submit__text').classList.add(
+            'main__body__submit__text--err'
+        )
+    }
+
+};
+
+function createStory(title, body, genre) {
+
 };
 
 (function initSubmit(){
