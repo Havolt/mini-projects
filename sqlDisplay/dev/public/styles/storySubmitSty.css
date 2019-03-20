@@ -7,6 +7,9 @@
     border-radius: 2px;
     background: #f7f7f7;
     width: 80%;
+    margin: 0 auto;
+    padding: 3em 0;
+    text-align: center;
 }
 
 input[type=text],
@@ -14,13 +17,19 @@ textarea {
     border: 1px solid rgb(189, 189, 189);
     border-radius: 2px;
     width: 95%;
+    margin: .5em auto;
+    padding: .3em .1em;
+}
+
+.main__body__submit__sub__genre {
     font-size: 1.6em;
 }
 
-.main__body__submit__title__inp {
-    
+.main__body__submit__title__inp  {
+    font-size: 2.5em;
 }
 
 .main__body__submit__text__inp {
     height: 300px;   
+    font-size: 1.8em;
 }
