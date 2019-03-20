@@ -73,8 +73,9 @@ textarea {
 }
 
 .main__body__submit__text__inp {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
     height: 300px;   
-    font-size: 1.8em;
+    font-size: 1.6em;
     min-height: 50vh;
 }
 

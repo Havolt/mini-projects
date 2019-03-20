@@ -14,6 +14,7 @@ const con = mysql.createConnection({
   //con.end();
 
 
+//Searches to see if account taken and if not creates one
 module.exports.searchUser = (data, callback) => {
 
     con.query(`SELECT * FROM user_data WHERE username ='${data.username}'`, function (err, result, fields) {
@@ -41,6 +42,7 @@ module.exports.searchUser = (data, callback) => {
 
 };
 
+//Allows user to log in and creates session ID
 module.exports.createLogin = (data, callback) => {
 
     console.log(data, 'got here into sql');
@@ -71,6 +73,7 @@ module.exports.createLogin = (data, callback) => {
         if(result[0]) { 
             console.log(result[0], 'boss');
             const username = result[0].username;
+            const userId = result[0].id;
             con.query(`UPDATE user_data SET sessionId = '${newSessionId}' WHERE email = '${data.name}' OR username = '${data.name}' AND password = '${data.password}'`, (err, result, fields) => {
                 if(err) throw err;
                 if(err) {callback('', 'There was a problem with the server')}
@@ -79,7 +82,7 @@ module.exports.createLogin = (data, callback) => {
                     setTimeout(()=> {
                         deleteSessionId(newSessionId);
                     }, 3600000);
-                    callback({sid: newSessionId, name: username});
+                    callback({sid: newSessionId, name: username, userId: userId });
                 }
             })
         }

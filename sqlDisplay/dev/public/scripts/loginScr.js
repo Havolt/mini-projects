@@ -72,6 +72,7 @@ function createLoginCookie(sess) {
     
     document.cookie=`sessionId=${sess.sid};expires=${newExpirey.toUTCString()};path=/;`;
     document.cookie=`name=${sess.name};expires=${newExpirey.toUTCString()};path=/;`;
+    document.cookie=`userId=${sess.userId};expires=${newExpirey.toUTCString()};path=/;`;
     //document.cookie=`path=/;`;
 
 }

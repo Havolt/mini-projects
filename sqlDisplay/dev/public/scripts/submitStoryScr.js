@@ -71,7 +71,15 @@ function storyShortWarn(titleShort, bodyShort) {
 };
 
 function createStory(title, body, genre) {
+    const newStory = {
+        title,
+        body,
+        genre,
+        author: 'test',
+        authorId: 'test'
+    }
 
+    console.log(newStory);
 };
 
 (function initSubmit(){
