@@ -37,12 +37,13 @@ textarea {
 
 .main__body__submit__title__inp  {
     font-size: 2.5em;
+    text-indent: 3px;
 }
 
 .main__body__submit__title--err > input,
-.main__body__submit__text--err> textarea  {
+.main__body__submit__text--err > textarea  {
     border: 1px solid rgb(255, 140, 140);
-    animation: errPulse infinite 3s;
+    animation: errPulse infinite 1.8s;
 }
 
 @keyframes errPulse {
@@ -50,7 +51,7 @@ textarea {
         box-shadow: 0 0 0 rgb(255, 140, 140);
     }
     50%{
-        box-shadow: 0 0 8px rgb(255, 140, 140);
+        box-shadow: 0 0 3px rgb(255, 140, 140);
     }
     100%{
         box-shadow: 0 0 0 rgb(255, 140, 140);
@@ -59,15 +60,15 @@ textarea {
 
 .main__body__submit__title--err::after,
 .main__body__submit__text--err::after {
-    color: rgb(216, 63, 63);
-    content: 'Title not long enough.';
+    color: rgb(223, 86, 86);
+    content: 'Title not long enough';
     position: absolute;
     left: 2em; top: .4em;
     font-size: 1.5em;
 }
 
 .main__body__submit__text--err::after {
-    content: 'Text not long enough.';
+    content: 'Text not long enough';
     top: -.4em;
 }
 

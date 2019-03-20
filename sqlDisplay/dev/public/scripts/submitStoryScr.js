@@ -8,6 +8,12 @@ function addSubmitEvtLstnrs() {
             document.querySelector('.main__body__submit__genre__inp').value,
         );
     })
+    document.querySelector('.main__body__submit__title__inp').addEventListener('focus', () => {
+        document.querySelector('.main__body__submit__title').classList.remove('main__body__submit__title--err');
+    })
+    document.querySelector('.main__body__submit__text__inp').addEventListener('focus', () => {
+        document.querySelector('.main__body__submit__text').classList.remove('main__body__submit__text--err');
+    })
 }
 
 function checkStory(title, body, genre) {
