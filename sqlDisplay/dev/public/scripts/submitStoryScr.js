@@ -74,14 +74,47 @@ function createStory(title, body, genre) {
     const newStory = {
         title,
         body,
-        genre,
-        author: 'test',
-        authorId: 'test'
+        genre
     }
 
+    newStory.author = getCookie('name');
+    newStory.userId = getCookie('userId');
+
     console.log(newStory);
+
+    ///Add fetch here
+
 };
+
+function getCookie(cname) {
+    var name = cname + "=";
+    var decodedCookie = decodeURIComponent(document.cookie);
+    var ca = decodedCookie.split(';');
+    for(var i = 0; i <ca.length; i++) {
+      var c = ca[i];
+      while (c.charAt(0) == ' ') {
+        c = c.substring(1);
+      }
+      if (c.indexOf(name) == 0) {
+        return c.substring(name.length, c.length);
+      }
+    }
+    return "";
+
+}
+
+
+function checkUserLoggedIn() {
+    const checkUsername = getCookie('name');
+    const checkId = getCookie('userId');
+
+    console.log(checkUsername, checkId);
+    if(!checkUsername || !checkId) {
+        document.querySelector('.main__body').innerHTML = '';
+    }
+}
 
 (function initSubmit(){
     addSubmitEvtLstnrs();
+    checkUserLoggedIn();
 })()
