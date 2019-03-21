@@ -87,11 +87,11 @@ function createStory(title, body, genre) {
 };
 
 function getCookie(cname) {
-    var name = cname + "=";
-    var decodedCookie = decodeURIComponent(document.cookie);
-    var ca = decodedCookie.split(';');
-    for(var i = 0; i <ca.length; i++) {
-      var c = ca[i];
+    const name = cname + "=";
+    const decodedCookie = decodeURIComponent(document.cookie);
+    const ca = decodedCookie.split(';');
+    for(let i = 0; i <ca.length; i++) {
+      let c = ca[i];
       while (c.charAt(0) == ' ') {
         c = c.substring(1);
       }
@@ -100,18 +100,19 @@ function getCookie(cname) {
       }
     }
     return "";
-
 }
 
 
 function checkUserLoggedIn() {
     const checkUsername = getCookie('name');
     const checkId = getCookie('userId');
-
-    console.log(checkUsername, checkId);
     if(!checkUsername || !checkId) {
         document.querySelector('.main__body').innerHTML = '';
+        document.querySelector('.main__body').classList.add('main__body--ignore');
+        document.querySelector('.main__body__login-warn').classList.remove('hidden');
+        console.log('deleted');
     }
+
 }
 
 (function initSubmit(){

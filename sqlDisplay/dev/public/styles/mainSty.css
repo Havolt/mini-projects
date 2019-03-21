@@ -136,3 +136,7 @@ body {
 .main__footer > div {
     align-self: center;
 }
+
+.hidden {
+    display: none;
+}

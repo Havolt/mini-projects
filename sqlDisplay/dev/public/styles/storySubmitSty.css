@@ -3,6 +3,52 @@
     background: #e2e2e2;
 }
 
+.main__body--ignore {
+    display: none;
+}
+
+.main__body__login-warn {
+    min-height: calc(100vh - 90px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgb(238, 238, 238);
+}
+
+.main__body__login-warn__int { 
+    padding: 1.4em;
+    height: 14em;
+    background: white;
+    box-shadow: 0 0 2px rgb(218, 218, 218);
+    text-align: center;
+}
+
+.main__body__login-warn__int > h2 {
+    margin-top: .4em;
+    font-size: 3em;
+}
+
+.main__body__login-warn__int > a {
+    text-decoration: none;
+    width: fit-content;
+    display: inline-block;
+    margin-top: 2em;
+}
+
+.main__body__login-warn__int > a > div {
+    font-size: 2.8em;
+    background: rgb(29, 155, 204);
+    color: white;
+    border-radius: 2px;
+    padding: .2em .8em;
+    
+}
+
+.main__body__login-warn__int > a > div:hover {
+    cursor: pointer;
+    background: rgb(17, 112, 150);
+}
+
 .main__body__submit {
     border-radius: 2px;
     background: #f7f7f7;
