@@ -72,6 +72,7 @@
    padding: .2em 0;
    position: relative;
    border-radius: 1px;
+   width: 94%;
 }
 
 .main__body__login-form__txt-inp:focus {

@@ -82,7 +82,18 @@ function createStory(title, body, genre) {
 
     console.log(newStory);
 
+
     ///Add fetch here
+    fetch('/user-submit-story', {
+        method: 'POST',
+        body: JSON.stringify(newStory), 
+        headers:{
+            'Content-Type': 'application/json'
+        }
+    }).then(res => res.json())
+    .then(response => console.log('Success:', JSON.stringify(response)))
+    .catch(error => console.error('Error:', error));
+
 
 };
 

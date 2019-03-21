@@ -33,6 +33,22 @@ app.get('/submit', (req,res) => {
     res.sendFile(`${__dirname}/views/story-submit.html`);
 })
 
+
+
+
+//////////////////// POST SECTION
+
+app.post('/create-profile', (req, res) => {
+
+    function myCall(data) {
+        console.log(data);
+        res.send(JSON.stringify(data));
+    }
+
+    nodeMySql.searchUser(req.body, myCall);
+
+})
+
 //User Get logged in
 app.post('/user-log-in', (req, res) => {
 
@@ -48,20 +64,9 @@ app.post('/user-log-in', (req, res) => {
 
     //console.log(req.body);
     //res.send(JSON.stringify('this is backend data'));
-
-
 })
 
-
-//////////////////// POST SECTION
-
-app.post('/create-profile', (req, res) => {
-
-    function myCall(data) {
-        console.log(data);
-        res.send(JSON.stringify(data));
-    }
-
-    nodeMySql.searchUser(req.body, myCall);
-
+//Submit story to database
+app.post('/user-submit-story', (req, res) => {
+    console.log('got story');
 })
