@@ -12,3 +12,4 @@ function headerLogin(cookie) {
 (function initMain() {
     headerLogin(document.cookie);
 })();
+

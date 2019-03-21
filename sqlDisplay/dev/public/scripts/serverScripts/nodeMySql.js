@@ -96,3 +96,8 @@ module.exports.createLogin = (data, callback) => {
 
     //con.query(`SELECT * FROM user_data WHERE ` 
 }
+
+//Allow user to submit story to database
+module.exports.submitStory = (data, callback) => {
+    console.log(data);
+}

@@ -74,6 +74,18 @@ function createLoginCookie(sess) {
     document.cookie=`name=${sess.name};expires=${newExpirey.toUTCString()};path=/;`;
     document.cookie=`userId=${sess.userId};expires=${newExpirey.toUTCString()};path=/;`;
 
+    const loginScsDiv = document.createElement('div');
+    loginScsDiv.innerHTML = 'Login Success. Redirecting please wait..';
+
+
+    document.querySelector('.main__body').innerHTML = '';
+    document.querySelector('.main__body').appendChild(loginScsDiv);
+    document.querySelector('.main__body').children[0].classList.add('login-success');
+    
+
+    setTimeout(() => {
+        window.open('/', '_self');
+    }, 900)
 }
 
 //initializing page

@@ -68,5 +68,6 @@ app.post('/user-log-in', (req, res) => {
 
 //Submit story to database
 app.post('/user-submit-story', (req, res) => {
-    console.log('got story');
+    
+    nodeMySql.submitStory(req.body)
 })

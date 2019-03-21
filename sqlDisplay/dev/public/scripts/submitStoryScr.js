@@ -82,17 +82,25 @@ function createStory(title, body, genre) {
 
     console.log(newStory);
 
+    if(newStory.author == '' || newStory.userId == '') {
+        alert('You have been logged out, please log in and try again');
+        checkUserLoggedIn();
+    }
+    else {
+        ///Add fetch here
+        fetch('/user-submit-story', {
+            method: 'POST',
+            body: JSON.stringify(newStory), 
+            headers:{
+                'Content-Type': 'application/json'
+            }
+        }).then(res => res.json())
+        .then(response => console.log('Success:', JSON.stringify(response)))
+        .catch(error => console.error('Error:', error));
+    }
 
-    ///Add fetch here
-    fetch('/user-submit-story', {
-        method: 'POST',
-        body: JSON.stringify(newStory), 
-        headers:{
-            'Content-Type': 'application/json'
-        }
-    }).then(res => res.json())
-    .then(response => console.log('Success:', JSON.stringify(response)))
-    .catch(error => console.error('Error:', error));
+
+    
 
 
 };
