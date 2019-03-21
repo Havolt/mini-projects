@@ -131,11 +131,24 @@ textarea {
 .main__body__submit__sub{
     display: flex;
     align-items: center;
+    flex-wrap: wrap;
+}
+
+.main__body__submit__sub > div {
+    
+    display:flex;
+}
+
+.main__body__submit__sub__desc {
+    flex: 100%;
+    width: 100%;
+    margin-bottom: 2em;
 }
 
 .main__body__submit__sub__genre {
     font-size: 2em;
     padding-left: 5em;
+    flex: 1;
 }
 
 .main__body__submit__genre__inp {
@@ -144,14 +157,12 @@ textarea {
     border: 1px solid rgb(235, 235, 235);
 }
 
-.main__body__submit__sub > div {
-    flex: 1;
-    display:flex;
-}
+
 
 .main__body__submit__sub__post {
     justify-content: flex-end;
     padding-right: 5em;
+    flex: 1;
 }
 
 .main__body__submit__sub__post__button {
@@ -165,4 +176,8 @@ textarea {
 .main__body__submit__sub__post__button:hover {
     cursor: pointer;
     background: rgb(27, 107, 145);
+}
+
+.hidden {
+    display: none;
 }
