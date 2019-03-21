@@ -100,4 +100,20 @@ module.exports.createLogin = (data, callback) => {
 //Allow user to submit story to database
 module.exports.submitStory = (data, callback) => {
     console.log(data);
+
+    const tmpDate = new Date();
+
+    const readableDate = `${tmpDate.getFullYear()}-${tmpDate.getMonth() + 1}-${tmpDate.getDate()} ${tmpDate.getHours()}:${tmpDate.getMinutes()}:${tmpDate.getSeconds()}`;
+
+    console.log(readableDate);
+
+    con.query(`INSERT INTO stories 
+    (title, body, description, genre, author, author_id, date_created) VALUES 
+    ('${data.title}', '${data.body}','${data.desc}', '${data.genre}', 
+    '${data.author}','${data.userId}', '${readableDate}')`,
+    (err, result) => {
+        if(err) throw err;
+        console.log('Success!');
+    }
+    )
 }

@@ -77,7 +77,8 @@ textarea {
 }
 
 .main__body__submit__title,  
-.main__body__submit__text  {
+.main__body__submit__text,
+.main__body__submit__sub__desc  {
     position: relative;
 }
 
@@ -87,7 +88,8 @@ textarea {
 }
 
 .main__body__submit__title--err > input,
-.main__body__submit__text--err > textarea  {
+.main__body__submit__text--err > textarea,
+.main__body__submit__desc--err > input {
     border: 1px solid rgb(255, 140, 140);
     animation: errPulse infinite 1.8s;
 }
@@ -105,7 +107,8 @@ textarea {
 }
 
 .main__body__submit__title--err::after,
-.main__body__submit__text--err::after {
+.main__body__submit__text--err::after,
+.main__body__submit__desc--err::after {
     color: rgb(223, 86, 86);
     content: 'Title not long enough';
     position: absolute;
@@ -115,6 +118,11 @@ textarea {
 
 .main__body__submit__text--err::after {
     content: 'Text not long enough';
+    top: -.4em;
+}
+
+.main__body__submit__desc--err::after {
+    content: 'Description not long enough';
     top: -.4em;
 }
 

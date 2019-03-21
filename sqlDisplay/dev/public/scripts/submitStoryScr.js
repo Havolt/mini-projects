@@ -5,7 +5,9 @@ function addSubmitEvtLstnrs() {
         checkStory(
             document.querySelector('.main__body__submit__title__inp').value,
             document.querySelector('.main__body__submit__text__inp').value,
-            document.querySelector('.main__body__submit__genre__inp').value,
+            document.querySelector('.main__body__submit__desc__inp').value,
+            document.querySelector('.main__body__submit__genre__inp').value
+            
         );
     })
     document.querySelector('.main__body__submit__title__inp').addEventListener('focus', () => {
@@ -16,11 +18,12 @@ function addSubmitEvtLstnrs() {
     })
 }
 
-function checkStory(title, body, genre) {
+function checkStory(title, body, desc, genre) {
 
     const failCheck = {
         title: true,
-        body: true
+        body: true,
+        desc: true
     }
 
     if(title.length < 3) {
@@ -46,16 +49,28 @@ function checkStory(title, body, genre) {
             }
         }
     }
+    if(desc.length < 4) {
+        failCheck.desc = true;
+    }else {
+        for(let i = 0; i < desc.split('').length; i++) {
+            if(desc.split('')[i] != ' ' && 
+            desc.split('')[i] != '\r' && 
+            desc.split('')[i] != '\n' ) {
+                failCheck.desc = false;
+                break;
+            }
+        }
+    }
 
-    if(failCheck.title || failCheck.body) {
-        storyShortWarn(failCheck.title, failCheck.body);
+    if(failCheck.title || failCheck.body || failCheck.desc) {
+        storyShortWarn(failCheck.title, failCheck.body, failCheck.desc);
     }
     else {
-        createStory(title, body, genre);
+        createStory(title, body, desc, genre);
     }
 }
 
-function storyShortWarn(titleShort, bodyShort) {
+function storyShortWarn(titleShort, bodyShort, descShort) {
     
     if(titleShort) {
         document.querySelector('.main__body__submit__title').classList.add(
@@ -67,14 +82,17 @@ function storyShortWarn(titleShort, bodyShort) {
             'main__body__submit__text--err'
         )
     }
+    if(descShort) {
+        document.querySelector('.main__body__submit__sub__desc').classList.add(
+            'main__body__submit__desc--err'
+        )
+    }
 
 };
 
-function createStory(title, body, genre) {
+function createStory(title, body, desc, genre) {
     const newStory = {
-        title,
-        body,
-        genre
+        title, body, desc, genre
     }
 
     newStory.author = getCookie('name');
