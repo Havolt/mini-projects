@@ -112,8 +112,10 @@ module.exports.submitStory = (data, callback) => {
     ('${data.title}', '${data.body}','${data.desc}', '${data.genre}', 
     '${data.author}','${data.userId}', '${readableDate}')`,
     (err, result) => {
-        if(err) throw err;
-        console.log('Success!');
+        if(err) {
+            callback(err)
+        };
+        callback('', result.insertId);
     }
     )
 }

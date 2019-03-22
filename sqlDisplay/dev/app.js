@@ -68,6 +68,14 @@ app.post('/user-log-in', (req, res) => {
 
 //Submit story to database
 app.post('/user-submit-story', (req, res) => {
+
+    function frontResponse(err, storyId) {
+        if(err) {
+            res.send({ storyCreated: false, err: err});
+        } else {
+            res.send({ storyCreated: true, storyId});
+        }
+    }
     
-    nodeMySql.submitStory(req.body)
+    nodeMySql.submitStory(req.body, frontResponse);
 })
