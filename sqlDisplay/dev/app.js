@@ -33,6 +33,10 @@ app.get('/submit', (req,res) => {
     res.sendFile(`${__dirname}/views/story-submit.html`);
 })
 
+app.get('/stories', (req, res) => {
+    res.sendFile(`${__dirname}/views/user-story.html`)
+})
+
 
 
 
