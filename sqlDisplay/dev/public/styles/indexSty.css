@@ -1,17 +1,21 @@
 
+.main__body {
+    background: #f7f7f7;
+}
+
 .main__body__search {
     display: flex;
     margin: 0 auto 2em auto;
-    width: fit-content;
+    width: fit-content; 
 }
 
 .main__body__search__inp {
-    font-size: 1.6em;
+    font-size: 2em;
     border: 1px solid rgb(206, 206, 206);
     border-top-left-radius: 2px;
     border-bottom-left-radius: 2px;
     width: 20em;
-    height: 2em;
+    height: 40px;
     text-indent: 3px;
 }
 
@@ -22,8 +26,8 @@
 }
 
 .main__body__search__button {
-    width: 2.4em;
-    height: 2.4em;
+    width: 40px;
+    height: 40px;
     vertical-align: top;
     border: 1px solid rgb(206, 206, 206);
     background: white;
