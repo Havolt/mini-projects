@@ -2,6 +2,7 @@ const nodeMySql = require(__dirname + '/public/scripts/serverScripts/nodeMySql.j
 const mysql = require('mysql');
 const express = require('express');
 const bodyParser = require('body-parser');
+const url = require('url');
 
 const port = 3000;
 const app = express();
@@ -33,8 +34,9 @@ app.get('/submit', (req,res) => {
     res.sendFile(`${__dirname}/views/story-submit.html`);
 })
 
-app.get('/stories', (req, res) => {
+app.get('/stories/:storyId', (req, res) => {
     res.sendFile(`${__dirname}/views/user-story.html`)
+    nodeMySql.getStory(req.params);
 })
 
 

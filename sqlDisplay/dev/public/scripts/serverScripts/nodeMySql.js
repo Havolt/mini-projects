@@ -119,3 +119,10 @@ module.exports.submitStory = (data, callback) => {
     }
     )
 }
+
+
+module.exports.getStory = (data, callback) => {
+
+    console.log(data.storyId);
+
+}
