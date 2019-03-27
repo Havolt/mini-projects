@@ -1,0 +1,36 @@
+
+
+.main__body__stories {
+    width: 80%;
+    min-width: 800px;
+    margin: 0 auto;
+}
+
+.main__body__stories__block {
+    display: inline-block;
+    margin: 1em;
+    width: 22em;
+    height: 22em;
+    border: 1px solid rgb(164, 204, 201);
+    border-radius: 2px;
+    background: rgb(241, 246, 250);
+    vertical-align: top;
+    overflow: hidden;
+    box-shadow: 1px 2px 2px rgba(77, 77, 77, 0.2);
+}
+
+.main__body__stories__block:hover {
+    cursor: pointer;
+    transform: scale(1.05);
+    box-shadow: 2px 4px 4px rgba(77, 77, 77, 0.2);
+}
+
+.main__body__stories__block__title {
+    font-size: 2.1em;
+    padding: .4em;
+}
+
+.main__body__stories__block__desc {
+    font-size: 1.4em;
+    padding: .1em .4em;
+}

@@ -12,9 +12,12 @@ const indexSc = {
             newStoryDesc.innerHTML = el.description;
             newStoryBlock.classList.add('main__body__stories__block');
             newStoryTitle.classList.add('main__body__stories__block__title');
-            newStoryTitle.classList.add('main__body__stories__block__desc');
+            newStoryDesc.classList.add('main__body__stories__block__desc');
             newStoryBlock.appendChild(newStoryTitle);
             newStoryBlock.appendChild(newStoryDesc);
+            newStoryBlock.addEventListener('click', () => {
+                window.open(`/stories/${el.story_id}`, '_self');
+            })
             document.querySelector('.main__body__stories').appendChild(newStoryBlock);
         });
     }
