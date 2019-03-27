@@ -122,16 +122,15 @@ body {
 }
 
 .main__footer {
-    border-top: 1px solid rgb(73, 153, 122);
+    border-top: 1px solid rgb(45, 112, 87);
     height: 40px;
     display: flex;
     align-content: center;
     justify-content: center;
-    background: rgb(74, 147, 150);
+    background: rgb(14, 79, 82);
     font-size: 1.4em;
     color: white;
 }
-
 
 .main__footer > div {
     align-self: center;

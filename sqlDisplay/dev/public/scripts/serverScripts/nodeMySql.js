@@ -136,7 +136,6 @@ module.exports.getLatestStories = (cb) => {
 
     con.query(`SELECT * FROM stories ORDER BY story_id DESC LIMIT 8`, (err, result) => {
         if(err) throw err;
-
         cb(result);
 
     })
