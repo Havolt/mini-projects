@@ -3,6 +3,7 @@ const mysql = require('mysql');
 const express = require('express');
 const bodyParser = require('body-parser');
 const url = require('url');
+const fs = require('fs');
 
 const port = 3000;
 const app = express();
@@ -37,10 +38,15 @@ app.get('/submit', (req,res) => {
 app.get('/stories/:storyId', (req, res) => {
 
     function storyCB(data) {
-        console.log(data);
+        //console.log(data);
+
+        fs.readFile(`${__dirname}/views/user-story.html`, (err, html) => {
+            let htmlData = html.toString().replace("_!!story_info!!_", JSON.stringify(data));
+            res.send(htmlData);
+        })
     }
 
-    res.sendFile(`${__dirname}/views/user-story.html`)
+    //res.sendFile(`${__dirname}/views/user-story.html`)
     nodeMySql.getStory(req.params, storyCB);
 })
 
