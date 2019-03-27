@@ -23,7 +23,6 @@ app.get('/', (req, res) => {
     //res.sendFile(`${__dirname}/views/index.html`);
 
     function indexCallback(data) {
-        console.log(data);
 
         fs.readFile(`${__dirname}/views/index.html`, (err, html) => {
             let htmlData = html.toString().replace("_!!stories_data!!_", JSON.stringify(data));
