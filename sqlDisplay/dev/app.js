@@ -35,8 +35,13 @@ app.get('/submit', (req,res) => {
 })
 
 app.get('/stories/:storyId', (req, res) => {
+
+    function storyCB(data) {
+        console.log(data);
+    }
+
     res.sendFile(`${__dirname}/views/user-story.html`)
-    nodeMySql.getStory(req.params);
+    nodeMySql.getStory(req.params, storyCB);
 })
 
 

@@ -125,4 +125,9 @@ module.exports.getStory = (data, callback) => {
 
     console.log(data.storyId);
 
+    con.query(`SELECT * FROM stories WHERE story_id = ${data.storyId}`, (err, result) => {
+        if(err) throw err;
+        callback(result);
+    })
+
 }
