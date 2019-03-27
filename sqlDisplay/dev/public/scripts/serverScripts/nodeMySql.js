@@ -120,7 +120,7 @@ module.exports.submitStory = (data, callback) => {
     )
 }
 
-
+//Retrieves story based on numeric value
 module.exports.getStory = (data, callback) => {
 
     console.log(data.storyId);
@@ -128,6 +128,17 @@ module.exports.getStory = (data, callback) => {
     con.query(`SELECT * FROM stories WHERE story_id = ${data.storyId}`, (err, result) => {
         if(err) throw err;
         callback(result);
+    })
+}
+
+module.exports.getLatestStories = (cb) => {
+
+
+    con.query(`SELECT * FROM stories ORDER BY story_id DESC LIMIT 8`, (err, result) => {
+        if(err) throw err;
+
+        cb(result);
+
     })
 
 }
