@@ -113,10 +113,22 @@ function createStory(title, body, desc, genre) {
                 'Content-Type': 'application/json'
             }
         }).then(res => res.json())
-        .then(response => console.log('Success:', JSON.stringify(response)))
+        .then(response => {
+            redirectToStory(response);
+        })
         .catch(error => console.error('Error:', error));
     }
 
+    
+
+    function redirectToStory(data) {
+        console.log(data);
+
+        document.body.innerHTML = 'Story Successfully Created! Redirecting...';
+        setTimeout(()=>{
+            window.open(`/stories/${data.storyId}`, '_self');
+        },600)
+    }
 
     
 

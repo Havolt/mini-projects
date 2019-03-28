@@ -45,6 +45,18 @@ app.get('/submit', (req,res) => {
     res.sendFile(`${__dirname}/views/story-submit.html`);
 })
 
+app.get('/stories', (req, res) => {
+    function indexCallback(data) {
+
+        fs.readFile(`${__dirname}/views/index.html`, (err, html) => {
+            let htmlData = html.toString().replace("_!!stories_data!!_", JSON.stringify(data));
+            res.send(htmlData);
+        })
+    }
+
+    nodeMySql.getLatestStories(indexCallback);
+})
+
 app.get('/stories/:storyId', (req, res) => {
 
     function storyCB(data) {
