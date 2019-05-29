@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Survey</title>
+    <style>
+        body, html {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f7f7f7;
+        }
+
+        main {
+            text-align: center;
+            
+        }
+
+        form {
+            background: white;
+            padding: 40px 0;
+            width: 90%;
+            margin: 0 auto;
+            border-radius: 3px;
+            box-shadow: 2px 2px 2px rgb(235, 235, 235);
+        }
+
+        .input-sec {
+            display: block;
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        label::after {
+            content: ':';
+        }
+
+        .input-label-pair {
+            display: flex;
+            margin-bottom: 15px;
+        }
+
+        .input-label-pair > label {
+            justify-self: flex-end;
+            flex: 1;
+            text-align: right;
+            margin-right: 10px;
+        }
+
+        .input-label-pair > div {
+            display: flex;
+            justify-content: flex-start;
+            justify-self: flex-start;
+            flex: 1;
+        }
+
+        #input-check-br, #input-check-radio {
+            display: grid;
+            grid-template-columns: auto 1fr;
+        }
+
+        #input-check-br > span, #input-check-radio > span {
+            justify-self: start;
+            margin-bottom: 8px;
+        }
+
+        textarea {
+            resize: none;
+            width: 80%;
+            height: 80px;
+        }
+    </style>
+</head>
+<body>
+
+    <main>
+        <h1 id="title">Survey</h1>
+        <p id="description">This is a survey for the cutest pupper</p>
+
+        <form action="" id="survey-form">
+            
+            <div class="input-sec" id="input-texts">
+                <div class="input-label-pair">
+                    <label for="name" id="name-label">Pupper's name </label>
+                    <div>
+                        <input type="name" id="name" type="text" placeholder="Enter name..">
+                    </div>
+                </div>
+                <div class="input-label-pair">
+                    <label for="email" id="email-label">Pupper's Email</label>
+                    <div>
+                        <input type="email" id="email" placeholder="Enter email..">
+                    </div>
+                </div>
+                <div class="input-label-pair">
+                    <label for="number" id="number-label">Pupper's Favourite number (between 10 and 200)</label>
+                    <div>
+                        <input min="10" max="500" type="number" id="number">
+                    </div>
+                </div>
+            </div>
+
+            <div class="input-sec input-label-pair" id="input-list">
+                <label for="dropdownlist">How soft is your pupper?</label>
+                <div>
+                    <select name="dropdownlist" id="dropdownlist">
+                        <option value="dropdown" id="dropdown">Kind of soft</option>
+                        <option value="second-dd" id="second-dd">Pretty soft</option>
+                        <option value="third-dd" id="third-dd">Very soft</option>
+                        <option value="fourth-dd" id="fourth-dd">Cloud in a pillow soft</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="input-sec input-label-pair" id="input-radio">
+                <label for="woofCol">What color is your fluffer woofer?</label>
+                <div id="input-check-radio">
+                    <input type="radio" name="woofCol" id="woofCol" value="white"><span>White</span>
+                    <input type="radio" name="woofCol" id="woofCol" value="brown"><span>Brown</span> 
+                    <input type="radio" name="woofCol" id="woofCol" value="black"><span>Black</span>
+                    <input type="radio" name="woofCol" id="woofCol" value="other"><span>Other</span>
+                </div>
+            </div>
+
+            <div class="input-sec input-label-pair" id="input-check">
+                <label for="woofAttr">What does your barkmaster have?</label>
+                <div id="input-check-br">
+                    <input type="checkbox" name="woofAttr" id="" val="bark"><span>Cute Woof</span>
+                    <input type="checkbox" name="woofAttr" id="" val="play"><span>Much Play</span>
+                    <input type="checkbox" name="woofAttr" id="" val="walk"><span>Very Walk</span>
+                    <input type="checkbox" name="woofAttr" id="" val="coat"><span>Fluffy Coat</span>
+                </div>
+            </div>
+
+            <div class="input-label-pair">
+                <label for="additional-comments">Additional woof data</label>
+                <div>
+                    <textarea  name="additional-comments" id="add-comments" ></textarea>
+                </div>
+            </div>
+
+            <button type="submit" id="submit">Submit</button>
+
+        </form>
+    </main>
+    
+</body>
+</html>
