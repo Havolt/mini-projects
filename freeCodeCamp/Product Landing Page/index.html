@@ -19,21 +19,26 @@
             <nav id="nav-bar" class="lp-header__nav">
                 <a href="#video" class="nav-link lp-header__nav__link">Video</a>
                 <a href="#form" class="nav-link lp-header__nav__link">Form</a>
-                <a href="http://www.nintendo.com" class="nav-link lp-header__nav__link">Nintendo</a>  
+                <a href="#main" class="nav-link lp-header__nav__link">Home</a>  
             </nav>
         </header>
 
-        <main class="lp-main">
+        <main id="main" class="lp-main">
+
+            <h1 class="lp-main__title">Super Mario Maker <span>2</span></h1>
 
             <div class="lp-main__video">
-                    <iframe id="video" width="728" height="412" src="https://www.youtube.com/embed/AjJWzJC8Kfk" 
+                    <iframe id="video" src="https://www.youtube.com/embed/AjJWzJC8Kfk" 
                     frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
                     allowfullscreen></iframe>
             </div>
 
             <form action="https://www.freecodecamp.com/email-submit" class="lp-main__form" id="form">
-                <input type="email" placeholder="Enter email.." class="lp-main__form__email" id="email" value="email"></input>
-                <input type="submit" id="submit" value="Submit">
+                <h3 class="lp-main__form__text">Want to be kept up to date with the lastest Mario Maker news?</h3>
+                <div class="lp-main__form__con">
+                    <input type="email" placeholder="Enter email.." class="lp-main__form__email" id="email"></input>
+                    <input type="submit" class="lp-main__form__submit" id="submit" value="Submit">
+                </div>
             </form>
 
 
