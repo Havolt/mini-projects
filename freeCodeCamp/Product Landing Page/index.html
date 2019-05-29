@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Product Landing Page</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="app">
+        <header id="header" class="lp-header">
+            <div class="lp-header__logo">
+                <img src="https://i.imgur.com/Ctov7sX.png" alt="" class="lp-header__logo__img" id="header-img">
+                <div class="lp-header__logo__name">Nintendo Store</div>
+            </div>
+
+            <nav id="nav-bar" class="lp-header__nav">
+                <a href="#video" class="nav-link lp-header__nav__link">Video</a>
+                <a href="#form" class="nav-link lp-header__nav__link">Form</a>
+                <a href="http://www.nintendo.com" class="nav-link lp-header__nav__link">Nintendo</a>  
+            </nav>
+        </header>
+
+        <main class="lp-main">
+
+            <div class="lp-main__video">
+                    <iframe id="video" width="728" height="412" src="https://www.youtube.com/embed/AjJWzJC8Kfk" 
+                    frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
+                    allowfullscreen></iframe>
+            </div>
+
+            <form action="https://www.freecodecamp.com/email-submit" class="lp-main__form" id="form">
+                <input type="email" placeholder="Enter email.." class="lp-main__form__email" id="email" value="email"></input>
+                <input type="submit" id="submit" value="Submit">
+            </form>
+
+
+        </main>
+    </div>
+    
+</body>
+</html>

@@ -1,0 +1,30 @@
+
+body, html {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+a {
+    text-decoration: none;
+}
+
+header {
+    height: 60px;
+    margin-bottom: 10px;
+}
+
+.lp-header__logo {
+    display: flex;
+    height: 60px;
+    align-items: center;
+}
+
+.lp-header__logo__name {
+    font-size: 25px;
+    margin-left: 10px;
+}
+
+.lp-header__logo__img {
+    width: 100px;
+    border-radius: 10px;
+    height: auto;
+}
