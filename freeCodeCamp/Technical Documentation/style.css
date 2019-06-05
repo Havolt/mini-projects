@@ -3,6 +3,40 @@ html, body {
     font-family: Arial, Helvetica, sans-serif;
 }
 
+#app {
+    display: flex;
+}
+
+#navbar {
+    flex: 1.2;
+    background: rgb(73, 73, 73);
+    color: white;
+}
+
+.navbar__heading {
+    font-size: 22px;
+    text-align: center;
+}
+
+.nav-link:nth-child(2) {
+    border-top: 1px solid rgb(141, 141, 141);
+}
+
+.nav-link{
+    display: block;
+    font-size: 18px;
+    text-decoration: none;
+    padding: 20px 0;
+    text-align: center;
+    color: rgb(231, 231, 231);
+    border-bottom: 1px solid rgb(141, 141, 141);
+}
+
+#main-doc {
+    flex: 9;
+    padding-left: 25px;
+}
+
 main {
     padding-bottom: 6rem;
 }
