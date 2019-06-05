@@ -32,6 +32,16 @@ html, body {
     border-bottom: 1px solid rgb(141, 141, 141);
 }
 
+.nav-link:hover {
+    background: rgb(62, 114, 163);
+}
+
+.nav-link:hover span {
+    display: block;
+    transform: scale(1.1);
+    transition: transform .2s;
+}
+
 #main-doc {
     flex: 9;
     padding-left: 25px;
